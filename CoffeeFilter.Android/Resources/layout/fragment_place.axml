@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:@color/@android:color/transparent">
+    <TextView
+        android:text="81.901 mi."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/top"
+        android:layout_gravity="top"
+        android:gravity="right"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingRight="48dp"
+        android:background="@color/primary"
+        android:textSize="42sp"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@android:color/white" />
+    <LinearLayout
+        android:layout_gravity="top|left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp">
+        <ImageView
+            android:src="@drawable/ic_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top" />
+        <TextView
+            android:text="4.5"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rating"
+            android:background="@color/primary"
+            android:textSize="21sp"
+            android:fontFamily="sans-serif"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center" />
+    </LinearLayout>
+    <TextView
+        android:text="Name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:padding="12dp"
+        android:singleLine="true"
+        android:background="@color/primary"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/primaryLightColor" />
+</FrameLayout>
