@@ -3,7 +3,7 @@ Coffee Filter - Find Coffee Fast
 
 Sample application detecting the closest coffee locations to you using Google Maps Lite.
 
-See the full blog post on the Xamarin Blog: 
+See the full blog post on the Xamarin Blog: http://blog.xamarin.com/android-tips-faster-maps-with-google-maps-lite/
 
 ![Demo](art/coffeefilterdemo.gif)
 
