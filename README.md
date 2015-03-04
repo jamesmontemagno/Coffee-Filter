@@ -8,7 +8,7 @@ See the full blog post on the Xamarin Blog: http://blog.xamarin.com/android-tips
 ![Demo](art/coffeefilterdemo.gif)
 
 
-### Try the Demo
+### Get the App
 
 Download from Google Play:
 https://play.google.com/store/apps/details?id=com.refractored.coffeefilter
@@ -40,6 +40,13 @@ In addition to this you must toggle on `Places API` under Services in your Googl
 * [Connectivity Plugin](https://components.xamarin.com/view/ConnectivityPlugin) - Simple cross platform API to check connectivity.
 * [ServiceStack.Text](https://components.xamarin.com/view/servicestacktext) - Simple json serialization and deserialization!
 * [External Maps Plugin](https://components.xamarin.com/view/ExternalMapsPlugin) - Launch map app from shared code.
+
+### Coming Soon
+* Pull to Refresh
+* Easier to Navigate
+* Details Page
+* iOS Version
+* Ability to move pin while moving
 
 ### License
 The MIT License (MIT)
