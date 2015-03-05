@@ -23,6 +23,9 @@ bld/
 [Cc]omponents/
 data/
 APK/
+*.apk
+*.APK
+runtests
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

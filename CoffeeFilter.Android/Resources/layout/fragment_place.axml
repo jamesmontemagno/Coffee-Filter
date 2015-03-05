@@ -30,7 +30,8 @@
             android:src="@drawable/ic_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="top" />
+            android:gravity="top"
+            android:id="@+id/star" />
         <TextView
             android:text="4.5"
             android:textAppearance="?android:attr/textAppearanceLarge"

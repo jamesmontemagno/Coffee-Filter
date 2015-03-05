@@ -1572,8 +1572,8 @@ namespace CoffeeFilter
 			// aapt resource value: 0x7f0c0019
 			public const int book_now = 2131492889;
 			
-			// aapt resource value: 0x7f0c0055
-			public const int bottom = 2131492949;
+			// aapt resource value: 0x7f0c0056
+			public const int bottom = 2131492950;
 			
 			// aapt resource value: 0x7f0c0015
 			public const int buyButton = 2131492885;
@@ -1617,8 +1617,8 @@ namespace CoffeeFilter
 			// aapt resource value: 0x7f0c0029
 			public const int end = 2131492905;
 			
-			// aapt resource value: 0x7f0c0056
-			public const int error = 2131492950;
+			// aapt resource value: 0x7f0c0057
+			public const int error = 2131492951;
 			
 			// aapt resource value: 0x7f0c0036
 			public const int expand_activities_button = 2131492918;
@@ -1656,29 +1656,32 @@ namespace CoffeeFilter
 			// aapt resource value: 0x7f0c0020
 			public const int listMode = 2131492896;
 			
+			// aapt resource value: 0x7f0c0060
+			public const int listView = 2131492960;
+			
 			// aapt resource value: 0x7f0c0039
 			public const int list_item = 2131492921;
 			
-			// aapt resource value: 0x7f0c0058
-			public const int map = 2131492952;
+			// aapt resource value: 0x7f0c0059
+			public const int map = 2131492953;
 			
 			// aapt resource value: 0x7f0c0017
 			public const int match_parent = 2131492887;
 			
-			// aapt resource value: 0x7f0c005d
-			public const int media_route_control_frame = 2131492957;
-			
 			// aapt resource value: 0x7f0c005e
-			public const int media_route_disconnect_button = 2131492958;
+			public const int media_route_control_frame = 2131492958;
 			
-			// aapt resource value: 0x7f0c005a
-			public const int media_route_list = 2131492954;
+			// aapt resource value: 0x7f0c005f
+			public const int media_route_disconnect_button = 2131492959;
 			
 			// aapt resource value: 0x7f0c005b
-			public const int media_route_volume_layout = 2131492955;
+			public const int media_route_list = 2131492955;
 			
 			// aapt resource value: 0x7f0c005c
-			public const int media_route_volume_slider = 2131492956;
+			public const int media_route_volume_layout = 2131492956;
+			
+			// aapt resource value: 0x7f0c005d
+			public const int media_route_volume_slider = 2131492957;
 			
 			// aapt resource value: 0x7f0c002a
 			public const int middle = 2131492906;
@@ -1695,14 +1698,14 @@ namespace CoffeeFilter
 			// aapt resource value: 0x7f0c000d
 			public const int normal = 2131492877;
 			
-			// aapt resource value: 0x7f0c0059
-			public const int pager = 2131492953;
+			// aapt resource value: 0x7f0c005a
+			public const int pager = 2131492954;
 			
 			// aapt resource value: 0x7f0c0012
 			public const int production = 2131492882;
 			
-			// aapt resource value: 0x7f0c0057
-			public const int progressBar = 2131492951;
+			// aapt resource value: 0x7f0c0058
+			public const int progressBar = 2131492952;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int progress_circular = 2131492869;
@@ -1713,11 +1716,11 @@ namespace CoffeeFilter
 			// aapt resource value: 0x7f0c003f
 			public const int radio = 2131492927;
 			
-			// aapt resource value: 0x7f0c0054
-			public const int rating = 2131492948;
+			// aapt resource value: 0x7f0c0055
+			public const int rating = 2131492949;
 			
-			// aapt resource value: 0x7f0c005f
-			public const int refresh = 2131492959;
+			// aapt resource value: 0x7f0c0061
+			public const int refresh = 2131492961;
 			
 			// aapt resource value: 0x7f0c0013
 			public const int sandbox = 2131492883;
@@ -1772,6 +1775,9 @@ namespace CoffeeFilter
 			
 			// aapt resource value: 0x7f0c0007
 			public const int split_action_bar = 2131492871;
+			
+			// aapt resource value: 0x7f0c0054
+			public const int star = 2131492948;
 			
 			// aapt resource value: 0x7f0c0014
 			public const int strict_sandbox = 2131492884;
@@ -1921,6 +1927,9 @@ namespace CoffeeFilter
 			
 			// aapt resource value: 0x7f03001c
 			public const int support_simple_spinner_dropdown_item = 2130903068;
+			
+			// aapt resource value: 0x7f03001d
+			public const int test_setup = 2130903069;
 			
 			static Layout()
 			{

@@ -13,9 +13,8 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <AssemblyName>CoffeeFilter</AssemblyName>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,6 +25,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AssemblyName>CoffeeFilter</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -38,6 +39,18 @@
     <AndroidLinkMode>Full</AndroidLinkMode>
     <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
     <AndroidLinkSkip>ServiceStack.Text.XamarinAndrod</AndroidLinkSkip>
+    <AssemblyName>CoffeeFilter</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITests|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\UITest</OutputPath>
+    <DefineConstants>DEBUG;UITest</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AssemblyName>CoffeeFilter.Android</AssemblyName>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -88,6 +101,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlaceFragment.cs" />
+    <Compile Include="TestSetupActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -143,8 +157,10 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\layout\test_setup.axml" />
   </ItemGroup>
   <Import Project="..\CoffeeFilter.Shared\CoffeeFilter.Shared.projitems" Label="Shared" Condition="Exists('..\CoffeeFilter.Shared\CoffeeFilter.Shared.projitems')" />
+  <Import Project="..\CoffeeFilter.UITests.Shared\CoffeeFilter.UITests.Shared.projitems" Label="Shared" Condition="Exists('..\CoffeeFilter.UITests.Shared\CoffeeFilter.UITests.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

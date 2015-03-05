@@ -15,11 +15,14 @@ using Android.Widget;
 using CoffeeFilter.Shared;
 using CoffeeFilter.Shared.Models;
 using Android.Content.PM;
-using Connectivity.Plugin;
 
 namespace CoffeeFilter
 {
+	#if UITest
+	[Activity (Label = "Coffee Filter", ScreenOrientation = ScreenOrientation.Portrait,  MainLauncher = false, Icon = "@drawable/ic_launcher")]
+	#else
 	[Activity (Label = "Coffee Filter", ScreenOrientation = ScreenOrientation.Portrait,  MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	#endif
 	public class MainActivity : ActionBarActivity, IOnMapReadyCallback
 	{
 
@@ -249,7 +252,7 @@ namespace CoffeeFilter
 			ShowProgress (true);
 			try
 			{
-				if (!CrossConnectivity.Current.IsConnected) {
+				if (!viewModel.IsConnected) {
 					Toast.MakeText (this, "No Network Connection Available.", ToastLength.Short).Show ();
 					error = true;
 					return;

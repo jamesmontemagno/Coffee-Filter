@@ -5,15 +5,40 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeFilter.Android", "Cof
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CoffeeFilter.Shared", "CoffeeFilter.Shared\CoffeeFilter.Shared.shproj", "{851CF61B-0899-4332-A111-46C71D19AE84}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{42493F1D-9378-4E0C-89C3-DF9D79E3B4F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeFilter.UITests", "CoffeeFilter.UITests\CoffeeFilter.UITests.csproj", "{5FFC5831-C926-45CA-ACB6-49C3C4AA96D7}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CoffeeFilter.UITests.Shared", "CoffeeFilter.UITests.Shared\CoffeeFilter.UITests.Shared.shproj", "{02B7F35D-201F-4435-8020-1FE34E45B02B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		UITests|Any CPU = UITests|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FFC5831-C926-45CA-ACB6-49C3C4AA96D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FFC5831-C926-45CA-ACB6-49C3C4AA96D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FFC5831-C926-45CA-ACB6-49C3C4AA96D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FFC5831-C926-45CA-ACB6-49C3C4AA96D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FFC5831-C926-45CA-ACB6-49C3C4AA96D7}.UITests|Any CPU.ActiveCfg = UITests|Any CPU
+		{5FFC5831-C926-45CA-ACB6-49C3C4AA96D7}.UITests|Any CPU.Build.0 = UITests|Any CPU
 		{92ADA73A-72D7-4026-93D7-08ED5EF2A6B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92ADA73A-72D7-4026-93D7-08ED5EF2A6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92ADA73A-72D7-4026-93D7-08ED5EF2A6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92ADA73A-72D7-4026-93D7-08ED5EF2A6B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92ADA73A-72D7-4026-93D7-08ED5EF2A6B3}.UITests|Any CPU.ActiveCfg = UITests|Any CPU
+		{92ADA73A-72D7-4026-93D7-08ED5EF2A6B3}.UITests|Any CPU.Build.0 = UITests|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5FFC5831-C926-45CA-ACB6-49C3C4AA96D7} = {42493F1D-9378-4E0C-89C3-DF9D79E3B4F0}
+		{02B7F35D-201F-4435-8020-1FE34E45B02B} = {42493F1D-9378-4E0C-89C3-DF9D79E3B4F0}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.StandardHeader = $1
+		$1.Text = 
+		$1.IncludeInNewFiles = True
 	EndGlobalSection
 EndGlobal
