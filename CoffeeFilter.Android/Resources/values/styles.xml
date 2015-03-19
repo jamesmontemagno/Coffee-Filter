@@ -6,7 +6,7 @@
   <style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="android:windowNoTitle">true</item>
     <!--We will be using the toolbar so no need to show ActionBar-->
-    <item name="windowActionBar">true</item>
+    <item name="windowActionBar">false</item>
     <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
     <!-- colorPrimary is used for the default action bar background -->
     <item name="colorPrimary">@color/primary</item>
@@ -15,10 +15,13 @@
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
     <item name="colorAccent">@color/accent</item>
+
+    <item name="android:textColorPrimary">@android:color/white</item>
      <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
      <item name="actionBarStyle">@style/MyTheme.ActionBar</item>
 	<item name="android:windowContentOverlay">@null</item>
+	<item name="android:ratingBarStyleSmall">@style/RatingBarSmallAppTheme</item>
   </style>
 
   <style name="MyTheme.ActionBar" parent="style/Widget.AppCompat.Light.ActionBar.Solid">
@@ -27,4 +30,12 @@
     <!-- Support library compatibility -->
     <item name="elevation">0dp</item>
 </style>
+  <style name="RatingBarSmallAppTheme" parent="android:Widget.Holo.Light.RatingBar.Small">
+      <item name="android:progressDrawable">@drawable/apptheme_ratingbar_small_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/apptheme_ratingbar_small_holo_light</item>
+  </style>
+   <style name="RatingBarBigAppTheme" parent="android:Widget.Holo.Light.RatingBar.Indicator">
+      <item name="android:progressDrawable">@drawable/apptheme_ratingbar_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/apptheme_ratingbar_holo_light</item>
+  </style>
 </resources>

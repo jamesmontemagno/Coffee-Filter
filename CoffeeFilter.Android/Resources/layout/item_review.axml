@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    local:cardCornerRadius="0dp"
+    local:cardElevation="2dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <FrameLayout
+            android:layout_gravity="top|left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/keyline_margin"
+            android:layout_marginLeft="@dimen/keyline_margin"
+            android:layout_marginBottom="8dp">
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:numStars="5"
+                android:isIndicator="true"
+                style="@style/RatingBarSmallAppTheme"
+                android:rating="4.5"
+                android:id="@+id/item_rating" />
+        </FrameLayout>
+        <TextView
+            android:id="@+id/item_review"
+            android:layout_marginLeft="@dimen/keyline_margin"
+            android:layout_marginRight="@dimen/keyline_margin"
+            android:layout_marginBottom="@dimen/keyline_margin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Review Text Goes here"
+            android:textSize="14sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="false" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryDark"
+            android:padding="@dimen/keyline_margin">
+            <TextView
+                android:id="@+id/item_author_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="James Montemagno"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp"
+                android:singleLine="true"
+                android:textColor="@color/primaryLightColor" />
+            <TextView
+                android:id="@+id/item_date"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="June 25th, 2015"
+                android:textColor="@color/secondaryText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="12sp"
+                android:singleLine="true" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

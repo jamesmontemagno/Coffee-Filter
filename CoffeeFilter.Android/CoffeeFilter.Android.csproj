@@ -38,7 +38,6 @@
     <ConsolePause>false</ConsolePause>
     <AndroidLinkMode>Full</AndroidLinkMode>
     <AndroidSupportedAbis>armeabi-v7a;x86</AndroidSupportedAbis>
-    <AndroidLinkSkip>ServiceStack.Text.XamarinAndrod</AndroidLinkSkip>
     <AssemblyName>CoffeeFilter</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UITests|AnyCPU' ">
@@ -62,15 +61,6 @@
     <Reference Include="Geolocator.Plugin.Abstractions">
       <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.1\lib\MonoAndroid10\Geolocator.Plugin.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.21.0.3.0\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.21.0.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text.XamarinAndrod">
-      <HintPath>..\Components\servicestacktext-3.9.61.3\lib\android\ServiceStack.Text.XamarinAndrod.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Net.Http" />
     <Reference Include="Connectivity.Plugin">
@@ -78,9 +68,6 @@
     </Reference>
     <Reference Include="Connectivity.Plugin.Abstractions">
       <HintPath>..\packages\Xam.Plugin.Connectivity.1.0.1\lib\MonoAndroid10\Connectivity.Plugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.21.0.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="GooglePlayServicesLib">
@@ -95,13 +82,54 @@
     <Reference Include="Xamarin.Insights">
       <HintPath>..\packages\Xamarin.Insights.1.9.1.107\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.CardView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.22.0.0.0-beta2\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.22.0.0.0-beta2\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.22.0.0.0-beta2\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.MediaRouter">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.MediaRouter.22.0.0.0-beta2\lib\MonoAndroid403\Xamarin.Android.Support.v7.MediaRouter.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.PagerSlidingTabStrip">
+      <HintPath>..\packages\Refractored.PagerSlidingTabStrip.1.0.9-beta2\lib\MonoAndroid10\Refractored.PagerSlidingTabStrip.dll</HintPath>
+    </Reference>
+    <Reference Include="UrlImageViewHelper">
+      <HintPath>..\Components\urlimageviewhelper-1.0.4\lib\android\UrlImageViewHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ModernHttpClient">
+      <HintPath>..\packages\modernhttpclient.2.2.0\lib\MonoAndroid\ModernHttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="OkHttp">
+      <HintPath>..\packages\modernhttpclient.2.2.0\lib\MonoAndroid\OkHttp.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.1.5.0\lib\MonoAndroid10\Refractored.Xam.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.1.5.0\lib\MonoAndroid10\Refractored.Xam.Settings.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PlaceFragment.cs" />
     <Compile Include="TestSetupActivity.cs" />
+    <Compile Include="DetailsActivity.cs" />
+    <Compile Include="BaseActivity.cs" />
+    <Compile Include="Fragments\PlaceFragment.cs" />
+    <Compile Include="Fragments\PlaceDetailsFragment.cs" />
+    <Compile Include="Fragments\PlaceReviewsFragment.cs" />
+    <Compile Include="Fragments\PlacePhotosFragment.cs" />
+    <Compile Include="Helpers\SquareImageView.cs" />
+    <Compile Include="PanoramaActivity.cs" />
+    <Compile Include="Helpers\FilterScrollView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -110,6 +138,7 @@
     <None Include="PluginsHelp\GeolocatorReadme.txt" />
     <None Include="packages.config" />
     <None Include="PluginsHelp\ConnectivityReadme.txt" />
+    <None Include="Properties\_SettingsStarted.txt" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\colors.xml" />
@@ -119,9 +148,6 @@
     <AndroidResource Include="Resources\layout\main.axml" />
     <AndroidResource Include="Resources\layout\fragment_place.axml" />
     <AndroidResource Include="Resources\menu\menu_home.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_action_refresh.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_action_refresh.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable\coffee_progress.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_mug1.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_mug2.png" />
@@ -147,17 +173,59 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_sadcoffee.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_sadcoffee.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_sadcoffee.png" />
+    <AndroidResource Include="Resources\layout\test_setup.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_maps_navigation.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_maps_navigation.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_maps_navigation.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_maps_navigation.png" />
+    <AndroidResource Include="Resources\layout\details.axml" />
+    <AndroidResource Include="Resources\layout\toolbar.axml" />
+    <AndroidResource Include="Resources\layout\fragment_details.axml" />
+    <AndroidResource Include="Resources\layout\fragment_photos.axml" />
+    <AndroidResource Include="Resources\layout\fragment_reviews.axml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\values\integers.xml" />
+    <AndroidResource Include="Resources\values-sw720dp\integers.xml" />
+    <AndroidResource Include="Resources\layout\item_review.axml" />
+    <AndroidResource Include="Resources\layout\item_photo.axml" />
+    <AndroidResource Include="Resources\values\arrays.xml" />
+    <AndroidResource Include="Resources\menu\menu_details.xml" />
+    <AndroidResource Include="Resources\layout\panorama.axml" />
+    <AndroidResource Include="Resources\drawable\apptheme_ratingbar_small_holo_light.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\apptheme_rate_star_small_half_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\apptheme_rate_star_small_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\apptheme_rate_star_small_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\apptheme_rate_star_small_half_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\apptheme_rate_star_small_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\apptheme_rate_star_small_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\apptheme_rate_star_small_half_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\apptheme_rate_star_small_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\apptheme_rate_star_small_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\apptheme_rate_star_small_half_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\apptheme_rate_star_small_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\apptheme_rate_star_small_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable\apptheme_ratingbar_holo_light.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\apptheme_rate_star_big_half_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\apptheme_rate_star_big_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\apptheme_rate_star_big_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\apptheme_rate_star_big_half_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\apptheme_rate_star_big_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\apptheme_rate_star_big_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\apptheme_rate_star_big_half_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\apptheme_rate_star_big_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\apptheme_rate_star_big_on_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\apptheme_rate_star_big_half_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\apptheme_rate_star_big_off_holo_light.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\apptheme_rate_star_big_on_holo_light.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_star.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_star.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_star.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_star.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_refresh.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\layout\test_setup.axml" />
   </ItemGroup>
   <Import Project="..\CoffeeFilter.Shared\CoffeeFilter.Shared.projitems" Label="Shared" Condition="Exists('..\CoffeeFilter.Shared\CoffeeFilter.Shared.projitems')" />
   <Import Project="..\CoffeeFilter.UITests.Shared\CoffeeFilter.UITests.Shared.projitems" Label="Shared" Condition="Exists('..\CoffeeFilter.UITests.Shared\CoffeeFilter.UITests.Shared.projitems')" />
@@ -167,10 +235,13 @@
     <Folder Include="Resources\menu\" />
     <Folder Include="Resources\drawable\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="Fragments\" />
+    <Folder Include="Resources\values-sw720dp\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="servicestacktext">
-      <Version>3.9.61.3</Version>
+    <XamarinComponentReference Include="urlimageviewhelper">
+      <Version>1.0.4</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

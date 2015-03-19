@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:id="@+id/image"
+        android:scaleType="centerCrop" />
+    <coffeefilter.helpers.FilterScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/main_scroll">
+        <LinearLayout
+            android:paddingTop="160dp"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/padding_layout">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingTop="@dimen/keyline_margin"
+                android:background="@color/standard_background">
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="5 stars based on 99 reviews"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:textColor="@color/secondaryText"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/keyline_margin"
+                    android:layout_marginLeft="@dimen/keyline_margin"
+                    android:layout_marginRight="@dimen/keyline_margin"
+                    android:layout_marginBottom="8dp" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/info"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="14sp"
+                    android:singleLine="true"
+                    android:textColor="@color/primaryLightColor"
+                    android:background="@color/primaryDark"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingRight="@dimen/keyline_margin"
+                    android:paddingLeft="@dimen/keyline_margin"
+                    android:layout_marginTop="@dimen/keyline_margin"
+                    android:gravity="center_vertical" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_weight="6"
+                        android:layout_height="fill_parent"
+                        android:paddingTop="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin"
+                        android:paddingRight="@dimen/keyline_margin">
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Vivace Espresso"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText" />
+                        <TextView
+                            android:id="@+id/address"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="227 Yale Ave N."
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true" />
+                        <TextView
+                            android:id="@+id/distance"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text=".25 mi away"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true" />
+                        <TextView
+                            android:id="@+id/price_hours"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="$ - Open until 11:00pm"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true" />
+                        <TextView
+                            android:id="@+id/phone_number"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="(206) 388-5264"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true" />
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+                        <Button
+                            android:background="?attr/selectableItemBackground"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:text="@string/street_view"
+                            android:gravity="center"
+                            android:textColor="@color/secondaryText"
+                            android:id="@+id/panorama"
+                            android:textAllCaps="false" />
+                    </LinearLayout>
+                    <com.google.android.gms.maps.MapView
+                        android:id="@+id/map"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="180dp"
+                        map:mapType="normal"
+                        map:liteMode="true"
+                        map:cameraZoom="16" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/all_hours">
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hours"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="14sp"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryLightColor"
+                        android:background="@color/primaryDark"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin"
+                        android:layout_marginBottom="@dimen/keyline_margin"
+                        android:gravity="center_vertical"
+                        android:id="@+id/hours_headers" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/monday"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText" />
+                        <TextView
+                            android:id="@+id/monday"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="6:00 am - 11:00 pm"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:layout_gravity="right"
+                            android:gravity="right" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tuesday"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText" />
+                        <TextView
+                            android:id="@+id/tuesday"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="6:00 am - 11:00 pm"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:layout_gravity="right"
+                            android:gravity="right" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/wednesday"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText" />
+                        <TextView
+                            android:id="@+id/wednesday"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="6:00 am - 11:00 pm"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:layout_gravity="right"
+                            android:gravity="right" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/thursday"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText" />
+                        <TextView
+                            android:id="@+id/thursday"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="6:00 am - 11:00 pm"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:layout_gravity="right"
+                            android:gravity="right" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/friday"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText" />
+                        <TextView
+                            android:id="@+id/friday"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="6:00 am - 11:00 pm"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:layout_gravity="right"
+                            android:gravity="right" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/saturday"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText" />
+                        <TextView
+                            android:id="@+id/saturday"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="6:00 am - 11:00 pm"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:layout_gravity="right"
+                            android:gravity="right" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sunday"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText" />
+                        <TextView
+                            android:id="@+id/sunday"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="6:00 am - 11:00 pm"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:layout_gravity="right"
+                            android:gravity="right" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/all_web">
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/web"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="14sp"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryLightColor"
+                        android:background="@color/primaryDark"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin"
+                        android:layout_marginTop="@dimen/keyline_margin"
+                        android:layout_marginBottom="@dimen/keyline_margin"
+                        android:gravity="center_vertical" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/website"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText"
+                            android:id="@+id/website_header" />
+                        <TextView
+                            android:id="@+id/website"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="www.espressovivace.com"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:layout_gravity="right"
+                            android:gravity="right" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/keyline_margin"
+                        android:paddingLeft="@dimen/keyline_margin"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="@dimen/keyline_margin">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/google_plus"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp"
+                            android:singleLine="true"
+                            android:textColor="@color/secondaryText"
+                            android:id="@+id/google_plus_header" />
+                        <TextView
+                            android:id="@+id/google_plus"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="plus.google.com"
+                            android:textColor="@color/secondaryText"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="14sp"
+                            android:singleLine="true"
+                            android:layout_gravity="right"
+                            android:gravity="right" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </coffeefilter.helpers.FilterScrollView>
+</FrameLayout>

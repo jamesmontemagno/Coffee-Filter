@@ -12,11 +12,11 @@
         android:id="@+id/top"
         android:layout_gravity="top"
         android:gravity="right"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:paddingRight="48dp"
+        android:paddingTop="@dimen/keyline_margin"
+        android:paddingBottom="@dimen/keyline_margin"
+        android:paddingRight="@dimen/keyline_margin"
         android:background="@color/primary"
-        android:textSize="42sp"
+        android:textSize="32sp"
         android:fontFamily="sans-serif-light"
         android:textColor="@android:color/white" />
     <LinearLayout
@@ -24,37 +24,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp">
-        <ImageView
-            android:src="@drawable/ic_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:id="@+id/star" />
+        android:layout_marginLeft="@dimen/keyline_margin"
+        android:layout_marginTop="@dimen/keyline_margin">
         <TextView
             android:text="4.5"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rating"
             android:background="@color/primary"
-            android:textSize="21sp"
             android:fontFamily="sans-serif"
-            android:textColor="@android:color/white"
+            android:textColor="@color/primaryLightColor"
             android:layout_gravity="center" />
+        <ImageView
+            android:src="@drawable/ic_star"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:gravity="top"
+            android:id="@+id/star" />
     </LinearLayout>
-    <TextView
-        android:text="Name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bottom"
+    <LinearLayout
         android:layout_gravity="bottom"
-        android:gravity="center"
-        android:padding="12dp"
-        android:singleLine="true"
         android:background="@color/primary"
-        android:fontFamily="sans-serif"
-        android:textColor="@color/primaryLightColor" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <!--<ImageButton
+            android:src="@drawable/ic_action_maps_navigation"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:padding="@dimen/keyline_margin"
+            android:id="@+id/navigation" />-->
+        <Button
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/bottom"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:fontFamily="sans-serif"
+            android:textAllCaps="false"
+            android:textColor="@color/primaryLightColor" />
+    <!--     <ImageButton
+            android:src="@drawable/ic_info"
+            android:background="?attr/selectableItemBackground"
+            android:padding="@dimen/keyline_margin"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/info" />-->
+    </LinearLayout>
 </FrameLayout>

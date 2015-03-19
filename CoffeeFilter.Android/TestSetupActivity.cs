@@ -12,7 +12,6 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using CoffeeFilter.UITests.Shared;
-using System.Linq;
 
 namespace CoffeeFilter
 {

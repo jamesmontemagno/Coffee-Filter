@@ -9,12 +9,16 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using CoffeeFilter.Shared;
 using CoffeeFilter.Shared.Models;
 using Android.Content.PM;
+using Android.Support.V4.Widget;
+using CoffeeFilter.Shared.ViewModels;
+using Android.Runtime;
+using Android.Content;
+using CoffeeFilter.Fragments;
+using CoffeeFilter.Shared.Helpers;
 
 namespace CoffeeFilter
 {
@@ -23,9 +27,9 @@ namespace CoffeeFilter
 	#else
 	[Activity (Label = "Coffee Filter", ScreenOrientation = ScreenOrientation.Portrait,  MainLauncher = true, Icon = "@drawable/ic_launcher")]
 	#endif
-	public class MainActivity : ActionBarActivity, IOnMapReadyCallback
+	public class MainActivity : BaseActivity, IOnMapReadyCallback
 	{
-
+		private SwipeRefreshLayout refresher;
 		private CoffeeFilterViewModel viewModel;
 		private ViewPager pager;
 		private PlacesPagerAdapter adapter;
@@ -37,22 +41,29 @@ namespace CoffeeFilter
 		private ImageView progressBar, errorImage;
 		private AnimationDrawable coffeeProgress;
 		GoogleMap googleMap;
+		DateTime lastRefresh = DateTime.UtcNow;
+
+		protected override int LayoutResource {
+			get {
+				return Resource.Layout.main;
+			}
+		}
+
 		protected override void OnCreate (Bundle bundle)
 		{
 
 			base.OnCreate (bundle);
 
 			#if !DEBUG
-			Xamarin.Insights.Initialize("YourAPIKey", this);
+			Xamarin.Insights.Initialize("8da86f8b3300aa58f3dc9bbef455d0427bb29086", this);
 			#endif
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.main);
 			mapView = FindViewById<MapView> (Resource.Id.map);
 			mapView.OnCreate (bundle);
 
-			mapView.Visibility = ViewStates.Gone;
+			mapView.Visibility = ViewStates.Invisible;
 			viewModel = new CoffeeFilterViewModel ();
+			ServiceContainer.Register<CoffeeFilterViewModel> (viewModel);
 			adapter = new PlacesPagerAdapter (SupportFragmentManager, viewModel);
 			pager = FindViewById<ViewPager> (Resource.Id.pager);
 			pager.Adapter = adapter;
@@ -62,11 +73,26 @@ namespace CoffeeFilter
 			progressBar.Visibility = ViewStates.Gone;
 
 			pager.PageSelected += (sender, e) => UpdateMap (e.Position);
-			pager.PageScrolled += (sender, e) => {
+			pager.PageScrollStateChanged += (sender, e) => {
+				if(e.State == (int)ScrollState.TouchScroll)
+					refresher.Enabled = false;
+				else
+					refresher.Enabled = true;
+			};
+			
+			/*pager.PageScrolled += (sender, e) => {
 				//TranslateMap(e.Position, e.PositionOffset);
 				//Console.WriteLine("Offset: " + e.PositionOffset);
 				//Console.WriteLine("Offset Pixels: " + e.PositionOffsetPixels);
 				//Console.WriteLine("Position: " + e.Position);
+			};*/
+
+			refresher = FindViewById<SwipeRefreshLayout>(Resource.Id.refresher);
+			refresher.SetColorScheme(Resource.Color.accent);
+			refresher.Refresh += (sender, args) =>
+			{
+				RefreshData (true);
+				refresher.PostDelayed(()=>{refresher.Refreshing = false;}, 250);
 			};
 
 			SupportActionBar.SetDisplayHomeAsUpEnabled (false);
@@ -93,28 +119,30 @@ namespace CoffeeFilter
 			return false;
 		}
 
-		public async void OnMapReady (GoogleMap googleMap)
+
+		public void OnMapReady (GoogleMap googleMap)
 		{
 			this.googleMap = googleMap;
 			this.googleMap.UiSettings.CompassEnabled = false;
 			this.googleMap.UiSettings.MyLocationButtonEnabled = false;
 			this.googleMap.UiSettings.MapToolbarEnabled = false;
 
-			await RefreshData ();
+			RefreshData ();
 		}
 
 
 		private void ShowProgress(bool busy)
 		{
 			if (error) {
-				mapView.Visibility = ViewStates.Gone;
+				mapView.Visibility = ViewStates.Invisible;
 				errorImage.Visibility = ViewStates.Visible;
 				pager.Visibility = ViewStates.Gone;
 			} else {
 				errorImage.Visibility = ViewStates.Gone;
-				mapView.Visibility = busy ? ViewStates.Gone : ViewStates.Visible;
+				mapView.Visibility = busy ? ViewStates.Invisible : ViewStates.Visible;
 				pager.Visibility = busy ? ViewStates.Gone : ViewStates.Visible;
 			}
+			refresher.Enabled = !busy; 
 			progressBar.Visibility = busy ? ViewStates.Visible : ViewStates.Gone;
 			if (busy)
 				coffeeProgress.Start ();
@@ -124,7 +152,7 @@ namespace CoffeeFilter
 
 		bool initMap;
 		bool error;
-		int oldPosition;
+		//int oldPosition;
 		/*
 		//still testing for now
 		private void TranslateMap(int newPosition, float offset)
@@ -168,13 +196,13 @@ namespace CoffeeFilter
 		{
 			if (googleMap == null)
 				return;
-			oldPosition = position;
+			//oldPosition = position;
 			try
 			{
 				MapsInitializer.Initialize(this);
 			}
 			catch(GooglePlayServicesNotAvailableException e) {
-				Console.WriteLine ("Google Play Services not available");
+				Console.WriteLine ("Google Play Services not available:" + e);
 				error = true;
 				#if !DEBUG
 				Xamarin.Insights.Report(e, "GPS", "Not Available");
@@ -233,65 +261,159 @@ namespace CoffeeFilter
 
 				var farthest = viewModel.Places [viewModel.Places.Count - 1];
 				var distance = farthest.GetDistance (me.Latitude, me.Longitude);
-				var zoom = 16.0 - (distance / .5);
-				radius = 19.0 * (distance / .45);
+				//var zoom = 16.0 - (distance / .5);
+				radius = 20.0 * (distance / .45);
+				radius = Math.Min (radius, 40.0);
 				locationCircle.Radius = radius;
-			
-				googleMap.MoveCamera (CameraUpdateFactory.NewLatLngZoom(me, (int)zoom));
+
+				var points = new LatLngBounds.Builder ();
+				points.Include (me);
+				foreach (var p in viewModel.Places) {
+					points.Include (new LatLng (p.Geometry.Location.Latitude, p.Geometry.Location.Longitude));
+				}
+				var bounds = points.Build ();
+
+				if (mapView.Width == 0) {
+					initTry = 0;
+					PostDelayInitMap (bounds);
+				} else {
+					googleMap.MoveCamera (CameraUpdateFactory.NewLatLngBounds (bounds, 0));
+				}
 				initMap = true;
 			}
 		}
+
+		int initTry = 0;
+		private void PostDelayInitMap(LatLngBounds bounds)
+		{
+			if (initTry == 4)
+				return;
+
+			mapView.PostDelayed (() => {
+				initTry++;
+				if(mapView.Width == 0)
+					PostDelayInitMap(bounds);
+				else
+					googleMap.MoveCamera (CameraUpdateFactory.NewLatLngBounds (bounds, 0));
+			}, 250);
+		}
 			
-		private async Task RefreshData(bool forceRefresh = false)
+		protected override void OnStart ()
+		{
+			base.OnStart ();
+			if (googleMap != null && lastRefresh.AddMinutes (5) < DateTime.UtcNow)
+				RefreshData ();
+		}
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			mapView.OnResume ();
+		}
+
+		protected override void OnPause ()
+		{
+			base.OnPause ();
+			mapView.OnPause ();
+		}
+
+		protected override void OnDestroy ()
+		{
+			base.OnDestroy ();
+			mapView.OnDestroy ();
+		}
+
+		public override void OnLowMemory ()
+		{
+			base.OnLowMemory ();
+			mapView.OnLowMemory ();
+		}
+
+		protected override void OnSaveInstanceState (Bundle outState)
+		{
+			base.OnSaveInstanceState (outState);
+			mapView.OnSaveInstanceState (outState);
+		}
+
+		bool refreshing = false;
+		//async void is bad, but we are firing and forgetting here, so no worries
+		private async void RefreshData(bool forceRefresh = false, string search = null)
 		{
 			error = false;
 			initMap = false;
+			lastRefresh = DateTime.UtcNow;
 			if (googleMap == null)
 				return;
 
 			ShowProgress (true);
+			refreshing = true;
+
+			this.InvalidateOptionsMenu ();
 			try
 			{
 				if (!viewModel.IsConnected) {
-					Toast.MakeText (this, "No Network Connection Available.", ToastLength.Short).Show ();
+					Toast.MakeText (this, Resource.String.no_network, ToastLength.Short).Show ();
 					error = true;
 					return;
 				}
-
-				adapter.NotifyDataSetChanged ();
 
 				await viewModel.GetLocation (forceRefresh);
 				if (viewModel.Position == null) {
-					Toast.MakeText (this, "Unable to get coffee locations.", ToastLength.Short).Show ();
+					Toast.MakeText (this, Resource.String.unable_to_get_locations, ToastLength.Short).Show ();
 					error = true;
 					return;
 				}
 
-				var items = await viewModel.GetPlaces ();
+				var items = await viewModel.GetPlaces (search);
 				if (items == null || items.Count == 0) {
-					Toast.MakeText (this, "There are no coffee shops nearby that are open. Try tomorrow. :(", ToastLength.Short).Show ();
+					Toast.MakeText (this, Resource.String.nothing_open, ToastLength.Short).Show ();
 					error = true;
 				}
 
 				RunOnUiThread(()=>{
-					adapter.NotifyDataSetChanged ();
 
+					adapter.NotifyDataSetChanged();
 					if(viewModel.Places.Count != 0){
 						pager.CurrentItem = 0;
 						UpdateMap(0);
 					}
 				});
 			}
+			catch{
+			}
 			finally{
 				ShowProgress (false);
+				refreshing = false;
+				this.InvalidateOptionsMenu ();
 			}
 		}
 
-		public override bool OnCreateOptionsMenu (IMenu menu)
+
+		Android.Support.V7.Widget.SearchView searchView;
+		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
-			MenuInflater.Inflate (Resource.Menu.menu_home, menu);
-			return base.OnCreateOptionsMenu (menu);
+			//change menu_search to your name
+			if (!refreshing) {
+				this.MenuInflater.Inflate (Resource.Menu.menu_home, menu);
+
+				if (viewModel.Places.Count == 0)
+					menu.RemoveItem (Resource.Id.action_navigation);
+
+				var searchItem = menu.FindItem (Resource.Id.action_search);
+				var provider = MenuItemCompat.GetActionView (searchItem);
+				searchView = provider.JavaCast<Android.Support.V7.Widget.SearchView> ();
+
+				searchView.QueryTextSubmit += (sender, args) => {
+					RefreshData(true, args.Query.Trim());
+					var view = sender as Android.Support.V7.Widget.SearchView;
+					if(view != null)
+						view.ClearFocus();
+				};
+					
+			}
+			return base.OnCreateOptionsMenu(menu);
 		}
+			
 
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
@@ -299,17 +421,19 @@ namespace CoffeeFilter
 				return base.OnOptionsItemSelected (item);
 
 			switch (item.ItemId) {
-			case Resource.Id.refresh:
-				RefreshData (true);
+			case Resource.Id.action_navigation:
+				if (viewModel.Places.Count == 0)
+					return base.OnOptionsItemSelected (item);
+				var current = viewModel.Places [pager.CurrentItem];
+				viewModel.NavigateToShop (current);
 				break;
 			}
 
 			return base.OnOptionsItemSelected (item);
 		}
-
 	}
 
-	public class PlacesPagerAdapter : FragmentPagerAdapter
+	public class PlacesPagerAdapter : FragmentStatePagerAdapter
 	{
 		public CoffeeFilterViewModel ViewModel { get; set; }
 		public PlacesPagerAdapter(Android.Support.V4.App.FragmentManager fm, CoffeeFilterViewModel vm) : base(fm)
@@ -328,9 +452,17 @@ namespace CoffeeFilter
 		#region implemented abstract members of FragmentPagerAdapter
 		public override Android.Support.V4.App.Fragment GetItem (int position)
 		{
-			return PlaceFragment.NewInstance (ViewModel.Places[position], ViewModel.Position);
+			var frag = PlaceFragment.NewInstance (ViewModel.Places[position], ViewModel.Position);
+			frag.PlaceId = ViewModel.Places [position].PlaceId;
+			return frag;
 		}
 		#endregion
+
+		public override int GetItemPosition (Java.Lang.Object item)
+		{
+			return PositionNone;
+		}
+
 	}
 }
 

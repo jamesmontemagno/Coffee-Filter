@@ -7,4 +7,6 @@
     <color name="accent">#FFC107</color>
     <color name="primaryLightColor">#D7CCC8</color>
     <color name="secondaryText">#727272</color>
+    <color name="apptheme_color">#ffa000</color>
+    <color name="standard_background">#FFEDEDED</color>
 </resources>

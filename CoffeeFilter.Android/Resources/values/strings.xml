@@ -1,5 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="refresh">Refresh</string>
+	<string name="navigate">Navigate to Coffee</string>
 	<string name="app_name">Coffee Filter</string>
+	<string name="search_hint">Searh for anything nearby</string>
+	<string name="monday">Monday</string>
+	<string name="tuesday">Tuesday</string>
+	<string name="wednesday">Wednesday</string>
+	<string name="thursday">Thursday</string>
+	<string name="friday">Friday</string>
+	<string name="saturday">Saturday</string>
+	<string name="sunday">Sunday</string>
+	<string name="web">Web</string>
+	<string name="hours">Hours</string>
+	<string name="based_on_review">{0} stars based on {1} reviews</string>
+	<string name="open_until">Open until {0}</string>
+	<string name="website">Website</string>
+	<string name="google_plus">Google+ Listing</string>
+	<string name="reviews">Reviews</string>
+	<string name="details">Details</string>
+	<string name="photos">Photos</string>
+	<string name="unable_to_get_details">Unable to get details :(</string>
+	<string name="search">Search</string>
+	<string name="share">Share</string>
+	<string name="share_text">I am heading to {0} thanks to #CoffeeFilter on Android</string>
+	<string name="no_network">No Network Connection Available.</string>
+	<string name="unable_to_get_locations">Unable to get coffee locations.</string>
+	<string name="nothing_open">There are no coffee shops nearby that are open. Try tomorrow. :(</string>
+	<string name="info">Information</string>
+	<string name="street_view">Street View</string>
+	<string name="open_now">Open now</string>
+	<string name="rating_only">Rating only</string>
+	<string name="no_reviews">There are no reviews available.</string>
+	<string name="no_photos">There are no photos available.</string>
+	<string name="distance_away">{0} away</string>
+	<string name="navigate_to_coffee">Navigate to Coffee</string>
 </resources>

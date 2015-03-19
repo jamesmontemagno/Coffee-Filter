@@ -9,11 +9,23 @@
     <Import_RootNamespace>CoffeeFilter.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)GeolocationUtils.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\GooglePlace.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CoffeeFilterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\GeolocationUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CoffeeFilterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DetailsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Reviews.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\OperatingHours.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Photos.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Location.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Queries.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Place.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ServiceContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DateTimeUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\FilterSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Helpers\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
   </ItemGroup>
 </Project>
