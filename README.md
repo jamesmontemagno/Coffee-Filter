@@ -5,16 +5,19 @@ Full application detecting the closest coffee locations to you using Google Maps
 
 ![art](art/promo.png)
 
-See the full blog post on the Xamarin Blog: http://blog.xamarin.com/android-tips-faster-maps-with-google-maps-lite/
-
-![Demo](art/coffeefilterdemo.gif)
-
 
 ### Get the App
 
 Download from Google Play:
 https://play.google.com/store/apps/details?id=com.refractored.coffeefilter
 
+![Demo](art/coffeefilterdemo.gif)
+
+
+### Blogs Generated From App
+* [Using Google Maps Lite](http://blog.xamarin.com/android-tips-faster-maps-with-google-maps-lite/)
+* [Easy Parallax Scrolling in Android](http://motzcod.es/post/113970191382/android-parallax-made-easy)
+* [How Coffee Filter Was Created in 2 Day](http://motzcod.es/post/112797487377/coffee-filter-a-c-powered-android-app-in-2-days)
 
 Maps & Places (special note)
 ----
