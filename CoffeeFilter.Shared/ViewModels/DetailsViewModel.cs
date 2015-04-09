@@ -44,7 +44,7 @@ namespace CoffeeFilter.Shared.ViewModels
 			
 			var requestUri = string.Format (DetailsQueryUrl, Place.PlaceId);
 			try {
-				using (var client = new HttpClient (new ModernHttpClient.NativeMessageHandler())) {
+				using (var client = new HttpClient ()) {
 
 					client.Timeout = TimeSpan.FromSeconds (10);
 					var result = await client.GetStringAsync (requestUri);

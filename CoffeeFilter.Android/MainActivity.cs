@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Gms.Common;
-using Android.Gms.Maps;
-using Android.Gms.Maps.Model;
+using Android.Gms.MapsSdk;
+using Android.Gms.MapsSdk.Model;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.V4.App;
@@ -225,8 +225,8 @@ namespace CoffeeFilter
 
 
 			if (marker == null) {
-				markerOptions.SetTitle(place.Name);
-				markerOptions.SetPosition(markerLatLong);
+        markerOptions.InvokeTitle(place.Name);
+        markerOptions.InvokePosition(markerLatLong);
 				marker = googleMap.AddMarker (markerOptions);
 			}
 			else{

@@ -96,7 +96,7 @@ namespace CoffeeFilter.Fragments
 			if (review.Rating < 0)
 				holder.Rating.Rating = 0.0F;
 			else
-				holder.Rating.Rating = (float)Math.Max(review.Rating, 5.0);
+        holder.Rating.Rating = review.Rating < 0 ? 0 : (float)Math.Min(review.Rating, 5.0);
 		return view;
 		}
 

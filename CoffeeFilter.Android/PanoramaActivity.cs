@@ -1,8 +1,8 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Gms.Maps.Model;
-using Android.Gms.Maps;
+using Android.Gms.MapsSdk.Model;
+using Android.Gms.MapsSdk;
 using System.Collections.Generic;
 using Android.Content.PM;
 using Android.Views;
@@ -31,7 +31,7 @@ namespace CoffeeFilter
 			streetViewPanoramaView.GetStreetViewPanoramaAsync (this);
 
 			#if !DEBUG
-			Xamarin.Insights.Track("AppNav", new Dictionary<string,string>
+			Xamarin.Insights.Track("AppNav-Panorama", new Dictionary<string,string>
 			{
 				{"page", "panorama"}
 			});

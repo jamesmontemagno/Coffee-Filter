@@ -57,7 +57,7 @@ namespace CoffeeFilter
 			SupportActionBar.Title = viewModel.Place.Name;
 
 			#if !DEBUG
-			Xamarin.Insights.Track("AppNav", new Dictionary<string,string>
+			Xamarin.Insights.Track("AppNav-Details", new Dictionary<string,string>
 			{
 				{"page", "details"},
 				{"name", viewModel.Place.Name},

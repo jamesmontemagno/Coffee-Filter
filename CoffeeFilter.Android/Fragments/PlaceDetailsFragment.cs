@@ -3,8 +3,8 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using CoffeeFilter.Shared.Models;
-using Android.Gms.Maps.Model;
-using Android.Gms.Maps;
+using Android.Gms.MapsSdk.Model;
+using Android.Gms.MapsSdk;
 using Android.Content;
 using System.Linq;
 using System;
@@ -112,57 +112,24 @@ namespace CoffeeFilter.Fragments
 				};
 			}
 
-			var addressShort = string.Empty;
-			if (Place.AddressComponents != null) {
-				var comp = Place.AddressComponents.FirstOrDefault (a => a.Types != null && a.Types.Contains ("street_number"));
-				var comp2 = Place.AddressComponents.FirstOrDefault (a => a.Types != null && a.Types.Contains ("route"));
-				if (comp != null && comp2 != null)
-					addressShort = comp.ShortName + " " + comp2.ShortName;
-				
-			}
-			address.Text = string.IsNullOrWhiteSpace (addressShort) ? Place.AddressFormatted : addressShort;
+			
+      address.Text = Place.DisplayAddress;
 
-			var priceOpenDisplay = string.Empty;
-			if (Place.PriceLevel.HasValue) {
-				for (int i = 0; i < Place.PriceLevel.Value; i++)
-					priceOpenDisplay += "$";
-			}
-
-			if (!string.IsNullOrWhiteSpace (priceOpenDisplay)) {
-				priceOpenDisplay += " - ";
-			}
-
-
-			if (Place.OpeningHours == null || Place.OpeningHours.Periods == null || Place.OpeningHours.WeekdayText.Count != 7) {
-				priceOpenDisplay += Activity.Resources.GetString (Resource.String.open_now);
-			} else {
-
-				var dayOfWeek = (int)DateTime.Now.DayOfWeek - 1;
-				if (dayOfWeek < 0)
-					dayOfWeek = 6;
-
-				var closeTime = GetTime (Place.OpeningHours.WeekdayText [dayOfWeek]);
-				var closeIndex = closeTime.LastIndexOf ("–", StringComparison.InvariantCultureIgnoreCase);
-				if (closeIndex != -1)
-					closeTime = closeTime.Remove (0, closeIndex + 1).Trim ();
-				
-				priceOpenDisplay += string.Format (Activity.Resources.GetString (Resource.String.open_until), closeTime);
-			}
-			priceHours.Text = priceOpenDisplay;
+      priceHours.Text = Place.PriceOpenDisplay(Activity.Resources.GetString (Resource.String.open_now), Activity.Resources.GetString (Resource.String.open_until));
 
 			if (Place.HasImage)
 				Koush.UrlImageViewHelper.SetUrlDrawable (image, Place.MainImage);
 
-			if (Place.OpeningHours == null || Place.OpeningHours.WeekdayText.Count != 7)
+      if (!Place.HasOpeningHours)
 				allHours.Visibility = ViewStates.Gone;
 			else {
-				monday.Text = GetTime (Place.OpeningHours.WeekdayText [0]);
-				tuesday.Text = GetTime (Place.OpeningHours.WeekdayText [1]);
-				wednesday.Text = GetTime (Place.OpeningHours.WeekdayText [2]);
-				thursday.Text = GetTime (Place.OpeningHours.WeekdayText [3]);
-				friday.Text = GetTime (Place.OpeningHours.WeekdayText [4]);
-				saturday.Text = GetTime (Place.OpeningHours.WeekdayText [5]);
-				sunday.Text = GetTime (Place.OpeningHours.WeekdayText [6]);
+        monday.Text = Place.DisplayHoursMonday;
+        tuesday.Text = Place.DisplayHoursTuesday;
+        wednesday.Text = Place.DisplayHoursWednesday;
+        thursday.Text = Place.DisplayHoursThursday;
+        friday.Text = Place.DisplayHoursFriday;
+        saturday.Text = Place.DisplayHoursSaturday;
+        sunday.Text = Place.DisplayHoursSunday;
 			}
 
 			if (string.IsNullOrWhiteSpace (Place.Website) && string.IsNullOrWhiteSpace (Place.Url))
@@ -237,14 +204,7 @@ namespace CoffeeFilter.Fragments
 			return root;
 		}
 
-		private string GetTime (string toParse)
-		{
-			var index = toParse.IndexOf (":", System.StringComparison.InvariantCultureIgnoreCase);
-			if (index <= 0)
-				return toParse;
-
-			return toParse.Remove (0, index + 1).Trim ();
-		}
+	
 
 		public override void OnViewCreated (View view, Bundle savedInstanceState)
 		{
@@ -277,8 +237,8 @@ namespace CoffeeFilter.Fragments
 			this.map.UiSettings.MapToolbarEnabled = false;
 			var markerLatLong = new LatLng (Place.Geometry.Location.Latitude, Place.Geometry.Location.Longitude);
 			var markerOptions = new MarkerOptions ();
-			markerOptions.SetTitle (Place.Name);
-			markerOptions.SetPosition (markerLatLong);
+      markerOptions.InvokeTitle (Place.Name);
+      markerOptions.InvokePosition (markerLatLong);
 			this.map.AddMarker (markerOptions);
 			this.map.MoveCamera (CameraUpdateFactory.NewLatLng (markerLatLong));
 		}
