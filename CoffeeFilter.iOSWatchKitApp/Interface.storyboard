@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6724" systemVersion="14A379a" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+    </dependencies>
+    <scenes>
+        <!--Coffee!-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller title="Coffee!" id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <group alignment="center" verticalAlignment="center" hidden="YES" layout="vertical" id="YLz-cF-56s">
+                            <items>
+                                <label alignment="center" verticalAlignment="center" text="Unable to get coffee locations." textAlignment="center" numberOfLines="0" id="7t3-zF-w1r">
+                                    <color key="textColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </label>
+                                <button width="1" alignment="center" verticalAlignment="bottom" title="Try again" id="Tk9-qN-b2g">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="TryAgainButtonClick" destination="AgC-eL-Hgc" id="C2J-kc-BTb"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <table alignment="left" id="Cls-nB-Brs">
+                            <items>
+                                <tableRow id="V0f-vE-Xzi" customClass="PlaceRowController">
+                                    <group key="rootItem" width="1" alignment="left" id="zix-F9-Htu">
+                                        <items>
+                                            <label alignment="center" verticalAlignment="center" text="Place name" textAlignment="center" numberOfLines="0" id="cH7-aX-xzU">
+                                                <color key="textColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </label>
+                                        </items>
+                                        <connections>
+                                            <segue destination="HX8-5i-ujc" kind="push" id="qfu-bI-fNT"/>
+                                        </connections>
+                                    </group>
+                                    <connections>
+                                        <outlet property="PlaceNameLabel" destination="cH7-aX-xzU" id="eTv-yC-waG"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <group width="1" height="1" alignment="left" layout="vertical" id="HC3-v6-n0q">
+                            <items>
+                                <imageView width="50" height="50" alignment="center" verticalAlignment="center" id="BFv-Fm-6RZ"/>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="CoffeeAnimationView" destination="BFv-Fm-6RZ" id="0AI-4l-wcY"/>
+                        <outlet property="ImageGroup" destination="HC3-v6-n0q" id="x70-sG-bQh"/>
+                        <outlet property="PlacesTable" destination="Cls-nB-Brs" id="G4E-Hl-dxl"/>
+                        <outlet property="TryAgainButton" destination="Tk9-qN-b2g" id="3yL-ew-34x"/>
+                        <outlet property="WarningGroup" destination="YLz-cF-56s" id="UaN-k2-y8I"/>
+                        <outlet property="WarningMessageLabel" destination="7t3-zF-w1r" id="thw-53-97O"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Details-->
+        <scene sceneID="xmq-px-bhL">
+            <objects>
+                <controller identifier="MapDetailController" title="Details" id="HX8-5i-ujc" customClass="MapDetailController">
+                    <items>
+                        <group width="1" alignment="left" spacing="2" id="tjp-SS-8FX">
+                            <items>
+                                <label height="22" alignment="left" verticalAlignment="center" text="3.7" textAlignment="right" id="MNG-o0-upd">
+                                    <color key="textColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </label>
+                                <imageView width="25" height="25" alignment="left" image="ic_star" id="fKk-YC-ZpP"/>
+                                <label alignment="right" verticalAlignment="center" text=".156 mi." textAlignment="right" id="wSW-77-ikV">
+                                    <color key="textColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </label>
+                            </items>
+                        </group>
+                        <label alignment="center" text="Startbucks" id="aa0-a4-Uxs">
+                            <color key="textColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </label>
+                        <separator alignment="left" id="eW3-c2-fug">
+                            <color key="color" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </separator>
+                        <map width="134" height="160" alignment="center" id="BJx-aI-5ut"/>
+                        <button width="1" alignment="left" title="Reviews" id="a1y-7v-Wxt">
+                            <color key="titleColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="3aI-O5-mIC" kind="push" identifier="" id="ox9-V1-xXE"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Photos" id="2Xf-Ge-VGX" userLabel="Photos">
+                            <color key="titleColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="TqK-iE-ycT" kind="push" identifier="photosSegue" id="eua-jm-7tp"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="DistanceLabel" destination="wSW-77-ikV" id="Smo-cN-ByF"/>
+                        <outlet property="MapView" destination="BJx-aI-5ut" id="0n3-p1-C8n"/>
+                        <outlet property="PhotosButton" destination="2Xf-Ge-VGX" id="xcn-xl-QGh"/>
+                        <outlet property="PlaceNameLabel" destination="aa0-a4-Uxs" id="9Ea-4e-RXT"/>
+                        <outlet property="RatingLabel" destination="MNG-o0-upd" id="6Lg-GU-mJG"/>
+                        <outlet property="ReviewsButton" destination="a1y-7v-Wxt" id="N2h-Qg-K3J"/>
+                        <outlet property="StartImage" destination="fKk-YC-ZpP" id="f7u-lw-wIq"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="266" y="-0.5"/>
+        </scene>
+        <!--Photos-->
+        <scene sceneID="hdo-fJ-utt">
+            <objects>
+                <controller title="Photos" id="TqK-iE-ycT" customClass="PhotosController">
+                    <items>
+                        <table alignment="left" id="yO9-2k-uXm">
+                            <items>
+                                <tableRow id="VSg-8v-Fz4" customClass="PhotoRowController">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="Prm-Wl-VJK">
+                                        <items>
+                                            <imageView width="136" alignment="center" id="HoC-yN-NLj"/>
+                                            <imageView width="20" height="20" alignment="center" verticalAlignment="center" id="b8g-iU-Xx1"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="LoadingAnimation" destination="b8g-iU-Xx1" id="whd-yJ-gd6"/>
+                                        <outlet property="PhotoView" destination="HoC-yN-NLj" id="k6X-GS-wbA"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="PhotosTable" destination="yO9-2k-uXm" id="thE-RQ-q08"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="65" y="436"/>
+        </scene>
+        <!--Reviews-->
+        <scene sceneID="NJ9-7j-gMD">
+            <objects>
+                <controller title="Reviews" id="3aI-O5-mIC" customClass="ReviewsController">
+                    <items>
+                        <table alignment="left" id="do0-Km-GtQ">
+                            <items>
+                                <tableRow id="sEF-MC-Jez" customClass="ReviewRowController">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="Zjm-zo-uRz">
+                                        <items>
+                                            <group width="1" height="20" alignment="left" id="qke-kV-Uo9">
+                                                <items>
+                                                    <imageView width="20" height="20" alignment="left" image="ic_star" id="9IQ-Fy-NhI"/>
+                                                    <imageView width="20" height="20" alignment="left" image="ic_star" id="lFL-lF-fmk"/>
+                                                    <imageView width="20" height="20" alignment="left" image="ic_star" id="g9i-wa-wrf"/>
+                                                    <imageView width="20" height="20" alignment="left" image="ic_star" id="ApY-HQ-q9L"/>
+                                                    <imageView width="20" height="20" alignment="left" image="ic_star" id="6nx-bJ-7JG"/>
+                                                </items>
+                                            </group>
+                                            <label alignment="left" text="This is a recording from TV of the Mila Kunis intervie" numberOfLines="0" id="T5m-oA-DAH">
+                                                <color key="textColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </label>
+                                            <separator alignment="left" id="ldq-EA-B2g">
+                                                <color key="color" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </separator>
+                                            <label alignment="left" text="Joe McDonald" id="2cx-Cw-HBP">
+                                                <color key="textColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </label>
+                                            <label alignment="left" text="Date label" id="8Es-kf-SWv">
+                                                <color key="textColor" red="0.93725490199999995" green="0.92156862750000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="AuthorNameLabel" destination="2cx-Cw-HBP" id="PZ3-5J-2yb"/>
+                                        <outlet property="DateLabel" destination="8Es-kf-SWv" id="7ze-UJ-nYZ"/>
+                                        <outlet property="ReviewLabel" destination="T5m-oA-DAH" id="vuP-2B-6XH"/>
+                                        <outlet property="star_0" destination="9IQ-Fy-NhI" id="6ix-pr-je1"/>
+                                        <outlet property="star_1" destination="lFL-lF-fmk" id="VmS-Fo-4ZN"/>
+                                        <outlet property="star_2" destination="g9i-wa-wrf" id="c8z-c3-yW4"/>
+                                        <outlet property="star_3" destination="ApY-HQ-q9L" id="VjG-3m-80a"/>
+                                        <outlet property="star_4" destination="6nx-bJ-7JG" id="ACB-Bd-pjY"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="ReviewsTable" destination="do0-Km-GtQ" id="RXJ-Kt-7I7"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="266" y="436"/>
+        </scene>
+    </scenes>
+</document>

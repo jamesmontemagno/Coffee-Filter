@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,17 +15,19 @@ namespace CoffeeFilter.Helpers
 {
 	public class ScrolledEventArgs : EventArgs
 	{
-		public int X {get;set;}
-		public int Y {get;set;}
-		public int OldX {get;set;}
-		public int OldY {get;set;}
+		public int X { get; set; }
+
+		public int Y { get; set; }
+
+		public int OldX { get; set; }
+
+		public int OldY { get; set; }
 	}
 
-	public delegate void ScrolledEventDelegate(object sender, ScrolledEventArgs args);
+	public delegate void ScrolledEventDelegate (object sender, ScrolledEventArgs args);
 
 	public class FilterScrollView : ScrollView
 	{
-
 		public event ScrolledEventDelegate OnScrolledEvent;
 
 		public FilterScrollView (Context context) :

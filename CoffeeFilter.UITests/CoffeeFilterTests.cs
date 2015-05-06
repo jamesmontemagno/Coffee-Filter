@@ -2,6 +2,9 @@
 using System;
 using Xamarin.UITest;
 using CoffeeFilter.UITests.Shared;
+using Xamarin.UITest.iOS;
+using Xamarin.UITest.Android;
+using System.Linq;
 
 namespace CoffeeFilter.UITests
 {
@@ -12,137 +15,152 @@ namespace CoffeeFilter.UITests
 		iOS
 	}
 
-	[TestFixture ()]
+	[TestFixture (Platform.iOS)]
+	[TestFixture (Platform.Android)]
 	public class CoffeeFilterTests
 	{
 
 		IApp app;
+		Platform platform;
 
+		public string PathToAPK { get; } = "../../../CoffeeFilter.Android/bin/Release/com.refractored.coffeefilter-Signed.apk";
 
-		public string PathToAPK { get; private set; }
+		public string BundleID { get; } = "com.xamarin.CoffeeFilter";
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetup()
+		public CoffeeFilterTests (Platform plat)
 		{
-			PathToAPK = "../../../CoffeeFilter.Android/com.refractored.coffeefilter.apk";
+			platform = plat;
 		}
 
-		[TestCase(Platform.Android)]
-		public void NoConnectionDisplayError (Platform platform)
+		[SetUp]
+		public void SetUp ()
 		{
-			ConfigureTest (platform, UITestsHelpers.TestType.NoConnection);
-
-
-			var alerts = app.WaitForElement(a => a.Marked("message"));
-			app.Screenshot ("Error Message Visible");
-
-			Assert.AreEqual (alerts.Length, 1, "No messages visible");
-			Assert.AreEqual (alerts [0].Text, "No Network Connection Available.");
-		}
-
-		[TestCase(Platform.Android)]
-		public void ParseErrorDisplayError (Platform platform)
-		{
-			ConfigureTest (platform, UITestsHelpers.TestType.ParseError);
-			var alerts = app.WaitForElement(a => a.Marked("message"));
-			app.Screenshot ("Parse Message Visible");
-
-			Assert.AreEqual (alerts.Length, 1, "No messages visible");
-			Assert.AreEqual (alerts [0].Text, "Unable to get coffee locations.");
-		}
-
-		[TestCase(Platform.Android)]
-		public void OpenCoffeeDisplayMap (Platform platform)
-		{
-			ConfigureTest (platform, UITestsHelpers.TestType.OpenCoffee);
-			app.WaitForElement (a => a.Marked ("map"));
-			app.Screenshot ("Map Visible");
-			var top = app.Query (a => a.Marked ("top"));
-			var bottom = app.Query (a => a.Marked ("bottom"));
-			var rating = app.Query (a => a.Marked ("rating"));
-
-			Assert.AreEqual (top [0].Text, ".013 mi.");
-			Assert.AreEqual (bottom [0].Text, "Espresso Vivace");
-			Assert.AreEqual (rating [0].Text, "4.5");
-		}
-
-		[TestCase(Platform.Android)]
-		public void OpenCoffeeNoRating (Platform platform)
-		{
-			ConfigureTest (platform, UITestsHelpers.TestType.OpenCoffee);
-			app.WaitForElement (a => a.Marked ("map"));
-			app.Screenshot ("Map Visible");
-			var pager = app.Query(a => a.Marked("pager"));
-			var rect = pager[0].Rect;
-			app.DragCoordinates(rect.Width-5, rect.Y+5, 0, rect.Y+5);
-			app.Screenshot ("Second Coffee Location");
-			app.DragCoordinates(rect.Width-5, rect.Y+5, 0, rect.Y+5);
-			app.Screenshot ("Third Coffee Location");
-			var stars = app.Query(a => a.Marked("star"));
-			app.Screenshot ("No stars visible");
-
-			Assert.AreEqual (stars.Length, 0, "Stars are visible");
-		}
-
-		[TestCase(Platform.Android)]
-		public void ClosedCoffeeDisplayError (Platform platform)
-		{
-			ConfigureTest (platform, UITestsHelpers.TestType.ClosedCoffee);
-			var alerts = app.WaitForElement(a => a.Marked("message"));
-			app.Screenshot ("Parse Message Visible");
-
-			Assert.AreEqual (alerts.Length, 1, "No messages visible");
-			Assert.AreEqual (alerts [0].Text, "There are no coffee shops nearby that are open. Try tomorrow. :(");
-		}
-
-		[TestCase(Platform.Android)]
-		public void NoLocationsDisplayError (Platform platform)
-		{
-			ConfigureTest (platform, UITestsHelpers.TestType.NoLocations);
-			var alerts = app.WaitForElement(a => a.Marked("message"));
-			app.Screenshot ("Parse Message Visible");
-
-			Assert.AreEqual (alerts.Length, 1, "No messages visible");
-			Assert.AreEqual (alerts [0].Text, "There are no coffee shops nearby that are open. Try tomorrow. :(");
-		}
-
-		[TestCase(Platform.Android)]
-		public void UserMovedDisplayCoffee (Platform platform)
-		{
-			ConfigureTest (platform, UITestsHelpers.TestType.UserMoved);
-			var alerts = app.WaitForElement(a => a.Marked("message"));
-			app.Screenshot ("Parse Message Visible");
-
-			app.Tap (a => a.Marked ("refresh"));
-			app.Screenshot ("Refresh tapped");
-			var results = app.WaitForElement (a => a.Marked ("map"));
-			app.Screenshot ("Map Visible");
-			Assert.AreEqual (results.Length, 1);
-		}
-
-		void ConfigureTest(Platform platform, UITestsHelpers.TestType testType)
-		{
-			switch(platform){
+			switch (platform) {
 			case Platform.Android:
-				ConfigureAndroid ();
-				app.Tap(a => a.Marked(testType.ToFriendlyString()));
+				app = ConfigureAndroid ();
+				break;
+			case Platform.iOS:
+				app = ConfigureiOS ();
 				break;
 			}
 		}
 
-		void ConfigureAndroid()
+		AndroidApp ConfigureAndroid ()
 		{
 			if (TestEnvironment.Platform == TestPlatform.Local) {
-				app = ConfigureApp
+				return ConfigureApp
 					.Android
 					.ApkFile (PathToAPK)
+					.ApiKey (UITestsHelpers.XTCApiKey)
 					.StartApp ();
 			} else {
 
-				app = ConfigureApp
+				return ConfigureApp
 					.Android
 					.StartApp ();
 			}
+		}
+
+		iOSApp ConfigureiOS ()
+		{
+			if (TestEnvironment.Platform == TestPlatform.Local) {
+				return ConfigureApp
+					.iOS
+					.InstalledApp (BundleID)
+					.DeviceIdentifier ("e575659cb63d148c5909e28f464466d782ec98b1")
+					.ApiKey (UITestsHelpers.XTCApiKey)
+					.StartApp ();
+			} else {
+				return ConfigureApp
+					.iOS
+					.StartApp ();
+			}
+		}
+
+		[Test]
+		public void CoffeeFilter_VerifyMainScreen_ShouldDisplay ()
+		{
+			app.WaitForElement (c => c.Marked ("bottom"), "Timed out waiting for data to load", TimeSpan.FromSeconds(60));
+
+			app.Query (c => c.Marked ("action_search"));
+			app.Query (c => c.Marked ("action_navigation"));
+
+			app.Query (c => c.Class (platform == Platform.iOS ? "UIMapView" : "MapView"));
+			app.Query (c => c.Marked ("top"));
+			app.Query (c => c.Marked ("bottom"));
+		}
+
+		[Test]
+		public void CoffeeFilter_CycleThroughLocations_ShouldChangeCurrentItem () {
+
+		}
+
+		[Test]
+		public void CoffeeFilter_RefreshLocations_ShouldRefresh () {
+			app.Repl ();
+		}
+
+		[Test]
+		public void CoffeeFilter_SearchForLocation_ShouldDisplay () {
+		}
+
+		[Test]
+		public void CoffeeFilter_VerifyProductScreen_ShouldDisplay ()
+		{
+			app.WaitForElement (c => c.Marked ("bottom"), "Timed out waiting for data to load", TimeSpan.FromSeconds(60));
+			app.Tap (c => c.Marked ("bottom"));
+
+			app.WaitForElement (c => c.Id ("rating"));
+			Assert.That (app.Query (c => c.Marked ("rating")).Any ());
+
+			Assert.That (app.Query (c => c.Marked ("name")).Any ());
+			Assert.That (app.Query (c => c.Marked ("address")).Any ());
+			Assert.That (app.Query (c => c.Marked ("distance")).Any ());
+			Assert.That (app.Query (c => c.Marked ("price_hours")).Any ());
+			Assert.That (app.Query (c => c.Marked ("phone_number")).Any ());
+			Assert.That (app.Query (c => c.Class (platform == Platform.iOS ? "UIMapView" : "MapView")).Any ());
+
+			app.ScrollDown ();
+
+			Assert.That (app.Query (c => c.Text ("Monday").Sibling ().Marked ("monday")).Any ());
+			Assert.That (app.Query (c => c.Text ("Tuesday").Sibling ().Marked ("tuesday")).Any ());
+			Assert.That (app.Query (c => c.Text ("Wednesday").Sibling ().Marked ("wednesday")).Any ());
+			Assert.That (app.Query (c => c.Text ("Thursday").Sibling ().Marked ("thursday")).Any ());
+			Assert.That (app.Query (c => c.Text ("Friday").Sibling ().Marked ("friday")).Any ());
+			Assert.That (app.Query (c => c.Text ("Saturday").Sibling ().Marked ("saturday")).Any ());
+			Assert.That (app.Query (c => c.Text ("Sunday").Sibling ().Marked ("sunday")).Any ());
+
+			app.ScrollDown ();
+
+			Assert.That (app.Query (c => c.Marked ("website_header").Text ("Website").Sibling ().Marked ("website")).Any ());
+			Assert.That (app.Query (c => c.Marked ("google_plus_header").Text ("Google+ Listing").Sibling ().Marked ("google_plus")).Any ());
+
+			app.SwipeRight ();
+
+			if (app.Query (c => c.Marked ("none")).Any ()) {
+				switch (platform) {
+				case Platform.iOS:
+					break;
+				case Platform.Android:
+					Assert.That (Convert.ToInt32 (app.Query (c => c.Class ("GridView").Marked ("grid").Invoke ("getCount")).FirstOrDefault ()) == 0);
+					break;
+				}
+			} else {
+				Assert.That (app.Query (c => c.Marked ("item_rating")).Any ());
+				Assert.That (app.Query (c => c.Marked ("item_review")).Any ());
+				Assert.That (app.Query (c => c.Marked ("item_author_name")).Any ());
+				Assert.That (app.Query (c => c.Marked ("item_date")).Any ());
+			}
+
+			app.SwipeRight ();
+
+			Assert.AreEqual (app.Query (c => c.Class ("GridView").Marked ("grid").Invoke ("getCount")) [0], app.Query (c => c.Class ("SquareImageView")).Length);
+
+			app.Back ();
+		}
+
+		[Test]
+		public void CoffeeFilter_ShareLocationDetails_ShouldDisplay () {
 		}
 	}
 }

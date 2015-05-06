@@ -5,6 +5,9 @@ namespace CoffeeFilter.UITests.Shared
 {
 	public static class UITestsHelpers
 	{
+		public static string XTCApiKey {
+			get;
+		} = "024b0d715a7e9c22388450cf0069cb19";
 
 		public static TestType SelectedTest { get; set; }
 		public enum TestType

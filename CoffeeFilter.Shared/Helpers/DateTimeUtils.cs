@@ -5,23 +5,23 @@ namespace CoffeeFilter.Shared.Helpers
 {
 	public static class DateTimeUtils
 	{
-		static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+		static readonly DateTime Epoch = new DateTime (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-		public static DateTime UnixTimeToDateTime(string text)
+		public static DateTime ParseUnixTime (string text)
 		{
-			var seconds = double.Parse(text, CultureInfo.InvariantCulture);
-			return UnixTimeToDateTime (seconds);
+			var seconds = double.Parse (text, CultureInfo.InvariantCulture);
+			return ParseUnixTime (seconds);
 		}
 
-		public static DateTime UnixTimeToDateTime(double seconds)
+		public static DateTime ParseUnixTime (double seconds)
 		{
 			return Epoch.AddSeconds(seconds);
 		}
 
-		public static double DateTimeToUnixTime(DateTime date)
+		public static double DateTimeToUnixTime (DateTime date)
 		{
 			TimeSpan diff = date - Epoch;
-			return Math.Floor(diff.TotalSeconds);
+			return Math.Floor (diff.TotalSeconds);
 		}
 	}
 }

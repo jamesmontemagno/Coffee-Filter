@@ -1,10 +1,11 @@
-﻿using Android.App;
+﻿using System.Collections.Generic;
+
+using Android.App;
+using Android.Content.PM;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Gms.MapsSdk.Model;
-using Android.Gms.MapsSdk;
-using System.Collections.Generic;
-using Android.Content.PM;
 using Android.Views;
 
 namespace CoffeeFilter
@@ -18,8 +19,6 @@ namespace CoffeeFilter
 
 		protected override void OnCreate (Bundle bundle)
 		{
-
-
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.panorama);
 			var lat = Intent.GetDoubleExtra ("lat", 37.7977);
@@ -31,13 +30,10 @@ namespace CoffeeFilter
 			streetViewPanoramaView.GetStreetViewPanoramaAsync (this);
 
 			#if !DEBUG
-			Xamarin.Insights.Track("AppNav-Panorama", new Dictionary<string,string>
-			{
-				{"page", "panorama"}
+			Xamarin.Insights.Track ("AppNav", new Dictionary<string,string> {
+				{ "page", "panorama" }
 			});
 			#endif
-
-
 		}
 
 		public override void OnWindowFocusChanged (bool hasFocus)
@@ -53,18 +49,15 @@ namespace CoffeeFilter
 			}
 		}
 
-
-
 		public void OnStreetViewPanoramaReady (StreetViewPanorama panorama)
 		{
-			this.streetPanorama = panorama;
+			streetPanorama = panorama;
 			streetPanorama.UserNavigationEnabled = true;
 			streetPanorama.StreetNamesEnabled = true;
 			streetPanorama.PanningGesturesEnabled = true;
 			streetPanorama.ZoomGesturesEnabled = true;
 
 			streetPanorama.SetPosition (latlng);
-
 		}
 
 		protected override void OnResume ()

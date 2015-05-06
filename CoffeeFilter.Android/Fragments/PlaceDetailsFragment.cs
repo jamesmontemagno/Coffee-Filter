@@ -1,26 +1,33 @@
-﻿using Android.Support.V4.App;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+
+using Android.Content;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
 using Android.OS;
+using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
-using CoffeeFilter.Shared.Models;
-using Android.Gms.MapsSdk.Model;
-using Android.Gms.MapsSdk;
-using Android.Content;
-using System.Linq;
-using System;
+
 using ExternalMaps.Plugin;
 using Geolocator.Plugin.Abstractions;
-using System.Globalization;
-using System.Collections.Generic;
-using CoffeeFilter.Helpers;
 
+using CoffeeFilter.Helpers;
+using CoffeeFilter.Shared.Models;
+using CoffeeFilter.Shared.ViewModels;
+using CoffeeFilter.Shared.Helpers;
 
 namespace CoffeeFilter.Fragments
 {
 	public class PlaceDetailsFragment : Fragment, IOnMapReadyCallback
 	{
+		FilterScrollView mainScroll;
+		ImageView image;
 		MapView mapFragment;
 		GoogleMap map;
+		DetailsViewModel viewModel;
 
 		public Place Place { get; set; }
 
@@ -28,14 +35,11 @@ namespace CoffeeFilter.Fragments
 
 		public static PlaceDetailsFragment NewInstance (Place place, Position position)
 		{
-			var f = new PlaceDetailsFragment () {
+			return new PlaceDetailsFragment {
 				Place = place,
-				Position = position
+				Position = position,
+				Arguments = new Bundle ()
 			};
-			var b = new Bundle ();
-
-			f.Arguments = b;
-			return f;
 		}
 
 		public override void OnCreate (Bundle savedInstanceState)
@@ -44,16 +48,13 @@ namespace CoffeeFilter.Fragments
 			RetainInstance = true;
 		}
 
-
-		FilterScrollView mainScroll;
-		ImageView image;
-
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
+			viewModel = ServiceContainer.Resolve<DetailsViewModel> ();
+
 			var root = inflater.Inflate (Resource.Layout.fragment_details, container, false);
 			mapFragment = root.FindViewById<MapView> (Resource.Id.map);
 			mapFragment.OnCreate (savedInstanceState);
-
 
 			var name = root.FindViewById<TextView> (Resource.Id.name);
 			var reviews = root.FindViewById<TextView> (Resource.Id.rating);
@@ -74,7 +75,6 @@ namespace CoffeeFilter.Fragments
 			var allWeb = root.FindViewById<LinearLayout> (Resource.Id.all_web);
 			var distance = root.FindViewById<TextView> (Resource.Id.distance);
 			mainScroll = root.FindViewById<FilterScrollView> (Resource.Id.main_scroll);
-
 
 			var dis = Place.GetDistance (Position.Latitude,
 				          Position.Longitude, CultureInfo.CurrentCulture.Name != "en-US" ? 
@@ -112,24 +112,22 @@ namespace CoffeeFilter.Fragments
 				};
 			}
 
-			
-      address.Text = Place.DisplayAddress;
-
-      priceHours.Text = Place.PriceOpenDisplay(Activity.Resources.GetString (Resource.String.open_now), Activity.Resources.GetString (Resource.String.open_until));
+			address.Text = viewModel.ShortAddress;
+			priceHours.Text = viewModel.OpenHours;
 
 			if (Place.HasImage)
 				Koush.UrlImageViewHelper.SetUrlDrawable (image, Place.MainImage);
 
-      if (!Place.HasOpeningHours)
+			if (Place.OpeningHours == null || Place.OpeningHours.WeekdayText.Count != 7) {
 				allHours.Visibility = ViewStates.Gone;
-			else {
-        monday.Text = Place.DisplayHoursMonday;
-        tuesday.Text = Place.DisplayHoursTuesday;
-        wednesday.Text = Place.DisplayHoursWednesday;
-        thursday.Text = Place.DisplayHoursThursday;
-        friday.Text = Place.DisplayHoursFriday;
-        saturday.Text = Place.DisplayHoursSaturday;
-        sunday.Text = Place.DisplayHoursSunday;
+			} else {
+				monday.Text = GetTime (Place.OpeningHours.WeekdayText [0]);
+				tuesday.Text = GetTime (Place.OpeningHours.WeekdayText [1]);
+				wednesday.Text = GetTime (Place.OpeningHours.WeekdayText [2]);
+				thursday.Text = GetTime (Place.OpeningHours.WeekdayText [3]);
+				friday.Text = GetTime (Place.OpeningHours.WeekdayText [4]);
+				saturday.Text = GetTime (Place.OpeningHours.WeekdayText [5]);
+				sunday.Text = GetTime (Place.OpeningHours.WeekdayText [6]);
 			}
 
 			if (string.IsNullOrWhiteSpace (Place.Website) && string.IsNullOrWhiteSpace (Place.Url))
@@ -138,14 +136,16 @@ namespace CoffeeFilter.Fragments
 			if (string.IsNullOrWhiteSpace (Place.Website)) {
 				website.Visibility = ViewStates.Gone;
 				root.FindViewById<TextView> (Resource.Id.website_header).Visibility = ViewStates.Gone;
-			} else
+			} else {
 				website.Text = Place.Website;
+			}
 
 			if (string.IsNullOrWhiteSpace (Place.Url)) {
 				googlePlus.Visibility = ViewStates.Gone;
 				root.FindViewById<TextView> (Resource.Id.google_plus_header).Visibility = ViewStates.Gone;
-			} else
+			} else {
 				googlePlus.Text = "plus.google.com";
+			}
 
 			website.Clickable = true;
 			website.Click += (sender, e) => {
@@ -186,7 +186,6 @@ namespace CoffeeFilter.Fragments
 					#endif
 				}
 			};
-				
 
 			var panorama = root.FindViewById<Button> (Resource.Id.panorama);
 			panorama.Click += (sender, e) => {
@@ -204,7 +203,14 @@ namespace CoffeeFilter.Fragments
 			return root;
 		}
 
-	
+		string GetTime (string toParse)
+		{
+			var index = toParse.IndexOf (":", System.StringComparison.InvariantCultureIgnoreCase);
+			if (index <= 0)
+				return toParse;
+
+			return toParse.Remove (0, index + 1).Trim ();
+		}
 
 		public override void OnViewCreated (View view, Bundle savedInstanceState)
 		{
@@ -226,24 +232,26 @@ namespace CoffeeFilter.Fragments
 
 		public void OnMapReady (GoogleMap googleMap)
 		{
-			this.map = googleMap;
+			map = googleMap;
 			MapsInitializer.Initialize (Activity.ApplicationContext);
 
-			this.map.MapClick += GoogleMap_MapClick;
-			this.map.MarkerClick += Map_MarkerClick;
+			map.MapClick += HandleMapClick;
+			map.MarkerClick += HandleMapMarkerClick;
 
-			this.map.UiSettings.CompassEnabled = false;
-			this.map.UiSettings.MyLocationButtonEnabled = false;
-			this.map.UiSettings.MapToolbarEnabled = false;
+			map.UiSettings.CompassEnabled = false;
+			map.UiSettings.MyLocationButtonEnabled = false;
+			map.UiSettings.MapToolbarEnabled = false;
+
 			var markerLatLong = new LatLng (Place.Geometry.Location.Latitude, Place.Geometry.Location.Longitude);
 			var markerOptions = new MarkerOptions ();
-      markerOptions.InvokeTitle (Place.Name);
-      markerOptions.InvokePosition (markerLatLong);
-			this.map.AddMarker (markerOptions);
-			this.map.MoveCamera (CameraUpdateFactory.NewLatLng (markerLatLong));
+			markerOptions.SetTitle (Place.Name);
+			markerOptions.SetPosition (markerLatLong);
+
+			map.AddMarker (markerOptions);
+			map.MoveCamera (CameraUpdateFactory.NewLatLng (markerLatLong));
 		}
 
-		void Map_MarkerClick (object sender, GoogleMap.MarkerClickEventArgs e)
+		void HandleMapMarkerClick (object sender, GoogleMap.MarkerClickEventArgs e)
 		{
 			MapClick ();
 		}
@@ -251,24 +259,18 @@ namespace CoffeeFilter.Fragments
 		void MapClick ()
 		{
 			#if !DEBUG
-			Xamarin.Insights.Track ("Navigation", new Dictionary<string, string> { {
-					"name",
-					Place.Name
-				}, {
-					"rating",
-					Place.Rating.ToString ()
-				}
+			Xamarin.Insights.Track ("Navigation", new Dictionary<string, string> {
+				{ "name", Place.Name },
+				{ "rating", Place.Rating.ToString () }
 			});
 			#endif
 			CrossExternalMaps.Current.NavigateTo (Place.Name, Place.Geometry.Location.Latitude, Place.Geometry.Location.Longitude);
 		}
 
-		void GoogleMap_MapClick (object sender, GoogleMap.MapClickEventArgs e)
+		void HandleMapClick (object sender, GoogleMap.MapClickEventArgs e)
 		{
 			MapClick ();
 		}
-
-
 
 		public override void OnResume ()
 		{

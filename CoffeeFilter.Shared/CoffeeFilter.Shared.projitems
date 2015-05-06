@@ -21,7 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Place.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ServiceContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DateTimeUtils.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\FilterSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ResourceLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

@@ -1,51 +1,49 @@
 ﻿using System;
-using System.Runtime.Serialization;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace CoffeeFilter.Shared.Models
 {
-
 	[DataContract]
 	public class OpeningHours
 	{
-		[DataMember(Name = "open_now")]
+		[DataMember (Name = "open_now")]
 		public bool IsOpen { get; set; }
 
-		[DataMember(Name = "weekday_text")]
+		[DataMember (Name = "weekday_text")]
 		public List<string> WeekdayText { get; set; }
 
-		[DataMember(Name = "periods")]
+		[DataMember (Name = "periods")]
 		public List<Period> Periods { get; set; }
 	}
 
 	[DataContract]
 	public class Close
 	{
-		[DataMember(Name = "day")]
+		[DataMember (Name = "day")]
 		public int Day { get; set; }
 
-		[DataMember(Name = "time")]
+		[DataMember (Name = "time")]
 		public string Time { get; set; }
 	}
 
 	[DataContract]
 	public class Open
 	{
-		[DataMember(Name = "day")]
+		[DataMember (Name = "day")]
 		public int Day { get; set; }
 
-		[DataMember(Name = "time")]
+		[DataMember (Name = "time")]
 		public string Time { get; set; }
 	}
 
 	[DataContract]
 	public class Period
 	{
-
-		[DataMember(Name = "close")]
+		[DataMember (Name = "close")]
 		public Close Close { get; set; }
 
-		[DataMember(Name = "open")]
+		[DataMember (Name = "open")]
 		public Open Open { get; set; }
 	}
 }

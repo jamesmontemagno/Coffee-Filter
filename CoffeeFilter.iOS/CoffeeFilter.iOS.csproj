@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{E9A77FD6-BE46-4A13-A098-B733D20DD051}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CoffeeFilter.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>CoffeeFilteriOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution: Xamarin Inc (7V723M9SQ5)</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+    <CodesignProvision>3f436c3e-7438-419a-ad85-7db282bd570d</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <CodesignProvision>3f436c3e-7438-419a-ad85-7db282bd570d</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Xamarin Inc (7V723M9SQ5)</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.1\lib\Xamarin.iOS10\Geolocator.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.1\lib\Xamarin.iOS10\Geolocator.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="ExternalMaps.Plugin">
+      <HintPath>..\packages\Xam.Plugin.ExternalMaps.1.0.4\lib\Xamarin.iOS10\ExternalMaps.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="ExternalMaps.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.ExternalMaps.1.0.4\lib\Xamarin.iOS10\ExternalMaps.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.9.1.107\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="PLCrashReporterUnifiedBinding">
+      <HintPath>..\packages\Xamarin.Insights.1.9.1.107\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Connectivity.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.1.0.2\lib\Xamarin.iOS10\Connectivity.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Connectivity.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Connectivity.1.0.2\lib\Xamarin.iOS10\Connectivity.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleMaps">
+      <HintPath>..\Components\googlemapsios-1.9.2\lib\ios-unified\GoogleMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="Calabash">
+      <HintPath>..\packages\Xamarin.TestCloud.Agent.0.14.1\lib\Xamarin.iOS10\Calabash.dll</HintPath>
+    </Reference>
+    <Reference Include="ModernHttpClient">
+      <HintPath>..\packages\modernhttpclient.2.4.0\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\29x29.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\40x40.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\50x50.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\57x57.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\58x58.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\72x72.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\76x76.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\80x80.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\87x87.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\100x100.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\114x114.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\120x120.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\180x180.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\48x48.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\55x55.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\88x88.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\172x172.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\196x196.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\640x1136.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\640x960.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\750x1334.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\768x1024.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\1242x2208.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\1536x2048.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\1536x2008.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\768x1004.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\152x152.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Views\PlaceView.xib">
+      <DependentUpon>PlaceView.cs</DependentUpon>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\WarningMessageView.xib">
+      <DependentUpon>WarningMessageView.cs</DependentUpon>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\CoffeeAnimationView.xib">
+      <DependentUpon>CoffeeAnimationView.cs</DependentUpon>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+    <None Include="PluginsHelp\GeolocatorReadme.txt" />
+    <None Include="PluginsHelp\ConnectivityReadme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\PlaceView.cs" />
+    <Compile Include="Views\PlaceView.designer.cs">
+      <DependentUpon>PlaceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SearchViewController.cs" />
+    <Compile Include="Controllers\PlaceDetailsViewController.cs" />
+    <Compile Include="Controllers\PlaceDetailsViewController.designer.cs">
+      <DependentUpon>PlaceDetailsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ViewController.cs" />
+    <Compile Include="Controllers\ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CloudManager.cs" />
+    <Compile Include="Controllers\DetailsViewController.cs" />
+    <Compile Include="Controllers\DetailsViewController.designer.cs">
+      <DependentUpon>DetailsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PhotosViewController.cs" />
+    <Compile Include="Controllers\PhotosViewController.designer.cs">
+      <DependentUpon>PhotosViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReviewsViewController.cs" />
+    <Compile Include="Controllers\ReviewsViewController.designer.cs">
+      <DependentUpon>ReviewsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhotoCell.cs" />
+    <Compile Include="Views\PhotoCell.designer.cs">
+      <DependentUpon>PhotoCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReviewCell.cs" />
+    <Compile Include="Views\ReviewCell.designer.cs">
+      <DependentUpon>ReviewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RatingView.cs" />
+    <Compile Include="Views\RatingView.designer.cs">
+      <DependentUpon>RatingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlaceDetailsCell.cs" />
+    <Compile Include="Views\PlaceDetailsCell.designer.cs">
+      <DependentUpon>PlaceDetailsCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OpenHoursView.cs" />
+    <Compile Include="Views\OpenHoursView.designer.cs">
+      <DependentUpon>OpenHoursView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WarningMessageView.cs" />
+    <Compile Include="Views\WarningMessageView.designer.cs">
+      <DependentUpon>WarningMessageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\StreetViewController.cs" />
+    <Compile Include="Views\CoffeeAnimationView.cs" />
+    <Compile Include="Views\CoffeeAnimationView.designer.cs">
+      <DependentUpon>CoffeeAnimationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Helpers.cs" />
+  </ItemGroup>
+  <Import Project="..\CoffeeFilter.Shared\CoffeeFilter.Shared.projitems" Label="Shared" Condition="Exists('..\CoffeeFilter.Shared\CoffeeFilter.Shared.projitems')" />
+  <Import Project="..\CoffeeFilter.UITests.Shared\CoffeeFilter.UITests.Shared.projitems" Label="Shared" Condition="Exists('..\CoffeeFilter.UITests.Shared\CoffeeFilter.UITests.Shared.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\Images.xcassets\more.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\more.imageset\more.png" />
+    <BundleResource Include="Resources\Images.xcassets\more.imageset\more%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\more.imageset\more%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\near.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\near.imageset\near.png" />
+    <BundleResource Include="Resources\Images.xcassets\near.imageset\near%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\near.imageset\near%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\search.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\search.imageset\search.png" />
+    <BundleResource Include="Resources\Images.xcassets\search.imageset\search%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\search.imageset\search%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\syncing.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\syncing.imageset\syncing.png" />
+    <BundleResource Include="Resources\Images.xcassets\syncing.imageset\syncing%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\syncing.imageset\syncing%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug1.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug1.imageset\ic_mug1.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug2.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug2.imageset\ic_mug2.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug3.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug3.imageset\ic_mug3.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug4.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug4.imageset\ic_mug4.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug5.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug5.imageset\ic_mug5.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_sadcoffee.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\ic_sadcoffee.imageset\ic_sadcoffee.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug1.imageset\ic_mug1%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug1.imageset\ic_mug1%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug2.imageset\ic_mug2%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug2.imageset\ic_mug2%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug3.imageset\ic_mug3%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug3.imageset\ic_mug3%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug4.imageset\ic_mug4%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug4.imageset\ic_mug4%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug5.imageset\ic_mug5%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_mug5.imageset\ic_mug5%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_sadcoffee.imageset\ic_sadcoffee%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_sadcoffee.imageset\ic_sadcoffee%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_star.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\ic_star.imageset\ic_star.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_star.imageset\ic_star%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_star.imageset\ic_star%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\information.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\information.imageset\information.png" />
+    <BundleResource Include="Resources\Images.xcassets\information.imageset\information%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\information.imageset\information%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\photos.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photos.imageset\photos.png" />
+    <BundleResource Include="Resources\Images.xcassets\photos.imageset\photos%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\photos.imageset\photos%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\user_chat.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\user_chat.imageset\user_chat.png" />
+    <BundleResource Include="Resources\Images.xcassets\user_chat.imageset\user_chat%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\user_chat.imageset\user_chat%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\warning.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\warning.imageset\warning.png" />
+    <BundleResource Include="Resources\Images.xcassets\warning.imageset\warning%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\warning.imageset\warning%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\half_star.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\half_star.imageset\apptheme_rate_star_big_half_holo_light-1.png" />
+    <BundleResource Include="Resources\Images.xcassets\half_star.imageset\apptheme_rate_star_big_half_holo_light.png" />
+    <BundleResource Include="Resources\Images.xcassets\half_star.imageset\apptheme_rate_star_small_half_holo_light.png" />
+    <BundleResource Include="Resources\Images.xcassets\star.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\star.imageset\apptheme_rate_star_big_on_holo_light-1.png" />
+    <BundleResource Include="Resources\Images.xcassets\star.imageset\apptheme_rate_star_big_on_holo_light.png" />
+    <BundleResource Include="Resources\Images.xcassets\star.imageset\apptheme_rate_star_small_on_holo_light.png" />
+    <BundleResource Include="Resources\en.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\Images.xcassets\placeholder.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\placeholder.imageset\placeholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Views\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Resources\en.lproj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="googlemapsios">
+      <Version>1.9.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="calabash">
+      <Version>13.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoffeeFilter.iOSWatchKitExtension\CoffeeFilterContaining.iOSWatchKitExtension.csproj">
+      <Project>{6CF328DB-AD12-4042-AE16-2FACA30CF46E}</Project>
+      <Name>CoffeeFilterContaining.iOSWatchKitExtension</Name>
+      <IsAppExtension>True</IsAppExtension>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

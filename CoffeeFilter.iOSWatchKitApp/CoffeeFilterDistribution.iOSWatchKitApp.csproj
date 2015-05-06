@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{D73F8E79-B4DD-4AB0-A767-D9FA3E2FE740};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{E0B4E10F-F1EC-4A18-8DA5-C297966D9E55}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CoffeeFilterDistribution.iOSWatchKitApp</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>CoffeeFilter.iOSWatchKitApp</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution: Xamarin Inc (7V723M9SQ5)</CodesignKey>
+    <CodesignProvision>2d5d264b-dc0f-40b7-8411-8a4322c51120</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <CodesignKey>iPhone Distribution: Xamarin Inc (7V723M9SQ5)</CodesignKey>
+    <CodesignProvision>2d5d264b-dc0f-40b7-8411-8a4322c51120</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug6.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug6.imageset\ic_mug4%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug7.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug7.imageset\ic_mug3%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug8.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug8.imageset\ic_mug2%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug9.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug9.imageset\ic_mug1%402x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug1.imageset\ic_mug1.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug1.imageset\ic_mug1%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug2.imageset\ic_mug2.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug2.imageset\ic_mug2%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug3.imageset\ic_mug3.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug3.imageset\ic_mug3%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug4.imageset\ic_mug4.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug4.imageset\ic_mug4%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug5.imageset\ic_mug5.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug5.imageset\ic_mug5%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug6.imageset\ic_mug4.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug6.imageset\ic_mug4%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug7.imageset\ic_mug3.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug7.imageset\ic_mug3%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug8.imageset\ic_mug2.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug8.imageset\ic_mug2%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug9.imageset\ic_mug1.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\coffeeAnimation\ic_mug9.imageset\ic_mug1%403x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\48x48.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\55x55.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\58x58.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\87x87.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\80x80.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\88x88.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\172x172.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\196x196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Interface.storyboard" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.WatchApp.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\Images.xcassets\ic_star.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\ic_star.imageset\ic_star.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_star.imageset\ic_star%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\ic_star.imageset\ic_star%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug1.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug1.imageset\ic_mug1%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug2.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug2.imageset\ic_mug2%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug3.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug3.imageset\ic_mug3%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug4.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug4.imageset\ic_mug4%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug5.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\coffeeAnimation\ic_mug5.imageset\ic_mug5%402x.png" />
+    <BundleResource Include="Resources\en.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_1.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_1.imageset\loading_1.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_10.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_10.imageset\loading_10.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_11.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_11.imageset\loading_11.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_12.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_12.imageset\loading_12.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_2.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_2.imageset\loading_2.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_3.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_3.imageset\loading_3.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_4.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_4.imageset\loading_4.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_5.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_5.imageset\loading_5.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_6.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_6.imageset\loading_6.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_7.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_7.imageset\loading_7.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_8.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_8.imageset\loading_8.png" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_9.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\photoAnimation\loading_9.imageset\loading_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Images.xcassets\coffeeAnimation\ic_mug6.imageset\" />
+    <Folder Include="Resources\Images.xcassets\coffeeAnimation\ic_mug7.imageset\" />
+    <Folder Include="Resources\Images.xcassets\coffeeAnimation\ic_mug8.imageset\" />
+    <Folder Include="Resources\Images.xcassets\coffeeAnimation\ic_mug9.imageset\" />
+    <Folder Include="Resources\en.lproj\" />
+  </ItemGroup>
+</Project>

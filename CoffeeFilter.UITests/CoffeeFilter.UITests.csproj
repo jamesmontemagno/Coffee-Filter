@@ -40,7 +40,7 @@
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.UITest">
-      <HintPath>..\packages\Xamarin.UITest.0.6.9\lib\Xamarin.UITest.dll</HintPath>
+      <HintPath>..\packages\Xamarin.UITest.0.7.2\lib\Xamarin.UITest.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -55,5 +55,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Queries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoffeeFilter.iOS\CoffeeFilter.iOS.csproj">
+      <Project>{E9A77FD6-BE46-4A13-A098-B733D20DD051}</Project>
+      <Name>CoffeeFilter.iOS</Name>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\CoffeeFilter.Android\CoffeeFilter.Android.csproj">
+      <Project>{92ADA73A-72D7-4026-93D7-08ED5EF2A6B3}</Project>
+      <Name>CoffeeFilter.Android</Name>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
 </Project>
