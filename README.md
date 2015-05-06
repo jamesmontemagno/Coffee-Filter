@@ -11,8 +11,13 @@ Full application detecting the closest coffee locations to you using Google Maps
 Download from Google Play:
 https://play.google.com/store/apps/details?id=com.refractored.coffeefilter
 
-![Demo](art/coffeefilterdemo.gif)
+![Android Demo](art/coffeefilterdemo.gif)
 
+iOS + Watch version is available for Test Flight beta testing, contact oleg.demchenko@xamarin.com for details.
+
+![iOS Demo](art/coffeefilteriosdemo.gif)
+
+![Watch Demo](art/coffeefilterwatchdemo.gif)
 
 ### Blogs Generated From App
 * [Using Google Maps Lite](http://blog.xamarin.com/android-tips-faster-maps-with-google-maps-lite/)
@@ -28,6 +33,13 @@ To use the Google Maps API on Android you must generate an **API key** and add i
 
 You need to follow these instructions in order for the map data to display in MobileCRM on Android.
 
+To use Google Maps API on iOS you should generate another one **API key** for iOS application and add it to `AppDelegate.cs` file:
+```
+const string GoogleMapsAPIKey = "APIKeyGoesHere";
+```
+
+Please follow [Xamarin Watch Kit getting started guide](http://developer.xamarin.com/guides/ios/watch/getting-started/) to learn how to run watch app. Also make sure that you have correct provisioning profiles setup.
+
 **Places Rest API**
 In addition to this you must toggle on `Places API` under Services in your Google API Console. Then you can create a new “Simple API Access Key” that can be used in the `CoffeeFilterViewModel.cs` file.
 
@@ -35,6 +47,8 @@ In addition to this you must toggle on `Places API` under Services in your Googl
 
 ### Development by:
 - James Montemagno: [Twitter](http://www.twitter.com/jamesmontemagno) | [Blog](http://motzcod.es) | [GitHub](http://www.github.com/jamesmontemagno)
+
+- Oleg Demchenko: [GitHub](http://www.github.com/olegoid)
 
 - Design inspiration from [Frank Krueger](https://twitter.com/praeclarum) from when we were drinking coffee :)
 
@@ -49,8 +63,6 @@ In addition to this you must toggle on `Places API` under Services in your Googl
 ### Coming Soon
 * Pull to Refresh
 * Easier to Navigate
-* Details Page
-* iOS Version
 * Ability to move pin while moving
 
 ### License
