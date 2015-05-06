@@ -11,13 +11,21 @@ Full application detecting the closest coffee locations to you using Google Maps
 Download from Google Play:
 https://play.google.com/store/apps/details?id=com.refractored.coffeefilter
 
-![Android Demo](art/coffeefilterdemo.gif)
+<table>
+<tr>
+<th>Android</th>
+<th>iOS</th>
+<th>Apple watch</th>
+</tr>
+<tr>
+<td><img src="art/coffeefilterdemo.gif"/></td>
+<td><img src="art/coffeefilteriosdemo.gif"/></td>
+<td><img src="art/coffeefilterwatchdemo.gif"/></td>
+</tr>
+<tr>
+</table>
 
-iOS + Watch version is available for Test Flight beta testing, contact oleg.demchenko@xamarin.com for details.
-
-![iOS Demo](art/coffeefilteriosdemo.gif)
-
-![Watch Demo](art/coffeefilterwatchdemo.gif)
+`Note:` iOS + Watch version is available for Test Flight beta testing, contact oleg.demchenko@xamarin.com for details.
 
 ### Blogs Generated From App
 * [Using Google Maps Lite](http://blog.xamarin.com/android-tips-faster-maps-with-google-maps-lite/)
