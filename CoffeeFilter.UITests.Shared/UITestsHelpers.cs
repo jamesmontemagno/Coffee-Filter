@@ -43,5 +43,6 @@ namespace CoffeeFilter.UITests.Shared
 			return string.Empty;
 		}
 	}
+
 }
 
