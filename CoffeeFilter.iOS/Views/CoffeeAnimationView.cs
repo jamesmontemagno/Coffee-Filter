@@ -1,53 +1,77 @@
 ﻿using System;
-
 using UIKit;
 using Foundation;
+using CoreGraphics;
+using System.Threading.Tasks;
 
 namespace CoffeeFilter.iOS
 {
 	public partial class CoffeeAnimationView : UIView
 	{
-		public static CoffeeAnimationView GetView (UIViewController owner)
+		UIView coffee;
+		UIImageView steam;
+		CGRect fullCoffee = new CGRect (9, 28, 40, 40), emptyCoffee = new CGRect (9, 67, 40, 1);
+
+		public CoffeeAnimationView (IntPtr handle) : base(handle)
 		{
-			var coffeeAnimationView = NSBundle.MainBundle.LoadNib ("CoffeeAnimationView", owner, null).GetItem<CoffeeAnimationView> (0);
-			coffeeAnimationView.Frame = owner.View.Frame;
-			coffeeAnimationView.SetupCoffeeAnimation ();
+		}
+
+		public static CoffeeAnimationView GetView (UIViewController owner)
+		{			
+			var coffeeAnimationView = NSBundle.MainBundle.LoadNib<CoffeeAnimationView>(owner);
+
+			var navBar = owner.NavigationController.NavigationBar.Bounds.Height + 20;
+			var frame = new CGRect (0, navBar, owner.View.Bounds.Width, owner.View.Bounds.Height - navBar);
+
+			coffeeAnimationView.Frame = frame;
+
+			coffeeAnimationView.SetupCoffeeAnimation();
+
 			return coffeeAnimationView;
 		}
 
-		public CoffeeAnimationView (IntPtr handle) : base (handle)
-		{
-		}
 
 		void SetupCoffeeAnimation ()
 		{
-			var animationImages = new UIImage[] {
-				UIImage.FromBundle ("ic_mug1"),
-				UIImage.FromBundle ("ic_mug2"),
-				UIImage.FromBundle ("ic_mug3"),
-				UIImage.FromBundle ("ic_mug4"),
-				UIImage.FromBundle ("ic_mug5"),
-				UIImage.FromBundle ("ic_mug4"),
-				UIImage.FromBundle ("ic_mug3"),
-				UIImage.FromBundle ("ic_mug2"),
-				UIImage.FromBundle ("ic_mug1")
-			};
+			CoffeeImage.Image = UIImage.FromBundle("ic_mug5");
 
-			CoffeeImage.AnimationImages = animationImages;
-			CoffeeImage.AnimationRepeatCount = int.MaxValue;
-			CoffeeImage.AnimationDuration = 3.0;
-			CoffeeImage.Image = UIImage.FromBundle ("ic_sadcoffee");
+			coffee = new UIView (fullCoffee);
+			coffee.BackgroundColor = UIColor.FromRGB(101f / 255f, 67f / 255f, 56f / 255f);
+			coffee.Layer.CornerRadius = 2;
+
+			steam = new UIImageView (new CGRect (0, 0, CoffeeImage.Bounds.Width, 21));
+			steam.Image = UIImage.FromBundle("ic_mug_steam");
+
+			CoffeeImage.AddSubviews(coffee, steam);
 		}
 
-		public void StartAnimation ()
+		public async override void RemoveFromSuperview ()
 		{
-			CoffeeImage.StartAnimating ();
+			// give it a sec (or 3/10 of a sec) to start the 'real; push animation
+			await Task.Delay(300);
+
+			// fade this sucker out every time we remove from super
+			await UIView.AnimateAsync(0.2, () => Alpha = 0);
+
+			// CoffeeImage.Image = UIImage.FromBundle("ic_sadcoffee");
+
+			base.RemoveFromSuperview();
+
+			// Alpha = 1;
+			coffee.Frame = fullCoffee;
+			steam.Alpha = 1;
 		}
 
-		public void StopAnimation ()
+
+		public async Task StartAnimation (bool animate)
 		{
-			CoffeeImage.StopAnimating ();
+			if (animate) {
+				await UIView.AnimateAsync(0.2, () => Alpha = 1);
+				await UIView.AnimateAsync(1.0, () => {
+					coffee.Frame = emptyCoffee;
+					steam.Alpha = 0;
+				});
+			}
 		}
 	}
 }
-

@@ -1,6 +1,4 @@
 using System;
-
-using Foundation;
 using UIKit;
 
 namespace CoffeeFilter.iOS
@@ -12,14 +10,14 @@ namespace CoffeeFilter.iOS
 				var count = 0;
 				foreach (var starView in Subviews) {
 					if (count < value)
-						((UIImageView)starView).Image = UIImage.FromBundle ("star");
+						((UIImageView)starView).Image = UIImage.FromBundle("star");
 					else
 						starView.Hidden = true;
 				}
 			}
 		}
 
-		public RatingView (IntPtr handle) : base (handle)
+		public RatingView (IntPtr handle) : base(handle)
 		{
 		}
 	}

@@ -1,14 +1,8 @@
 using System;
-
-using System.Globalization;
-using CoreGraphics;
-using Foundation;
-using UIKit;
-
-using CoffeeFilter.Shared.Models;
-using Geolocator.Plugin.Abstractions;
 using CoffeeFilter.Shared.Helpers;
+using CoffeeFilter.Shared.Models;
 using CoffeeFilter.Shared.ViewModels;
+using UIKit;
 
 namespace CoffeeFilter.iOS
 {
@@ -16,27 +10,28 @@ namespace CoffeeFilter.iOS
 	{
 		public static Action ButtonAction { get; set; }
 
-		public PlaceView (IntPtr handle) : base (handle)
+		public PlaceView (IntPtr handle) : base(handle)
 		{
 		}
 
 		public void PopulateWithData (Place place)
 		{
-			var coffeeFilterViewModel = ServiceContainer.Resolve<CoffeeFilterViewModel> ();
-			DistanceLabel.Text = CoffeeFilterViewModel.GetDistanceToPlace (place, coffeeFilterViewModel.Position);
+			var coffeeFilterViewModel = ServiceContainer.Resolve<CoffeeFilterViewModel>();
+			DistanceLabel.Text = CoffeeFilterViewModel.GetDistanceToPlace(place, coffeeFilterViewModel.Position);
 
 			if (place.Rating != 0) {
-				RatingLabel.Text = place.Rating.ToString ();
-				StarImageView.Image = UIImage.FromBundle ("ic_star");
+				RatingLabel.Text = place.Rating.ToString();
+				StarImageView.Image = UIImage.FromBundle("ic_star");
 			} else {
 				RatingLabel.Hidden = true;
 				StarImageView.Hidden = true;
 			}
 
-			placeButton.SetTitle (place.Name, UIControlState.Normal);
+			placeButton.SetTitle(place.Name, UIControlState.Normal);
+
 			placeButton.TouchUpInside += (sender, e) => {
 				if (ButtonAction != null)
-					ButtonAction ();
+					ButtonAction();
 			};
 		}
 	}

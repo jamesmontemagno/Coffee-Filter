@@ -26,7 +26,7 @@ namespace CoffeeFilter.Shared
 			byte[] data = null;
 
 			using (var c = new GzipWebClient ())
-				data = await c.DownloadDataTaskAsync (resourceUrl);
+				data = await c.DownloadDataTaskAsync(resourceUrl);
 
 			return data;
 		}
@@ -35,12 +35,13 @@ namespace CoffeeFilter.Shared
 		{
 			protected override WebRequest GetWebRequest (Uri address)
 			{
-				var request = base.GetWebRequest (address);
-				if (request is HttpWebRequest)
-					((HttpWebRequest)request).AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+				var request = base.GetWebRequest(address) as HttpWebRequest;
+
+				if (request != null)
+					request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+
 				return request;
 			}
 		}
 	}
 }
-

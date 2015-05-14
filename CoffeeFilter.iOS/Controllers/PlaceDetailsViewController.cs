@@ -24,19 +24,19 @@ namespace CoffeeFilter.iOS
 		UIBarButtonItem shareButton;
 		UIBarButtonItem moreButton;
 
-		public PlaceDetailsViewController (IntPtr handle) : base (handle)
+		public PlaceDetailsViewController (IntPtr handle) : base(handle)
 		{
 		}
 
 		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad ();
+			base.ViewDidLoad();
 
-			viewModel = ServiceContainer.Resolve<DetailsViewModel> ();
-			UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB (0.46f, 0.27f, 0.13f);
-			moreButton = new UIBarButtonItem (UIImage.FromBundle ("more"), UIBarButtonItemStyle.Plain, OpenPlaceOptions);
+			viewModel = ServiceContainer.Resolve<DetailsViewModel>();
+			UITabBar.Appearance.SelectedImageTintColor = UIColor.FromRGB(0.46f, 0.27f, 0.13f);
+			moreButton = new UIBarButtonItem (UIImage.FromBundle("more"), UIBarButtonItemStyle.Plain, OpenPlaceOptions);
 			shareButton = new UIBarButtonItem (UIBarButtonSystemItem.Action, SharePlaceInfo);
-			NavigationItem.RightBarButtonItems = new UIBarButtonItem[] { moreButton, shareButton };
+			NavigationItem.RightBarButtonItems = new [] { moreButton, shareButton };
 
 			#if !DEBUG
 			Xamarin.Insights.Track ("AppNav", new Dictionary<string,string> {
@@ -48,7 +48,7 @@ namespace CoffeeFilter.iOS
 
 		void SharePlaceInfo (object sender, EventArgs e)
 		{
-			var message = new NSString (string.Format ("{0}\n{1}\n{2}", viewModel.Place.Name, viewModel.Place.Website, viewModel.ShortAddress));
+			var message = new NSString (string.Format("{0}\n{1}\n{2}", viewModel.Place.Name, viewModel.Place.Website, viewModel.ShortAddress));
 
 			var activityController = new UIActivityViewController (new NSObject [] {
 				message
@@ -56,76 +56,45 @@ namespace CoffeeFilter.iOS
 
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad) {
 				shareController = new UIPopoverController (activityController);
-				shareController.PresentFromBarButtonItem (shareButton, UIPopoverArrowDirection.Any, true);
+				shareController.PresentFromBarButtonItem(shareButton, UIPopoverArrowDirection.Any, true);
 			} else {
-				PresentViewController (activityController, true, null);
+				PresentViewController(activityController, true, null);
 			}
 		}
+
 
 		void OpenPlaceOptions (object sender, EventArgs e)
 		{
-			var showMapsButtonTitle = "open_maps".LocalizedString ("Show maps button title");
-			var streetViewButtonTitle = "street_view".LocalizedString ("Street View button title");
-			var makeCallButtonTitle = "make_a_call".LocalizedString ("Make a call button title");
-			var addToContactsButtonTitle = "add_to_contacts".LocalizedString ("Make a call button title");
-			var cancelButtonTitle = "cancel".LocalizedString ("Cancel button title");
+			var showMapsButtonTitle = "open_maps".LocalizedString("Show maps button title");
+			var streetViewButtonTitle = "street_view".LocalizedString("Street View button title");
+			var makeCallButtonTitle = "make_a_call".LocalizedString("Make a call button title");
+			var addToContactsButtonTitle = "add_to_contacts".LocalizedString("Make a call button title");
+			var cancelButtonTitle = "cancel".LocalizedString("Cancel button title");
 
-			// UIAlertController is recommended way to show alerts, however it's available only in iOS 8.0 and later
-			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0))
-				ShowAlertViewController (showMapsButtonTitle, makeCallButtonTitle, addToContactsButtonTitle, streetViewButtonTitle, cancelButtonTitle);
-			else
-				ShowSimpleAlertView (showMapsButtonTitle, makeCallButtonTitle, addToContactsButtonTitle, streetViewButtonTitle, cancelButtonTitle);
+			ShowAlertViewController(showMapsButtonTitle, makeCallButtonTitle, addToContactsButtonTitle, streetViewButtonTitle, cancelButtonTitle);
 		}
 
-		void ShowSimpleAlertView (string showMapsButtonTitle, string makeCallButtonTitle, string addToContactsButtonTitle, string streetViewButtonTitle, string cancelButtonTitle)
-		{
-			var alertTitle = "place_options".LocalizedString ("Alert view title");
-
-			var alert = new UIAlertView (alertTitle, string.Empty, null, cancelButtonTitle, new string[] {
-				streetViewButtonTitle, showMapsButtonTitle, makeCallButtonTitle, addToContactsButtonTitle
-			});
-
-			alert.Clicked += AlertViewButtonClickHandler;
-			alert.Show ();
-		}
-
-		void AlertViewButtonClickHandler (object sender, UIButtonEventArgs e)
-		{
-			switch (e.ButtonIndex) {
-			case 1:
-				OpenStreetView (null);
-				break;
-			case 2:
-				ShowMaps (null);
-				break;
-			case 3:
-				MakeACall (null);
-				break;
-			case 4:
-				AddContact (null);
-				break;
-			}
-		}
 
 		void ShowAlertViewController (string showMapsButtonTitle, string makeCallButtonTitle, string addToContactsButtonTitle, string streetViewButtonTitle, string cancelButtonTitle)
 		{
-			var alertController = UIAlertController.Create (null, null, UIAlertControllerStyle.ActionSheet);
+			var alertController = UIAlertController.Create(null, null, UIAlertControllerStyle.ActionSheet);
 
-			alertController.AddAction (UIAlertAction.Create (streetViewButtonTitle, UIAlertActionStyle.Default, OpenStreetView));
-			alertController.AddAction (UIAlertAction.Create (showMapsButtonTitle, UIAlertActionStyle.Default, ShowMaps));
-			alertController.AddAction (UIAlertAction.Create (makeCallButtonTitle, UIAlertActionStyle.Default, MakeACall));
-			alertController.AddAction (UIAlertAction.Create (addToContactsButtonTitle, UIAlertActionStyle.Default, AddContact));
-			alertController.AddAction (UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Destructive, null));
+			alertController.AddAction(UIAlertAction.Create(streetViewButtonTitle, UIAlertActionStyle.Default, OpenStreetView));
+			alertController.AddAction(UIAlertAction.Create(showMapsButtonTitle, UIAlertActionStyle.Default, ShowMaps));
+			alertController.AddAction(UIAlertAction.Create(makeCallButtonTitle, UIAlertActionStyle.Default, MakeACall));
+			alertController.AddAction(UIAlertAction.Create(addToContactsButtonTitle, UIAlertActionStyle.Default, AddContact));
+			alertController.AddAction(UIAlertAction.Create(cancelButtonTitle, UIAlertActionStyle.Destructive, null));
 
-			SetupPopover (alertController, View);
+			SetupPopover(alertController, View);
 
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad) {
 				var moreController = new UIPopoverController (alertController);
-				moreController.PresentFromBarButtonItem (moreButton, UIPopoverArrowDirection.Any, true);
+				moreController.PresentFromBarButtonItem(moreButton, UIPopoverArrowDirection.Any, true);
 			} else {
-				PresentViewController (alertController, true, null);
+				PresentViewController(alertController, true, null);
 			}
 		}
+
 
 		void ShowMaps (UIAlertAction action)
 		{
@@ -135,14 +104,16 @@ namespace CoffeeFilter.iOS
 				{ "rating", viewModel.Place.ToString () }
 			});
 			#endif
-			CrossExternalMaps.Current.NavigateTo (viewModel.Place.Name, viewModel.Position.Latitude, viewModel.Position.Longitude);
+			CrossExternalMaps.Current.NavigateTo(viewModel.Place.Name, viewModel.Position.Latitude, viewModel.Position.Longitude);
 		}
+
 
 		void OpenStreetView (UIAlertAction action)
 		{
 			var streetViewController = new StreetViewController (viewModel.Place.Geometry.Location, viewModel.Place.Name);
-			NavigationController.PushViewController (streetViewController, false);
+			NavigationController.PushViewController(streetViewController, false);
 		}
+
 
 		void AddContact (UIAlertAction action)
 		{
@@ -154,8 +125,8 @@ namespace CoffeeFilter.iOS
 				});
 				#endif
 				NSError error;
-				addressBook = ABAddressBook.Create (out error);
-				CheckAddressBookAccess ();
+				addressBook = ABAddressBook.Create(out error);
+				CheckAddressBookAccess();
 			} catch (Exception ex) {
 				#if !DEBUG
 				ex.Data ["call"] = "add contact";
@@ -163,6 +134,7 @@ namespace CoffeeFilter.iOS
 				#endif
 			}
 		}
+
 
 		void MakeACall (UIAlertAction action)
 		{
@@ -174,17 +146,17 @@ namespace CoffeeFilter.iOS
 				});
 				#endif
 
-				if (string.IsNullOrEmpty (viewModel.Place.InternationalPhoneNumber)) {
-					var alert = new UIAlertView (string.Empty, "place_have_no_phone".LocalizedString ("Alert message if place have no phone number"),
-						null, "ok".LocalizedString ("OK title for button"));
-					alert.Show ();
+				if (string.IsNullOrEmpty(viewModel.Place.InternationalPhoneNumber)) {
+					var alertController = UIAlertController.Create(string.Empty, "place_have_no_phone".LocalizedString("Alert message if place have no phone number"), UIAlertControllerStyle.Alert);
+					alertController.AddAction(UIAlertAction.Create("ok".LocalizedString("OK title for button"), UIAlertActionStyle.Destructive, null));
+					ShowViewController(alertController, this);
 					return;
 				}
 
-				string phoneAppUrl = string.Format ("telprompt://{0}", viewModel.Place.InternationalPhoneNumber.Replace (' ', '-'));
-				var formattedString = new NSString (phoneAppUrl).CreateStringByReplacingPercentEscapes (NSStringEncoding.UTF8);
+				string phoneAppUrl = string.Format("telprompt://{0}", viewModel.Place.InternationalPhoneNumber.Replace(' ', '-'));
+				var formattedString = new NSString (phoneAppUrl).CreateStringByReplacingPercentEscapes(NSStringEncoding.UTF8);
 				using (var phoneaAppUrl = new NSUrl (formattedString))
-					UIApplication.SharedApplication.OpenUrl (phoneaAppUrl);
+					UIApplication.SharedApplication.OpenUrl(phoneaAppUrl);
 			} catch (Exception ex) {
 				#if !DEBUG
 				ex.Data ["call"] = "phone";
@@ -192,6 +164,7 @@ namespace CoffeeFilter.iOS
 				#endif
 			}
 		}
+
 
 		void SetupPopover (UIAlertController alertController, UIView sourceView)
 		{
@@ -203,36 +176,39 @@ namespace CoffeeFilter.iOS
 			}
 		}
 
+
 		void CheckAddressBookAccess ()
 		{
-			switch (ABAddressBook.GetAuthorizationStatus ()) {
+			switch (ABAddressBook.GetAuthorizationStatus()) {
 			case ABAuthorizationStatus.Authorized:
-				ShowNewContactViewController ();
+				ShowNewContactViewController();
 				break;
 			case ABAuthorizationStatus.NotDetermined:
-				RequestAddressBookAccess ();
+				RequestAddressBookAccess();
 				break;
 			case ABAuthorizationStatus.Denied:
 			case ABAuthorizationStatus.Restricted:
-				var alert = UIAlertController.Create (string.Empty,
-					            "contacts_permission_request_denied".LocalizedString ("Contacts permission request denied"),
+				var alert = UIAlertController.Create(string.Empty,
+					            "contacts_permission_request_denied".LocalizedString("Contacts permission request denied"),
 					            UIAlertControllerStyle.Alert);
-				alert.AddAction (UIAlertAction.Create ("ok".LocalizedString ("OK title for button"), UIAlertActionStyle.Default, null));
-				PresentViewController (alert, true, null);
+				alert.AddAction(UIAlertAction.Create("ok".LocalizedString("OK title for button"), UIAlertActionStyle.Default, null));
+				PresentViewController(alert, true, null);
 				break;
 			default:
 				break;
 			}
 		}
 
+
 		void RequestAddressBookAccess ()
 		{
-			addressBook.RequestAccess ((bool granted, NSError error) => {
+			addressBook.RequestAccess((bool granted, NSError error) => {
 				if (!granted)
 					return;
-				DispatchQueue.MainQueue.DispatchAsync (() => ShowNewContactViewController ());
+				DispatchQueue.MainQueue.DispatchAsync(() => ShowNewContactViewController());
 			});
 		}
+
 
 		async void ShowNewContactViewController ()
 		{
@@ -242,18 +218,18 @@ namespace CoffeeFilter.iOS
 					contact.FirstName = viewModel.Place.Name;
 
 					if (viewModel.Place.HasImage) {
-						var data = await ResourceLoader.DefaultLoader.GetImageData (viewModel.Place.Photos [0].ImageUrl);
-						contact.Image = UIImage.LoadFromData (NSData.FromArray (data)).AsJPEG ();
+						var data = await ResourceLoader.DefaultLoader.GetImageData(viewModel.Place.Photos[0].ImageUrl);
+						contact.Image = UIImage.LoadFromData(NSData.FromArray(data)).AsJPEG();
 					}
 
 					using (var phone = new ABMutableStringMultiValue ()) {
-						phone.Add (viewModel.Place.PhoneNumberFormatted, ABLabel.Other);
-						contact.SetPhones (phone);
+						phone.Add(viewModel.Place.PhoneNumberFormatted, ABLabel.Other);
+						contact.SetPhones(phone);
 					}
 
 					using (var webSite = new ABMutableStringMultiValue ()) {
-						webSite.Add (viewModel.Place.Website, ABLabel.Other);
-						contact.SetUrls (webSite);
+						webSite.Add(viewModel.Place.Website, ABLabel.Other);
+						contact.SetUrls(webSite);
 					}
 
 					var upvc = new ABUnknownPersonViewController {
@@ -264,11 +240,11 @@ namespace CoffeeFilter.iOS
 						Title = viewModel.Place.Name
 					};
 
-					NavigationController.PushViewController (upvc, true);
+					NavigationController.PushViewController(upvc, true);
 				} catch (Exception) {
-					var alert = UIAlertController.Create ("Error", "Could not create unknown user.", UIAlertControllerStyle.Alert);
-					alert.AddAction (UIAlertAction.Create ("Cancel", UIAlertActionStyle.Default, null));
-					PresentViewController (alert, true, null);
+					var alert = UIAlertController.Create("Error", "Could not create unknown user.", UIAlertControllerStyle.Alert);
+					alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Default, null));
+					PresentViewController(alert, true, null);
 				}
 			}
 		}

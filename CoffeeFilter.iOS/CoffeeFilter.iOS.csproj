@@ -84,12 +84,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Geolocator.Plugin">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.1\lib\Xamarin.iOS10\Geolocator.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Geolocator.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.1\lib\Xamarin.iOS10\Geolocator.Plugin.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="ExternalMaps.Plugin">
       <HintPath>..\packages\Xam.Plugin.ExternalMaps.1.0.4\lib\Xamarin.iOS10\ExternalMaps.Plugin.dll</HintPath>
     </Reference>
@@ -97,12 +91,6 @@
       <HintPath>..\packages\Xam.Plugin.ExternalMaps.1.0.4\lib\Xamarin.iOS10\ExternalMaps.Plugin.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="Xamarin.Insights">
-      <HintPath>..\packages\Xamarin.Insights.1.9.1.107\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
-    </Reference>
-    <Reference Include="PLCrashReporterUnifiedBinding">
-      <HintPath>..\packages\Xamarin.Insights.1.9.1.107\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Connectivity.Plugin">
       <HintPath>..\packages\Xam.Plugin.Connectivity.1.0.2\lib\Xamarin.iOS10\Connectivity.Plugin.dll</HintPath>
@@ -117,7 +105,19 @@
       <HintPath>..\packages\Xamarin.TestCloud.Agent.0.14.1\lib\Xamarin.iOS10\Calabash.dll</HintPath>
     </Reference>
     <Reference Include="ModernHttpClient">
-      <HintPath>..\packages\modernhttpclient.2.4.0\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
+      <HintPath>..\packages\modernhttpclient.2.4.1\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.10.1.109\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="PLCrashReporterUnifiedBinding">
+      <HintPath>..\packages\Xamarin.Insights.1.10.1.109\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\Xamarin.iOS10\Geolocator.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\Xamarin.iOS10\Geolocator.Plugin.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +206,10 @@
       <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\152x152.png" />
+    <ImageAsset Include="Resources\Images.xcassets\ic_mug_steam.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\ic_mug_steam.imageset\ic_mug_steam.png" />
+    <ImageAsset Include="Resources\Images.xcassets\ic_mug_steam.imageset\ic_mug_steam%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\ic_mug_steam.imageset\ic_mug_steam%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Views\PlaceView.xib">
@@ -223,8 +227,8 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="PluginsHelp\GeolocatorReadme.txt" />
     <None Include="PluginsHelp\ConnectivityReadme.txt" />
+    <None Include="PluginsHelp\GeolocatorReadme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -285,6 +289,7 @@
       <DependentUpon>CoffeeAnimationView.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Helpers.cs" />
+    <Compile Include="Helpers\NibHelper.cs" />
   </ItemGroup>
   <Import Project="..\CoffeeFilter.Shared\CoffeeFilter.Shared.projitems" Label="Shared" Condition="Exists('..\CoffeeFilter.Shared\CoffeeFilter.Shared.projitems')" />
   <Import Project="..\CoffeeFilter.UITests.Shared\CoffeeFilter.UITests.Shared.projitems" Label="Shared" Condition="Exists('..\CoffeeFilter.UITests.Shared\CoffeeFilter.UITests.Shared.projitems')" />

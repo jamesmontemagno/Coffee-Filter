@@ -77,12 +77,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Geolocator.Plugin">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.1\lib\Xamarin.iOS10\Geolocator.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Geolocator.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.1\lib\Xamarin.iOS10\Geolocator.Plugin.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="ExternalMaps.Plugin">
       <HintPath>..\packages\Xam.Plugin.ExternalMaps.1.0.4\lib\Xamarin.iOS10\ExternalMaps.Plugin.dll</HintPath>
     </Reference>
@@ -91,12 +85,6 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Net" />
-    <Reference Include="Xamarin.Insights">
-      <HintPath>..\packages\Xamarin.Insights.1.9.1.107\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
-    </Reference>
-    <Reference Include="PLCrashReporterUnifiedBinding">
-      <HintPath>..\packages\Xamarin.Insights.1.9.1.107\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
-    </Reference>
     <Reference Include="Connectivity.Plugin">
       <HintPath>..\packages\Xam.Plugin.Connectivity.1.0.2\lib\Xamarin.iOS10\Connectivity.Plugin.dll</HintPath>
     </Reference>
@@ -104,7 +92,19 @@
       <HintPath>..\packages\Xam.Plugin.Connectivity.1.0.2\lib\Xamarin.iOS10\Connectivity.Plugin.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="ModernHttpClient">
-      <HintPath>..\packages\modernhttpclient.2.3.0\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
+      <HintPath>..\packages\modernhttpclient.2.4.1\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.10.1.109\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="PLCrashReporterUnifiedBinding">
+      <HintPath>..\packages\Xamarin.Insights.1.10.1.109\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\Xamarin.iOS10\Geolocator.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\Xamarin.iOS10\Geolocator.Plugin.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -114,8 +114,8 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="PluginsHelp\GeolocatorReadme.txt" />
     <None Include="PluginsHelp\ConnectivityReadme.txt" />
+    <None Include="PluginsHelp\GeolocatorReadme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InterfaceController.cs" />

@@ -36,7 +36,7 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.CoffeeFilterContaining</string>
+	<string>io.bugtrap.CoffeeFilterContaining</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This string is stored in the info.plist file.</string>
 	<key>UIBackgroundModes</key>

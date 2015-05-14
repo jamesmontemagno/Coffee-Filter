@@ -19,29 +19,29 @@ namespace CoffeeFilter.iOS
 	public partial class DetailsViewController : UITableViewController
 	{
 		DetailsViewModel viewModel;
-		float contentBottomOffset = 20.0f;
+		const float contentBottomOffset = 20.0f;
 
-		public DetailsViewController (IntPtr handle) : base (handle)
+		public DetailsViewController (IntPtr handle) : base(handle)
 		{
-			TabBarItem.Title = "details".LocalizedString ("Name of the details tab");
-			TabBarItem.SetFinishedImages (UIImage.FromBundle ("information"), UIImage.FromBundle ("information"));
+			TabBarItem.Title = "details".LocalizedString("Name of the details tab");
+			TabBarItem.SetFinishedImages(UIImage.FromBundle("information"), UIImage.FromBundle("information"));
 		}
 
 		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad ();
+			base.ViewDidLoad();
 			TableView.ContentInset = new UIEdgeInsets { Bottom = contentBottomOffset };
 		}
 
 		public override void ViewWillAppear (bool animated)
 		{
-			base.ViewWillAppear (animated);
+			base.ViewWillAppear(animated);
 
-			viewModel = ServiceContainer.Resolve<DetailsViewModel> ();
-			SetInformation ();
-			SetOpenDays ();
-			SetLocation ();
-			SetTableHeader ();
+			viewModel = ServiceContainer.Resolve<DetailsViewModel>();
+			SetInformation();
+			SetOpenDays();
+			SetLocation();
+			SetTableHeader();
 
 			#if !DEBUG
 			Xamarin.Insights.Track ("AppNav", new Dictionary<string,string> {
@@ -56,37 +56,38 @@ namespace CoffeeFilter.iOS
 			if (!viewModel.Place.HasImage)
 				return;
 
-			var imageData = await ResourceLoader.DefaultLoader.GetImageData (viewModel.Place.Photos [0].ImageUrlLarge);
+			var imageData = await ResourceLoader.DefaultLoader.GetImageData(viewModel.Place.Photos[0].ImageUrlLarge);
 
-			using (var image = UIImage.LoadFromData (NSData.FromArray (imageData))) {
-				var cropppedImage = image.CGImage.WithImageInRect (
-					new CGRect ((image.CGImage.Width - TableView.Frame.Width) / 2.0f,
-						image.CGImage.Height / 3.0f,
-						TableView.Frame.Width,
-						150.0f)
-				);
+			using (var image = UIImage.LoadFromData(NSData.FromArray(imageData))) {
+				var cropppedImage = image.CGImage.WithImageInRect(
+					                    new CGRect ((image.CGImage.Width - TableView.Frame.Width) / 2.0f,
+						                    image.CGImage.Height / 3.0f,
+						                    TableView.Frame.Width,
+						                    150.0f)
+				                    );
 
 				TableView.TableHeaderView = new UIImageView (new UIImage (cropppedImage));
 			}
 		}
 
+
 		void SetInformation ()
 		{
-			InformationCell.PopulateWithData ();
+			InformationCell.PopulateWithData();
 		}
 
 		void SetOpenDays ()
 		{
 			int count = 0;
 
-			string[] daysOfWeek = new string[] { 
-				"monday".LocalizedString ("Monday"), 
-				"tuesday".LocalizedString ("Tuesday"), 
-				"wednesday".LocalizedString ("Wednesday"), 
-				"thursday".LocalizedString ("Thursday"), 
-				"friday".LocalizedString ("Friday"), 
-				"saturday".LocalizedString ("Saturday"), 
-				"sunday".LocalizedString ("Sunday")
+			var daysOfWeek = new [] { 
+				"monday".LocalizedString("Monday"), 
+				"tuesday".LocalizedString("Tuesday"), 
+				"wednesday".LocalizedString("Wednesday"), 
+				"thursday".LocalizedString("Thursday"), 
+				"friday".LocalizedString("Friday"), 
+				"saturday".LocalizedString("Saturday"), 
+				"sunday".LocalizedString("Sunday")
 			};
 
 			if (viewModel.Place.OpeningHours.WeekdayText == null || viewModel.Place.OpeningHours.WeekdayText.Count == 0) {
@@ -95,8 +96,8 @@ namespace CoffeeFilter.iOS
 			}
 				
 			foreach (var view in OpenHoursCell.ContentView) {
-				((OpenHoursView)view).DayLabel.Text = daysOfWeek [count];
-				((OpenHoursView)view).HoursLabel.Text = viewModel.GetTime (viewModel.Place.OpeningHours.WeekdayText [count]);
+				((OpenHoursView)view).DayLabel.Text = daysOfWeek[count];
+				((OpenHoursView)view).HoursLabel.Text = viewModel.GetTime(viewModel.Place.OpeningHours.WeekdayText[count]);
 				count++;
 			}
 		}
@@ -106,20 +107,20 @@ namespace CoffeeFilter.iOS
 			var placeLocation = viewModel.Place.Geometry.Location;
 			var coordinates = new CLLocationCoordinate2D (placeLocation.Latitude, placeLocation.Longitude);
 
-			ZoomInToMyLocation (coordinates);
+			ZoomInToMyLocation(coordinates);
 
 			var placeAnnotation = new MKPointAnnotation {
 				Coordinate = coordinates
 			};
 
-			MapView.AddAnnotation (placeAnnotation);
+			MapView.AddAnnotation(placeAnnotation);
 		}
 
 		void ZoomInToMyLocation (CLLocationCoordinate2D location)
 		{
 			var delta = 2;
-			var region = MKCoordinateRegion.FromDistance (location, delta, delta);
-			MapView.SetRegion (region, false);
+			var region = MKCoordinateRegion.FromDistance(location, delta, delta);
+			MapView.SetRegion(region, false);
 		}
 	}
 }
