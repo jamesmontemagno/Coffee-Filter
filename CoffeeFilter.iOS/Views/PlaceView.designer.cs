@@ -23,6 +23,9 @@ namespace CoffeeFilter.iOS
 
 		[Outlet]
 		UIKit.UIImageView StarImageView { get; set; }
+
+		[Action ("placeButtonTouchUpInside:")]
+		partial void placeButtonTouchUpInside (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -31,9 +34,9 @@ namespace CoffeeFilter.iOS
 				DistanceLabel = null;
 			}
 
-			if (StarImageView != null) {
-				StarImageView.Dispose ();
-				StarImageView = null;
+			if (placeButton != null) {
+				placeButton.Dispose ();
+				placeButton = null;
 			}
 
 			if (RatingLabel != null) {
@@ -41,9 +44,9 @@ namespace CoffeeFilter.iOS
 				RatingLabel = null;
 			}
 
-			if (placeButton != null) {
-				placeButton.Dispose ();
-				placeButton = null;
+			if (StarImageView != null) {
+				StarImageView.Dispose ();
+				StarImageView = null;
 			}
 		}
 	}

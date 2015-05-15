@@ -1,84 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-
-using CoffeeFilter.Shared.ViewModels;
 
 namespace CoffeeFilter.Shared.Models
 {
 	[DataContract]
 	public class Place
 	{
-		[DataMember (Name = "address_components")]
+		[DataMember(Name = "address_components")]
 		public List<AddressComponent> AddressComponents { get; set; }
 
-		[DataMember (Name = "adr_address")]
+		[DataMember(Name = "adr_address")]
 		public string Address { get; set; }
 
-		[DataMember (Name = "formatted_address")]
+		[DataMember(Name = "formatted_address")]
 		public string AddressFormatted { get; set; }
 
-		[DataMember (Name = "formatted_phone_number")]
+		[DataMember(Name = "formatted_phone_number")]
 		public string PhoneNumberFormatted { get; set; }
 
-		[DataMember (Name = "geometry")]
+		[DataMember(Name = "geometry")]
 		public Geometry Geometry { get; set; }
 
-		[DataMember (Name = "icon")]
+		[DataMember(Name = "icon")]
 		public string Icon { get; set; }
 
-		[DataMember (Name = "id")]
+		[DataMember(Name = "id")]
 		public string Id { get; set; }
 
-		[DataMember (Name = "international_phone_number")]
+		[DataMember(Name = "international_phone_number")]
 		public string InternationalPhoneNumber { get; set; }
 
-		[DataMember (Name = "name")]
+		[DataMember(Name = "name")]
 		public string Name { get; set; }
 
-		[DataMember (Name = "opening_hours")]
+		[DataMember(Name = "opening_hours")]
 		public OpeningHours OpeningHours { get; set; }
 
-		[DataMember (Name = "photos")]
+		[DataMember(Name = "photos")]
 		public List<Photo> Photos { get; set; }
 
-		[DataMember (Name = "place_id")]
+		[DataMember(Name = "place_id")]
 		public string PlaceId { get; set; }
 
-		[DataMember (Name = "rating")]
+		[DataMember(Name = "rating")]
 		public double Rating { get; set; }
 
-		[DataMember (Name = "reference")]
+		[DataMember(Name = "reference")]
 		public string Reference { get; set; }
 
-		[DataMember (Name = "scope")]
+		[DataMember(Name = "scope")]
 		public string Scope { get; set; }
 
-		[DataMember (Name = "types")]
+		[DataMember(Name = "types")]
 		public List<string> Types { get; set; }
 
-		[DataMember (Name = "vicinity")]
+		[DataMember(Name = "vicinity")]
 		public string Vicinity { get; set; }
 
-		[DataMember (Name = "price_level")]
+		[DataMember(Name = "price_level")]
 		public int? PriceLevel { get; set; }
 
-		[DataMember (Name = "reviews")]
+		[DataMember(Name = "reviews")]
 		public List<Review> Reviews { get; set; }
 
-		[DataMember (Name = "url")]
+		[DataMember(Name = "url")]
 		public string Url { get; set; }
 
-		[DataMember (Name = "user_ratings_total")]
+		[DataMember(Name = "user_ratings_total")]
 		public int UserRatingsCount { get; set; }
 
-		[DataMember (Name = "utc_offset")]
+		[DataMember(Name = "utc_offset")]
 		public int UTCOffset { get; set; }
 
-		[DataMember (Name = "website")]
+		[DataMember(Name = "website")]
 		public string Website { get; set; }
 
-		[DataMember (Name = "permanently_closed")]
+		[DataMember(Name = "permanently_closed")]
 		public bool PermanentlyClosed { get; set; }
 
 		[IgnoreDataMember]
@@ -101,14 +98,13 @@ namespace CoffeeFilter.Shared.Models
 				if (!HasImage)
 					return Icon;
 
-				return Photos [0].ImageUrlLarge;
+				return Photos[0].ImageUrlLarge;
 			}
 		}
 
-		public double GetDistance (double lat, double lng, GeolocationUtils.DistanceUnit unit = CoffeeFilter.Shared.GeolocationUtils.DistanceUnit.Miles)
+		public double GetDistance (double lat, double lng, GeolocationUtils.DistanceUnit unit = GeolocationUtils.DistanceUnit.Miles)
 		{
-			return GeolocationUtils.GetDistance (lat, lng, Geometry.Location.Latitude, Geometry.Location.Longitude, unit);
+			return GeolocationUtils.GetDistance(lat, lng, Geometry.Location.Latitude, Geometry.Location.Longitude, unit);
 		}
 	}
 }
-

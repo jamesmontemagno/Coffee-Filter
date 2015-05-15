@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,41 +10,50 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwh-oD-K0G">
-                    <rect key="frame" x="230" y="8" width="82" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwh-oD-K0G">
+                    <rect key="frame" x="266" y="8" width="46" height="22"/>
                     <accessibility key="accessibilityConfiguration" label="top"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                     <color key="textColor" red="0.24313725490196078" green="0.15294117647058825" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0.3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xo7-gW-eNv">
-                    <rect key="frame" x="8" y="10" width="24" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xo7-gW-eNv">
+                    <rect key="frame" x="8" y="10" width="24" height="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="0.24313725490196078" green="0.15294117647058825" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjg-Pt-298">
-                    <rect key="frame" x="8" y="530" width="304" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjg-Pt-298">
+                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <accessibility key="accessibilityConfiguration" label="bottom"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="vMX-Xx-vaf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="2"/>
                     <state key="normal" title="Button">
                         <color key="titleColor" red="0.24313725490196078" green="0.15294117647058825" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="placeButtonTouchUpInside:" destination="1" eventType="touchUpInside" id="6JP-Ue-cOp"/>
+                    </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SnS-fN-1qV">
-                    <rect key="frame" x="32" y="8" width="25" height="25"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="i_star" translatesAutoresizingMaskIntoConstraints="NO" id="SnS-fN-1qV">
+                    <rect key="frame" x="36" y="12" width="16" height="14"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Cjg-Pt-298" secondAttribute="bottom" constant="8" id="3kf-Ko-ffc"/>
-                <constraint firstAttribute="trailing" secondItem="Cjg-Pt-298" secondAttribute="trailing" id="Ekg-vP-Ew5"/>
-                <constraint firstItem="Zwh-oD-K0G" firstAttribute="leading" secondItem="SnS-fN-1qV" secondAttribute="trailing" constant="173" id="aP4-zD-iXV"/>
-                <constraint firstItem="SnS-fN-1qV" firstAttribute="leading" secondItem="Xo7-gW-eNv" secondAttribute="trailing" id="bkD-yG-01A"/>
-                <constraint firstItem="Xo7-gW-eNv" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="e4w-ak-W7n"/>
-                <constraint firstAttribute="trailing" secondItem="Zwh-oD-K0G" secondAttribute="trailing" constant="8" id="hti-6g-J5s"/>
-                <constraint firstItem="Cjg-Pt-298" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="xli-9A-dNb"/>
+                <constraint firstItem="SnS-fN-1qV" firstAttribute="centerY" secondItem="Xo7-gW-eNv" secondAttribute="centerY" constant="-1" id="Hd1-cR-gSK"/>
+                <constraint firstItem="Xo7-gW-eNv" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="OIG-sq-Nn1"/>
+                <constraint firstItem="Zwh-oD-K0G" firstAttribute="baseline" secondItem="Xo7-gW-eNv" secondAttribute="baseline" id="U1n-Ao-3BE"/>
+                <constraint firstAttribute="bottom" secondItem="Cjg-Pt-298" secondAttribute="bottom" id="gff-0r-LbH"/>
+                <constraint firstItem="Cjg-Pt-298" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="gwR-Vl-Wyd"/>
+                <constraint firstAttribute="trailing" secondItem="Zwh-oD-K0G" secondAttribute="trailing" constant="8" id="h7E-lc-3TH"/>
+                <constraint firstAttribute="trailing" secondItem="Cjg-Pt-298" secondAttribute="trailing" id="hoW-Ss-ehd"/>
+                <constraint firstItem="SnS-fN-1qV" firstAttribute="leading" secondItem="Xo7-gW-eNv" secondAttribute="trailing" constant="4" id="nUZ-f5-Ov0"/>
+                <constraint firstItem="Xo7-gW-eNv" firstAttribute="top" secondItem="1" secondAttribute="top" constant="10" id="tBL-49-R9Y"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -60,6 +69,9 @@
             <point key="canvasLocation" x="335" y="319"/>
         </view>
     </objects>
+    <resources>
+        <image name="i_star" width="16" height="14"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -175,3 +175,6 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+#Local User Files
+-Local/

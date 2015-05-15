@@ -3,6 +3,7 @@ using CoffeeFilter.Shared.Helpers;
 using CoffeeFilter.Shared.Models;
 using CoffeeFilter.Shared.ViewModels;
 using UIKit;
+using Foundation;
 
 namespace CoffeeFilter.iOS
 {
@@ -10,9 +11,20 @@ namespace CoffeeFilter.iOS
 	{
 		public static Action ButtonAction { get; set; }
 
+
 		public PlaceView (IntPtr handle) : base(handle)
 		{
+			
 		}
+
+
+		public override void AwakeFromNib ()
+		{
+			base.AwakeFromNib();
+
+			BackgroundColor = UIColor.Clear;
+		}
+
 
 		public void PopulateWithData (Place place)
 		{
@@ -21,18 +33,15 @@ namespace CoffeeFilter.iOS
 
 			if (place.Rating != 0) {
 				RatingLabel.Text = place.Rating.ToString();
-				StarImageView.Image = UIImage.FromBundle("ic_star");
+				StarImageView.Image = UIImage.FromBundle("i_star");
 			} else {
 				RatingLabel.Hidden = true;
 				StarImageView.Hidden = true;
 			}
 
 			placeButton.SetTitle(place.Name, UIControlState.Normal);
-
-			placeButton.TouchUpInside += (sender, e) => {
-				if (ButtonAction != null)
-					ButtonAction();
-			};
 		}
+
+		partial void placeButtonTouchUpInside (NSObject sender) => ButtonAction?.Invoke();
 	}
 }
