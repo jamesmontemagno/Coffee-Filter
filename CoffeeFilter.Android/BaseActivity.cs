@@ -5,7 +5,7 @@ using Android.OS;
 
 namespace CoffeeFilter
 {
-	public abstract class BaseActivity : ActionBarActivity
+	public abstract class BaseActivity : AppCompatActivity
 	{
 		public Toolbar Toolbar {
 			get;
