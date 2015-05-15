@@ -58,6 +58,8 @@ In addition to this you must toggle on `Places API` under Services in your Googl
 
 - Oleg Demchenko: [GitHub](http://www.github.com/olegoid)
 
+- Colby Williams: [Twitter](http://twitter.com/colbylwilliams) | [GitHub](http://github.com/colbylwilliams)
+
 - Design inspiration from [Frank Krueger](https://twitter.com/praeclarum) from when we were drinking coffee :)
 
 
