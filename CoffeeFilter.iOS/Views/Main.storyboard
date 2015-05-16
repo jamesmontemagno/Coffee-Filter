@@ -91,7 +91,7 @@
         <!--Reviews-->
         <scene sceneID="VkF-TM-ST6">
             <objects>
-                <tableViewController id="4FE-oW-6d4" customClass="ReviewsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ReviewsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4FE-oW-6d4" customClass="ReviewsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="3S4-KA-hNl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -196,7 +196,7 @@
         <!--Photos-->
         <scene sceneID="le6-r1-9di">
             <objects>
-                <collectionViewController id="H1I-jQ-4LW" customClass="PhotosViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="PhotosViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="H1I-jQ-4LW" customClass="PhotosViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Q3u-yV-VQf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,7 +252,7 @@
         <!--Place Details View Controller-->
         <scene sceneID="w5x-q1-Z7r">
             <objects>
-                <tabBarController storyboardIdentifier="PlaceDetailsViewController" id="oAh-YI-uEC" customClass="PlaceDetailsViewController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="PlaceDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oAh-YI-uEC" customClass="PlaceDetailsViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="qQD-V7-mXY">
                         <rect key="frame" x="0.0" y="551" width="600" height="49"/>
@@ -273,11 +273,11 @@
         <!--Details-->
         <scene sceneID="4sl-0A-ZOQ">
             <objects>
-                <tableViewController title="Details" id="39A-rA-UBr" customClass="DetailsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="149" sectionHeaderHeight="10" sectionFooterHeight="10" id="MDV-2E-s3P">
+                <tableViewController storyboardIdentifier="DetailsViewController" title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="39A-rA-UBr" customClass="DetailsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MDV-2E-s3P">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490196078431" green="0.92156862745098034" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Information" id="sbs-BB-QSa">
                                 <cells>

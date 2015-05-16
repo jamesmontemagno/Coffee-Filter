@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>CoffeeFilter.iOSWatchKitExtension</string>
 	<key>CFBundleIdentifier</key>
-	<string>io.bugtrap.CoffeeFilterContaining.watchkitextension</string>
+	<string>com.xamarin.CoffeeFilterContaining.watchkitextension</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleShortVersionString</key>
@@ -23,7 +23,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>io.bugtrap.CoffeeFilterContaining.watchkitapp</string>
+			<string>com.xamarin.CoffeeFilterContaining.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>

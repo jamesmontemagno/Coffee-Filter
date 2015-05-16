@@ -1,7 +1,9 @@
 using System;
-using System.Net;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+
+using CoffeeFilter.Shared;
+using CoffeeFilter.Shared.Helpers;
+using CoffeeFilter.Shared.Models;
+using CoffeeFilter.Shared.ViewModels;
 
 using CoreGraphics;
 using CoreLocation;
@@ -9,35 +11,42 @@ using Foundation;
 using MapKit;
 using UIKit;
 
-using CoffeeFilter.Shared;
-using CoffeeFilter.Shared.Helpers;
-using CoffeeFilter.Shared.Models;
-using CoffeeFilter.Shared.ViewModels;
-
 namespace CoffeeFilter.iOS
 {
-	public partial class DetailsViewController : UITableViewController
+	public partial class DetailsViewController : UITableViewController, IUIScrollViewDelegate
 	{
 		DetailsViewModel viewModel;
-		const float contentBottomOffset = 20.0f;
+
+		nfloat tableHeaderHeight = 150, contentBottomOffset = 19;
+
 
 		public DetailsViewController (IntPtr handle) : base(handle)
 		{
 			TabBarItem.Title = "details".LocalizedString("Name of the details tab");
-			TabBarItem.SetFinishedImages(UIImage.FromBundle("information"), UIImage.FromBundle("information"));
+
+			TabBarItem.Image = UIImage.FromBundle("information");
+			TabBarItem.SelectedImage = UIImage.FromBundle("information");
 		}
+
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad();
-			TableView.ContentInset = new UIEdgeInsets { Bottom = contentBottomOffset };
+
+			TableView.TableHeaderView = new ParallaxTableHeader (TableView.Bounds, tableHeaderHeight);
 		}
+
 
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear(animated);
 
+			// scroll up to hide the header
+			TableView.ContentInset = new UIEdgeInsets { Bottom = contentBottomOffset };
+			TableView.SetContentOffset(new CGPoint (0, tableHeaderHeight), false);
+
 			viewModel = ServiceContainer.Resolve<DetailsViewModel>();
+
 			SetInformation();
 			SetOpenDays();
 			SetLocation();
@@ -51,6 +60,17 @@ namespace CoffeeFilter.iOS
 			#endif
 		}
 
+
+		[Export("scrollViewDidScroll:")]
+		public void Scrolled (UIScrollView scrollView)
+		{
+			// compensate for the nav & status bar (44 + 20)
+			var offsetY = scrollView.ContentOffset.Y + 64.0f;
+
+			((ParallaxTableHeader)TableView.TableHeaderView).UpdateOffset(offsetY);
+		}
+
+
 		async void SetTableHeader ()
 		{
 			if (!viewModel.Place.HasImage)
@@ -59,14 +79,18 @@ namespace CoffeeFilter.iOS
 			var imageData = await ResourceLoader.DefaultLoader.GetImageData(viewModel.Place.Photos[0].ImageUrlLarge);
 
 			using (var image = UIImage.LoadFromData(NSData.FromArray(imageData))) {
-				var cropppedImage = image.CGImage.WithImageInRect(
-					                    new CGRect ((image.CGImage.Width - TableView.Frame.Width) / 2.0f,
-						                    image.CGImage.Height / 3.0f,
-						                    TableView.Frame.Width,
-						                    150.0f)
-				                    );
 
-				TableView.TableHeaderView = new UIImageView (new UIImage (cropppedImage));
+				var scale = TableView.Bounds.Width / image.Size.Width; 
+
+				var size = CGAffineTransform.MakeScale(scale, scale).TransformSize(image.Size);
+
+				UIGraphics.BeginImageContextWithOptions(size, false, 0);
+
+				image.Draw(new CGRect (CGPoint.Empty, size));
+
+				((ParallaxTableHeader)TableView.TableHeaderView).Image = UIGraphics.GetImageFromCurrentImageContext();
+
+				UIGraphics.EndImageContext();
 			}
 		}
 
@@ -75,6 +99,7 @@ namespace CoffeeFilter.iOS
 		{
 			InformationCell.PopulateWithData();
 		}
+
 
 		void SetOpenDays ()
 		{
@@ -102,6 +127,7 @@ namespace CoffeeFilter.iOS
 			}
 		}
 
+
 		void SetLocation ()
 		{
 			var placeLocation = viewModel.Place.Geometry.Location;
@@ -116,9 +142,10 @@ namespace CoffeeFilter.iOS
 			MapView.AddAnnotation(placeAnnotation);
 		}
 
+
 		void ZoomInToMyLocation (CLLocationCoordinate2D location)
 		{
-			var delta = 2;
+			const double delta = 2;
 			var region = MKCoordinateRegion.FromDistance(location, delta, delta);
 			MapView.SetRegion(region, false);
 		}

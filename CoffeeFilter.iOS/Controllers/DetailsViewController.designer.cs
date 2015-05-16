@@ -20,6 +20,12 @@ namespace CoffeeFilter.iOS
 
 		[Outlet]
 		UIKit.UITableViewCell OpenHoursCell { get; set; }
+
+		[Outlet]
+		UIKit.UIView ParallaxHeader { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView ParallaxHeaderImageView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -28,14 +34,24 @@ namespace CoffeeFilter.iOS
 				InformationCell = null;
 			}
 
+			if (MapView != null) {
+				MapView.Dispose ();
+				MapView = null;
+			}
+
 			if (OpenHoursCell != null) {
 				OpenHoursCell.Dispose ();
 				OpenHoursCell = null;
 			}
 
-			if (MapView != null) {
-				MapView.Dispose ();
-				MapView = null;
+			if (ParallaxHeader != null) {
+				ParallaxHeader.Dispose ();
+				ParallaxHeader = null;
+			}
+
+			if (ParallaxHeaderImageView != null) {
+				ParallaxHeaderImageView.Dispose ();
+				ParallaxHeaderImageView = null;
 			}
 		}
 	}

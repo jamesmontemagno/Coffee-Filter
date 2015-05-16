@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>CoffeeFilter.iOSWatchKitApp</string>
 	<key>CFBundleIdentifier</key>
-	<string>io.bugtrap.CoffeeFilterContaining.watchkitapp</string>
+	<string>com.xamarin.CoffeeFilterContaining.watchkitapp</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleShortVersionString</key>
@@ -20,7 +20,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>io.bugtrap.CoffeeFilterContaining</string>
+	<string>com.xamarin.CoffeeFilterContaining</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 	<key>XSAppIconAssets</key>

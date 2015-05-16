@@ -12,7 +12,9 @@ namespace CoffeeFilter.iOS
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			#if !DEBUG
+			#if DEBUG
+			// Xamarin.Insights.Initialize("ef02f98fd6fb47ce8624862ab7625b933b6fb21d");
+			#else
 			Xamarin.Insights.Initialize ("8da86f8b3300aa58f3dc9bbef455d0427bb29086");
 			#endif
 

@@ -35,12 +35,13 @@ namespace CoffeeFilter.iOS
 		{
 			CoffeeImage.Image = UIImage.FromBundle("ic_mug5");
 
-			coffee = new UIView (fullCoffee);
+			coffee = new UIView (emptyCoffee);
 			coffee.BackgroundColor = UIColor.FromRGB(101f / 255f, 67f / 255f, 56f / 255f);
 			coffee.Layer.CornerRadius = 2;
 
 			steam = new UIImageView (new CGRect (0, 0, CoffeeImage.Bounds.Width, 21));
 			steam.Image = UIImage.FromBundle("ic_mug_steam");
+			steam.Alpha = 0;
 
 			CoffeeImage.AddSubviews(coffee, steam);
 		}
@@ -58,8 +59,8 @@ namespace CoffeeFilter.iOS
 			base.RemoveFromSuperview();
 
 			// Alpha = 1;
-			coffee.Frame = fullCoffee;
-			steam.Alpha = 1;
+			coffee.Frame = emptyCoffee;
+			steam.Alpha = 0;
 		}
 
 
@@ -67,6 +68,11 @@ namespace CoffeeFilter.iOS
 		{
 			if (animate) {
 				await UIView.AnimateAsync(0.2, () => Alpha = 1);
+				await UIView.AnimateAsync(1.0, () => {
+					coffee.Frame = fullCoffee;
+					steam.Alpha = 1;
+				});
+				await Task.Delay(500);
 				await UIView.AnimateAsync(1.0, () => {
 					coffee.Frame = emptyCoffee;
 					steam.Alpha = 0;

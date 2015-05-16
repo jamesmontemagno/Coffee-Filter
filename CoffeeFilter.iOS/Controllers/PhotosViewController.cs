@@ -17,18 +17,21 @@ namespace CoffeeFilter.iOS
 
 		List<Photo> photos;
 
-		public PhotosViewController (IntPtr handle) : base (handle)
+		public PhotosViewController (IntPtr handle) : base(handle)
 		{
-			TabBarItem.Title = "photos".LocalizedString ("Name of the photos tab");
-			TabBarItem.SetFinishedImages (UIImage.FromBundle ("photos"), UIImage.FromBundle ("photos"));
+			TabBarItem.Title = "photos".LocalizedString("Name of the photos tab");
+
+			TabBarItem.Image = UIImage.FromBundle("photos");
+			TabBarItem.SelectedImage = UIImage.FromBundle("photos");
+
 			photos = new List<Photo> ();
 		}
 
 		public override void ViewWillAppear (bool animated)
 		{
-			base.ViewWillAppear (animated);
+			base.ViewWillAppear(animated);
 
-			var viewModel = ServiceContainer.Resolve<DetailsViewModel> ();
+			var viewModel = ServiceContainer.Resolve<DetailsViewModel>();
 
 			if (CollectionViewFlow != null) {
 				var itemDimension = View.Frame.Width / 2f - 10f; // 10f is the offset for collection view items
@@ -38,7 +41,7 @@ namespace CoffeeFilter.iOS
 			if (viewModel.Place.Photos != null && viewModel.Place.Photos.Count != 0) {
 				photos = viewModel.Place.Photos;
 			} else {
-				var warnginView = WarningMessageView.GetView ("no_photos".LocalizedString ("If place have no photos"), this);
+				var warnginView = WarningMessageView.GetView("no_photos".LocalizedString("If place have no photos"), this);
 				View = warnginView;
 			}
 
@@ -52,8 +55,8 @@ namespace CoffeeFilter.iOS
 
 		public override void ViewDidDisappear (bool animated)
 		{
-			base.ViewDidDisappear (animated);
-			PhotoCell.ClearImages ();
+			base.ViewDidDisappear(animated);
+			PhotoCell.ClearImages();
 		}
 
 		public override nint NumberOfSections (UICollectionView collectionView)
@@ -68,8 +71,8 @@ namespace CoffeeFilter.iOS
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var cell = (PhotoCell)CollectionView.DequeueReusableCell (ReuseIdentifier, indexPath);
-			cell.SetImage (photos [indexPath.Row].ImageUrl);
+			var cell = (PhotoCell)CollectionView.DequeueReusableCell(ReuseIdentifier, indexPath);
+			cell.SetImage(photos[indexPath.Row].ImageUrl);
 			return cell;
 		}
 	}
