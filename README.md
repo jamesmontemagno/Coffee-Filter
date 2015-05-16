@@ -25,7 +25,7 @@ https://play.google.com/store/apps/details?id=com.refractored.coffeefilter
 <tr>
 </table>
 
-`Note:` iOS + Watch version is available for Test Flight beta testing, contact oleg.demchenko@xamarin.com for details.
+`Note:` iOS + Watch version is available for TestFlight beta testing, contact oleg.demchenko@xamarin.com for details.
 
 ### Blogs Generated From App
 * [Using Google Maps Lite](http://blog.xamarin.com/android-tips-faster-maps-with-google-maps-lite/)
