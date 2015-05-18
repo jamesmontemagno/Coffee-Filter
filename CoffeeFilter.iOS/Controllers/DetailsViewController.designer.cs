@@ -16,6 +16,9 @@ namespace CoffeeFilter.iOS
 		CoffeeFilter.iOS.PlaceDetailsCell InformationCell { get; set; }
 
 		[Outlet]
+		MapKit.MKMapView MapView { get; set; }
+
+		[Outlet]
 		UIKit.UITableViewCell OpenHoursCell { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -28,6 +31,11 @@ namespace CoffeeFilter.iOS
 			if (OpenHoursCell != null) {
 				OpenHoursCell.Dispose ();
 				OpenHoursCell = null;
+			}
+
+			if (MapView != null) {
+				MapView.Dispose ();
+				MapView = null;
 			}
 		}
 	}

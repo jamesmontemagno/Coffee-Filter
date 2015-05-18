@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using CoffeeFilter.Shared.Helpers;
 using CoffeeFilter.Shared.Models;
 using CoffeeFilter.Shared.ViewModels;
+
 using CoreGraphics;
 using CoreLocation;
 using Foundation;

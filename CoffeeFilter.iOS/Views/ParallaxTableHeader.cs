@@ -1,4 +1,5 @@
 ﻿using System;
+
 using UIKit;
 using CoreGraphics;
 
@@ -19,7 +20,7 @@ namespace CoffeeFilter.iOS
 			Frame = new CGRect (0, 0, tableViewFrame.Width, maxHeight);
 
 			imageView = new UIImageView (new CGRect (0, maxHeight / 2, tableViewFrame.Width, maxHeight));
-			imageView.ContentMode = UIViewContentMode.ScaleToFill;
+			imageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 
 			Add(imageView);
 		}
@@ -30,6 +31,8 @@ namespace CoffeeFilter.iOS
 			var over = offsetY <= nfloat.Epsilon;
 
 			ClipsToBounds = !over;
+
+			imageView.ClipsToBounds = over;
 
 			var x = over ? offsetY : 0;
 			var y = over ? offsetY : offsetY / 2.5f;

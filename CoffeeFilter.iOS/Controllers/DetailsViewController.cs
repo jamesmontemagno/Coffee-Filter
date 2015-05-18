@@ -17,7 +17,7 @@ namespace CoffeeFilter.iOS
 	{
 		DetailsViewModel viewModel;
 
-		nfloat tableHeaderHeight = 150, contentBottomOffset = 19;
+		nfloat tableHeaderHeight = 150, bottomContentInset = 19, topContentInset = 64;
 
 
 		public DetailsViewController (IntPtr handle) : base(handle)
@@ -42,8 +42,9 @@ namespace CoffeeFilter.iOS
 			base.ViewWillAppear(animated);
 
 			// scroll up to hide the header
-			TableView.ContentInset = new UIEdgeInsets { Bottom = contentBottomOffset };
-			TableView.SetContentOffset(new CGPoint (0, tableHeaderHeight), false);
+			TableView.ContentInset = new UIEdgeInsets { Bottom = bottomContentInset, Top = topContentInset };
+
+			TableView.SetContentOffset(new CGPoint (0, tableHeaderHeight - topContentInset), false);
 
 			viewModel = ServiceContainer.Resolve<DetailsViewModel>();
 
@@ -64,8 +65,8 @@ namespace CoffeeFilter.iOS
 		[Export("scrollViewDidScroll:")]
 		public void Scrolled (UIScrollView scrollView)
 		{
-			// compensate for the nav & status bar (44 + 20)
-			var offsetY = scrollView.ContentOffset.Y + 64.0f;
+			// compensate for the nav & status bar
+			var offsetY = scrollView.ContentOffset.Y + topContentInset;
 
 			((ParallaxTableHeader)TableView.TableHeaderView).UpdateOffset(offsetY);
 		}
@@ -73,8 +74,14 @@ namespace CoffeeFilter.iOS
 
 		async void SetTableHeader ()
 		{
-			if (!viewModel.Place.HasImage)
+			if (!viewModel.Place.HasImage) {
+
+				TableView.ContentInset = new UIEdgeInsets {
+					Bottom = bottomContentInset, Top = -tableHeaderHeight + topContentInset
+				};
+
 				return;
+			}
 
 			var imageData = await ResourceLoader.DefaultLoader.GetImageData(viewModel.Place.Photos[0].ImageUrlLarge);
 
@@ -83,6 +90,8 @@ namespace CoffeeFilter.iOS
 				var scale = TableView.Bounds.Width / image.Size.Width; 
 
 				var size = CGAffineTransform.MakeScale(scale, scale).TransformSize(image.Size);
+
+				Console.WriteLine($"Image Size: Before = {image.Size}, After = {size}");
 
 				UIGraphics.BeginImageContextWithOptions(size, false, 0);
 

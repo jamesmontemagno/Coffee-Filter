@@ -91,7 +91,7 @@
         <!--Reviews-->
         <scene sceneID="VkF-TM-ST6">
             <objects>
-                <tableViewController storyboardIdentifier="ReviewsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4FE-oW-6d4" customClass="ReviewsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ReviewsViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4FE-oW-6d4" customClass="ReviewsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="3S4-KA-hNl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -196,7 +196,7 @@
         <!--Photos-->
         <scene sceneID="le6-r1-9di">
             <objects>
-                <collectionViewController storyboardIdentifier="PhotosViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="H1I-jQ-4LW" customClass="PhotosViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="PhotosViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="H1I-jQ-4LW" customClass="PhotosViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Q3u-yV-VQf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -204,8 +204,8 @@
                         <inset key="scrollIndicatorInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rCu-wJ-ewH">
                             <size key="itemSize" width="200" height="200"/>
-                            <size key="headerReferenceSize" width="0.0" height="70"/>
-                            <size key="footerReferenceSize" width="0.0" height="60"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
@@ -216,34 +216,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kh2-Ow-2BF">
-                                            <rect key="frame" x="5" y="5" width="190" height="190"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kh2-Ow-2BF">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="kh2-Ow-2BF" secondAttribute="trailing" id="3AR-wu-nzt"/>
+                                    <constraint firstItem="kh2-Ow-2BF" firstAttribute="top" secondItem="qiK-XO-oeK" secondAttribute="top" id="ff6-0H-LjO"/>
+                                    <constraint firstItem="kh2-Ow-2BF" firstAttribute="leading" secondItem="qiK-XO-oeK" secondAttribute="leading" id="tjl-s2-Auj"/>
+                                    <constraint firstAttribute="bottom" secondItem="kh2-Ow-2BF" secondAttribute="bottom" id="txq-sB-QIY"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="PhotoView" destination="kh2-Ow-2BF" id="6Wq-0i-Db8"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KHU-Xf-kee">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="EVv-bA-Kck">
-                            <rect key="frame" x="0.0" y="270" width="600" height="60"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="H1I-jQ-4LW" id="skk-l5-R0Z"/>
                             <outlet property="delegate" destination="H1I-jQ-4LW" id="RtG-9V-aCf"/>
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Photos" image="photos" selectedImage="photos" id="OAG-Mu-EFN"/>
-                    <connections>
-                        <outlet property="CollectionViewFlow" destination="rCu-wJ-ewH" id="1Ze-Jq-cfV"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ny-l9-ikI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -252,7 +247,7 @@
         <!--Place Details View Controller-->
         <scene sceneID="w5x-q1-Z7r">
             <objects>
-                <tabBarController storyboardIdentifier="PlaceDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oAh-YI-uEC" customClass="PlaceDetailsViewController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="PlaceDetailsViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oAh-YI-uEC" customClass="PlaceDetailsViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="qQD-V7-mXY">
                         <rect key="frame" x="0.0" y="551" width="600" height="49"/>
@@ -273,7 +268,7 @@
         <!--Details-->
         <scene sceneID="4sl-0A-ZOQ">
             <objects>
-                <tableViewController storyboardIdentifier="DetailsViewController" title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="39A-rA-UBr" customClass="DetailsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DetailsViewController" title="Details" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="39A-rA-UBr" customClass="DetailsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MDV-2E-s3P">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -629,6 +624,7 @@
                     <tabBarItem key="tabBarItem" title="Info" image="information" selectedImage="information" id="3kV-Jp-48b"/>
                     <connections>
                         <outlet property="InformationCell" destination="0vm-ZC-sX4" id="EHB-nS-Gq8"/>
+                        <outlet property="MapView" destination="udn-Au-KK2" id="Plu-UD-Ne1"/>
                         <outlet property="OpenHoursCell" destination="oB3-jj-Xut" id="yK2-Q3-XGf"/>
                         <outlet property="mapView" destination="udn-Au-KK2" id="8ps-4X-7Cu"/>
                     </connections>
