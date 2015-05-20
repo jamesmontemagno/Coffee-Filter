@@ -66,18 +66,20 @@ namespace CoffeeFilter.iOS
 
 		public async Task StartAnimation (bool animate)
 		{
-			if (animate) {
-				await UIView.AnimateAsync(0.2, () => Alpha = 1);
-				await UIView.AnimateAsync(1.0, () => {
-					coffee.Frame = fullCoffee;
-					steam.Alpha = 1;
-				});
-				await Task.Delay(500);
-				await UIView.AnimateAsync(1.0, () => {
-					coffee.Frame = emptyCoffee;
-					steam.Alpha = 0;
-				});
-			}
+			if (!animate)
+				return;
+			
+			await UIView.AnimateAsync(0.2, () => Alpha = 1);
+			await UIView.AnimateAsync(1.0, () => {
+				coffee.Frame = fullCoffee;
+				steam.Alpha = 1;
+			});
+			await Task.Delay(100);
+			await UIView.AnimateAsync(1.0, () => {
+				coffee.Frame = emptyCoffee;
+				steam.Alpha = 0;
+			});
+			StartAnimation (true);
 		}
 	}
 }
