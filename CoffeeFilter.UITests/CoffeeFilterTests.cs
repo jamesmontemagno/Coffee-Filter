@@ -102,7 +102,7 @@ namespace CoffeeFilter.UITests
 				name = app.Query (c => c.Marked ("bottom").Child ()).FirstOrDefault ();
 			}
 			Assert.NotNull (name, "Data was not loaded properly");
-			app.SwipeLeft (0.8f);
+			app.SwipeLeft ();
 			AppResult newName;
 			if (platform == Platform.Android) {
 				newName = app.Query (c => c.Marked ("bottom")).FirstOrDefault ();
