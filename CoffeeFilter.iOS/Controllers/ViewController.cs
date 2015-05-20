@@ -129,17 +129,20 @@ namespace CoffeeFilter.iOS
 
 		void SetUpAnnotations ()
 		{
-			MapView.AddAnnotations(viewModel.Places.Select(p => new MKPointAnnotation { 
+			var annotations = viewModel.Places.Select (p => new MKPointAnnotation { 
 				Coordinate = new CLLocationCoordinate2D (p.Geometry.Location.Latitude, p.Geometry.Location.Longitude),
 				Title = p.Name
-			}).ToArray());
+			}).ToArray ();
+			MapView.AddAnnotations(annotations);
+			MapView.ShowAnnotations (annotations, false);
 		}
 
 
 		void SetAnnotationView (Place place)
 		{
-			if (MapView.Annotations == null || MapView.Annotations.Length <= 0)
-				SetUpAnnotations();
+			if (MapView.Annotations == null || MapView.Annotations.Length <= 0) {
+				SetUpAnnotations ();
+			}
 
 			var current = MapView.Annotations.FirstOrDefault(a => 
 					Math.Abs(a.Coordinate.Latitude - place.Geometry.Location.Latitude) < double.Epsilon &&
@@ -218,12 +221,8 @@ namespace CoffeeFilter.iOS
 
 				// await System.Threading.Tasks.Task.Delay(2000);
 
-				InvokeOnMainThread(() => {
-					var location = new CLLocationCoordinate2D {
-						Latitude = viewModel.Position.Latitude,
-						Longitude = viewModel.Position.Longitude
-					};
-					ZoomInToMyLocation(location);
+				InvokeOnMainThread(() =>
+					{
 					InitScrollView();
 					currentPlace = viewModel.Places[0];
 					SetAnnotationView(currentPlace);
@@ -233,14 +232,7 @@ namespace CoffeeFilter.iOS
 				ShowProgress(false);
 			}
 		}
-
-
-		void ZoomInToMyLocation (CLLocationCoordinate2D location)
-		{
-			var delta = GetFarthestDistance(location.Latitude, location.Longitude);
-			var region = MKCoordinateRegion.FromDistance(location, delta, delta);
-			MapView.SetRegion(region, false);
-		}
+			
 
 
 		double GetFarthestDistance (double latitude, double longitude)
