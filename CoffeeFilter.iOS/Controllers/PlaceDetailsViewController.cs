@@ -149,7 +149,7 @@ namespace CoffeeFilter.iOS
 				if (string.IsNullOrEmpty(viewModel.Place.InternationalPhoneNumber)) {
 					var alertController = UIAlertController.Create(string.Empty, "place_have_no_phone".LocalizedString("Alert message if place have no phone number"), UIAlertControllerStyle.Alert);
 					alertController.AddAction(UIAlertAction.Create("ok".LocalizedString("OK title for button"), UIAlertActionStyle.Destructive, null));
-					ShowViewController(alertController, this);
+					PresentViewController(alertController, true, null);
 					return;
 				}
 
