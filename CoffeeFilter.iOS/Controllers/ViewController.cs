@@ -167,13 +167,16 @@ namespace CoffeeFilter.iOS
 
 			if (show) {
 				NavigationController.View.AddSubview(coffeeAnimation);
-				await coffeeAnimation.StartAnimation(show);
+				coffeeAnimation.LoopAnimation = true;
+				await coffeeAnimation.StartAnimation();
 			} else {
 
 				if (error)
 					MapView.Hidden = true;
-				else
-					coffeeAnimation.RemoveFromSuperview();
+				else {
+					coffeeAnimation.LoopAnimation = false;
+					coffeeAnimation.RemoveFromSuperview ();
+				}
 			}
 		}
 

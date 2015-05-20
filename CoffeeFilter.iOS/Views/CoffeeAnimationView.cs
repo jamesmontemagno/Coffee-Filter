@@ -63,12 +63,9 @@ namespace CoffeeFilter.iOS
 			steam.Alpha = 0;
 		}
 
-
-		public async Task StartAnimation (bool animate)
+		public bool LoopAnimation { get; set;}
+		public async Task StartAnimation ()
 		{
-			if (!animate)
-				return;
-			
 			await UIView.AnimateAsync(0.2, () => Alpha = 1);
 			await UIView.AnimateAsync(1.0, () => {
 				coffee.Frame = fullCoffee;
@@ -79,7 +76,8 @@ namespace CoffeeFilter.iOS
 				coffee.Frame = emptyCoffee;
 				steam.Alpha = 0;
 			});
-			StartAnimation (true);
+			if(LoopAnimation)
+				StartAnimation ();
 		}
 	}
 }
