@@ -18,7 +18,11 @@ namespace CoffeeFilter.Shared.ViewModels
 {
 	public class CoffeeFilterViewModel : BaseViewModel
 	{
+		#if DEBUG
 		public const string APIKey = "AIzaSyDdxzqBUbYq5MUHPstBrZXoKQYKFvyPjdQ";
+		#else
+		public const string APIKey = "";
+		#endif
 		const string CoffeeQueryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?types=cafe&location={0},{1}&opennow=true&rankby=distance&key={2}";
 		const string SearchQueryUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?query={0}&location={1},{2}&radius=1000&opennow=true&key={3}";
 
