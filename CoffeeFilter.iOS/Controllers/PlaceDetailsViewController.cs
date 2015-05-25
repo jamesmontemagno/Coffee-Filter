@@ -8,6 +8,7 @@ using CoreFoundation;
 using AddressBookUI;
 
 using ExternalMaps.Plugin;
+using Google.Maps;
 
 using CoffeeFilter.Shared;
 using CoffeeFilter.Shared.Models;
@@ -110,10 +111,25 @@ namespace CoffeeFilter.iOS
 
 		void OpenStreetView (UIAlertAction action)
 		{
+			var panoramaService = new PanoramaService ();
+			var location = new CoreLocation.CLLocationCoordinate2D (viewModel.Place.Geometry.Location.Latitude,
+				viewModel.Place.Geometry.Location.Longitude);
+			panoramaService.RequestPanorama (location, PanoramaRequestCallback);
+		}
+
+		void PanoramaRequestCallback (Panorama panorama, NSError error)
+		{
+			if (error != null) {
+				var alertController = UIAlertController.Create ("Warning",
+					"Street view for this location is not available", UIAlertControllerStyle.Alert);
+				alertController.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Destructive,
+					_ => NavigationController.PopViewController (false)));
+				return;
+			}
+
 			var streetViewController = new StreetViewController (viewModel.Place.Geometry.Location, viewModel.Place.Name);
 			NavigationController.PushViewController(streetViewController, false);
 		}
-
 
 		void AddContact (UIAlertAction action)
 		{

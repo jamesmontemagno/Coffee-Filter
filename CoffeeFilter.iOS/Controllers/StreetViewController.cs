@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Google.Maps;
 using UIKit;
+using Foundation;
+using CoreLocation;
+
+using Google.Maps;
 
 using CoffeeFilter.Shared.Models;
 
@@ -10,13 +13,11 @@ namespace CoffeeFilter.iOS
 {
 	public class StreetViewController : UIViewController
 	{
-		Location position;
-		PanoramaView panoView;
-
+		CLLocationCoordinate2D location;
 
 		public StreetViewController (Location position, string title)
 		{
-			this.position = position;
+			location = new CLLocationCoordinate2D (position.Latitude, position.Longitude);
 			Title = title;
 		}
 
@@ -24,9 +25,9 @@ namespace CoffeeFilter.iOS
 		{
 			base.ViewDidLoad ();
 
-			panoView = new PanoramaView ();
+			var panoView = new PanoramaView ();
+			panoView.MoveNearCoordinate (location);
 			View = panoView;
-			panoView.MoveNearCoordinate (new CoreLocation.CLLocationCoordinate2D (position.Latitude, position.Longitude));
 
 			#if !DEBUG
 			Xamarin.Insights.Track ("AppNav", new Dictionary<string,string> {
