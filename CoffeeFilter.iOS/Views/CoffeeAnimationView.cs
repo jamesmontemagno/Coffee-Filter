@@ -1,8 +1,9 @@
 ﻿using System;
-using UIKit;
-using Foundation;
-using CoreGraphics;
 using System.Threading.Tasks;
+
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace CoffeeFilter.iOS
 {
@@ -12,9 +13,32 @@ namespace CoffeeFilter.iOS
 		UIImageView steam;
 		CGRect fullCoffee = new CGRect (9, 28, 40, 40), emptyCoffee = new CGRect (9, 67, 40, 1);
 
+		public bool ShowSadCoffee { get; set; }
+
+		UIImage regularCoffeeImage;
+		UIImage RegularCoffeeImage {
+			get {
+				if (regularCoffeeImage == null)
+					regularCoffeeImage = UIImage.FromBundle("ic_mug5");
+
+				return regularCoffeeImage;
+			}
+		}
+
+		UIImage sadCoffeeImage;
+		UIImage SadCoffeeImage {
+			get {
+				if (sadCoffeeImage == null)
+					sadCoffeeImage = UIImage.FromBundle("ic_sadcoffee");
+
+				return sadCoffeeImage;
+			}
+		}
+
 		public CoffeeAnimationView (IntPtr handle) : base(handle)
 		{
 		}
+
 
 		public static CoffeeAnimationView GetView (UIViewController owner)
 		{			
@@ -33,8 +57,6 @@ namespace CoffeeFilter.iOS
 
 		void SetupCoffeeAnimation ()
 		{
-			CoffeeImage.Image = UIImage.FromBundle("ic_mug5");
-
 			coffee = new UIView (emptyCoffee);
 			coffee.BackgroundColor = UIColor.FromRGB(101f / 255f, 67f / 255f, 56f / 255f);
 			coffee.Layer.CornerRadius = 2;
@@ -46,6 +68,7 @@ namespace CoffeeFilter.iOS
 			CoffeeImage.AddSubviews(coffee, steam);
 		}
 
+
 		public async override void RemoveFromSuperview ()
 		{
 			// give it a sec (or 3/10 of a sec) to start the 'real; push animation
@@ -54,11 +77,7 @@ namespace CoffeeFilter.iOS
 			// fade this sucker out every time we remove from super
 			await UIView.AnimateAsync(0.2, () => Alpha = 0);
 
-			// CoffeeImage.Image = UIImage.FromBundle("ic_sadcoffee");
-
 			base.RemoveFromSuperview();
-
-			// Alpha = 1;
 			coffee.Frame = emptyCoffee;
 			steam.Alpha = 0;
 		}
@@ -66,6 +85,9 @@ namespace CoffeeFilter.iOS
 		public bool LoopAnimation { get; set;}
 		public async Task StartAnimation ()
 		{
+			if (CoffeeImage.Image != RegularCoffeeImage)
+				CoffeeImage.Image = RegularCoffeeImage;
+
 			await UIView.AnimateAsync(0.2, () => Alpha = 1);
 			await UIView.AnimateAsync(1.0, () => {
 				coffee.Frame = fullCoffee;
@@ -76,6 +98,13 @@ namespace CoffeeFilter.iOS
 				coffee.Frame = emptyCoffee;
 				steam.Alpha = 0;
 			});
+
+			if (ShowSadCoffee) {
+				LoopAnimation = false;
+				CoffeeImage.Image = SadCoffeeImage;
+				return;
+			}
+
 			if(LoopAnimation)
 				StartAnimation ();
 		}

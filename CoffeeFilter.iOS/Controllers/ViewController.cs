@@ -168,6 +168,7 @@ namespace CoffeeFilter.iOS
 			if (show) {
 				NavigationController.View.AddSubview(coffeeAnimation);
 				coffeeAnimation.LoopAnimation = true;
+				coffeeAnimation.ShowSadCoffee = false;
 				await coffeeAnimation.StartAnimation();
 			} else {
 
@@ -207,18 +208,21 @@ namespace CoffeeFilter.iOS
 			try {
 				if (!viewModel.IsConnected) {
 					displayRefreshDataAlert("no_network".LocalizedString("Network connection failure message"));
+					coffeeAnimation.ShowSadCoffee = true;
 					return;
 				}
 
 				await viewModel.GetLocation(forceRefresh);
 				if (viewModel.Position == null) {
 					displayRefreshDataAlert("unable_to_get_locations".LocalizedString("Places request failure message"));
+					coffeeAnimation.ShowSadCoffee = true;
 					return;
 				}
 
 				var items = await viewModel.GetPlaces(search);
 				if (items == null || items.Count == 0) {
 					displayRefreshDataAlert("nothing_open".LocalizedString("Places request failure if everything is already closed"));
+					coffeeAnimation.ShowSadCoffee = true;
 					return;
 				}
 
@@ -235,7 +239,6 @@ namespace CoffeeFilter.iOS
 				ShowProgress(false);
 			}
 		}
-			
 
 
 		double GetFarthestDistance (double latitude, double longitude)
@@ -263,6 +266,7 @@ namespace CoffeeFilter.iOS
 			}
 
 			ScrollView.ContentSize = new CGSize (ScrollView.Frame.Width * viewModel.Places.Count, ScrollView.Frame.Height);
+			ScrollView.ScrollRectToVisible (NSBundle.MainBundle.LoadNib<PlaceView>(this).Frame, false);
 		}
 
 
