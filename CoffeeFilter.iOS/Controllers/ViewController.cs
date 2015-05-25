@@ -191,7 +191,7 @@ namespace CoffeeFilter.iOS
 		{
 			var alertController = UIAlertController.Create(string.Empty, message, UIAlertControllerStyle.Alert);
 			alertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Destructive, null));
-			ShowViewController(alertController, this);
+			PresentViewController (alertController, false, null);
 			error = true;
 		}
 
