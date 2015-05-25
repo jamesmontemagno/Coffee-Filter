@@ -283,7 +283,7 @@ namespace CoffeeFilter.iOS
 
 			if (!success) {
 				var alertController = UIAlertController.Create(string.Empty, "unable_to_get_details".LocalizedString("Details request failure message"), UIAlertControllerStyle.Alert);
-				alertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Destructive, null));
+				alertController.AddAction(UIAlertAction.Create("ok".LocalizedString("OK title for button"), UIAlertActionStyle.Destructive, null));
 				ShowViewController(alertController, this);
 				return;
 			}

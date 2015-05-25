@@ -120,10 +120,10 @@ namespace CoffeeFilter.iOS
 		void PanoramaRequestCallback (Panorama panorama, NSError error)
 		{
 			if (error != null) {
-				var alertController = UIAlertController.Create ("Warning",
-					"Street view for this location is not available", UIAlertControllerStyle.Alert);
-				alertController.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Destructive,
-					_ => NavigationController.PopViewController (false)));
+				var alertController = UIAlertController.Create ("warning".LocalizedString("Warning title"),
+					"street_view_error".LocalizedString("Street view error"), UIAlertControllerStyle.Alert);
+				alertController.AddAction (UIAlertAction.Create ("ok".LocalizedString("OK title for button"), UIAlertActionStyle.Destructive, null));
+				PresentViewController (alertController, false, null);
 				return;
 			}
 
