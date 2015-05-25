@@ -11,7 +11,7 @@ namespace CoffeeFilter
 	{
 		const string ValueField = "value";
 
-		CKContainer container;
+		readonly CKContainer container;
 		CKDatabase privateDatabase;
 
 		public CloudManager ()

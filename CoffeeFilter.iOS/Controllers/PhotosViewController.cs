@@ -15,7 +15,7 @@ namespace CoffeeFilter.iOS
 	{
 		const string ReuseIdentifier = "PhotoCellIdentifier";
 
-		static nfloat itemInset = 10;
+		readonly static nfloat itemInset = 10;
 		static nfloat itemDimen = (UIScreen.MainScreen.Bounds.Width / 2) - (itemInset * 1.5f);
 		static CGSize itemSize = new CGSize (itemDimen, itemDimen);
 		static UIEdgeInsets sectionInset = new UIEdgeInsets (74, itemInset, 59, itemInset);

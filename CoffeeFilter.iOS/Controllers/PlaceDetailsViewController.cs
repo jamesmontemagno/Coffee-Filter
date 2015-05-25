@@ -197,7 +197,7 @@ namespace CoffeeFilter.iOS
 		{
 			switch (ABAddressBook.GetAuthorizationStatus()) {
 			case ABAuthorizationStatus.Authorized:
-				ShowNewContactViewController();
+				DispatchQueue.MainQueue.DispatchAsync(ShowNewContactViewController);
 				break;
 			case ABAuthorizationStatus.NotDetermined:
 				RequestAddressBookAccess();

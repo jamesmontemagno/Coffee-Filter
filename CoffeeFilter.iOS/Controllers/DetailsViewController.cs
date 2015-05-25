@@ -18,7 +18,7 @@ namespace CoffeeFilter.iOS
 	{
 		DetailsViewModel viewModel;
 
-		nfloat tableHeaderHeight = 150, bottomContentInset = 19, topContentInset = 64;
+		readonly nfloat tableHeaderHeight = 150, bottomContentInset = 19, topContentInset = 64;
 
 
 		public DetailsViewController (IntPtr handle) : base(handle)
