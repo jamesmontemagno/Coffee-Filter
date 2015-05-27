@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>CoffeeFilter.iOSWatchKitApp</string>
+	<string>Coffee Filter</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.CoffeeFilterContaining.watchkitapp</string>
 	<key>CFBundleDevelopmentRegion</key>
