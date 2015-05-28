@@ -140,15 +140,14 @@ namespace CoffeeFilter.iOS
 
 		void SetAnnotationView (Place place)
 		{
-			if (MapView.Annotations == null || MapView.Annotations.Length <= 0) {
-				SetUpAnnotations ();
-			}
+			SetUpAnnotations ();
 
 			var current = MapView.Annotations.FirstOrDefault(a => 
 					Math.Abs(a.Coordinate.Latitude - place.Geometry.Location.Latitude) < double.Epsilon &&
 			              Math.Abs(a.Coordinate.Longitude - place.Geometry.Location.Longitude) < double.Epsilon);
 
-			if (current != null) MapView.SelectAnnotation(current, true);
+			if (current != null)
+				MapView.SelectAnnotation (current, true);
 		}
 
 
