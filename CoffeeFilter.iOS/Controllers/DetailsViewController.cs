@@ -125,7 +125,9 @@ namespace CoffeeFilter.iOS
 				"sunday".LocalizedString("Sunday")
 			};
 
-			if (viewModel.Place.OpeningHours.WeekdayText == null || viewModel.Place.OpeningHours.WeekdayText.Count == 0) {
+			if (viewModel.Place.OpeningHours == null ||
+				viewModel.Place.OpeningHours.WeekdayText == null ||
+				viewModel.Place.OpeningHours.WeekdayText.Count == 0) {
 				OpenHoursCell.Hidden = true;
 				return;
 			}
@@ -135,6 +137,24 @@ namespace CoffeeFilter.iOS
 				((OpenHoursView)view).HoursLabel.Text = viewModel.GetTime(viewModel.Place.OpeningHours.WeekdayText[count]);
 				count++;
 			}
+		}
+
+
+		public override nint RowsInSection (UITableView tableview, nint section)
+		{
+			return (section == 1 && OpenHoursCell.Hidden) ? 0 : base.RowsInSection (tableview, section);
+		}
+
+
+		public override nfloat GetHeightForHeader (UITableView tableView, nint section)
+		{
+			return (section == 1 && OpenHoursCell.Hidden) ? 1 : base.GetHeightForHeader (tableView, section);
+		}
+
+
+		public override UIView GetViewForHeader (UITableView tableView, nint section)
+		{
+			return (section == 1 && OpenHoursCell.Hidden) ? new UIView (CGRect.Empty) : base.GetViewForHeader (tableView, section);
 		}
 
 
