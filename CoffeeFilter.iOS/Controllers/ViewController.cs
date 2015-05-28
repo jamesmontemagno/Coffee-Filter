@@ -185,6 +185,9 @@ namespace CoffeeFilter.iOS
 		void ClearViews ()
 		{
 			foreach (var placeView in placeViews) placeView.RemoveFromSuperview();
+
+			if (MapView.Annotations != null)
+				MapView.RemoveAnnotations (MapView.Annotations);
 		}
 
 
