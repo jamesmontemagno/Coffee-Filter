@@ -135,7 +135,7 @@ namespace CoffeeFilter.UITests
 			app.WaitForElement (c => c.Marked ("bottom"), "Timed out waiting for data to load", TimeSpan.FromSeconds (60));
 			app.WaitForElement (c => c.Marked ("Search"), "Timed out waiting for Search button", TimeSpan.FromSeconds (10));
 			app.Tap (c => c.Marked ("Search"));
-			const string enteredText = "Dunkin";
+			const string enteredText = "Espresso";
 			app.EnterText (enteredText);
 			app.PressEnter ();
 			app.WaitForElement (c => c.Marked ("bottom"), "Timed out waiting for data to load", TimeSpan.FromSeconds (60));
@@ -157,10 +157,8 @@ namespace CoffeeFilter.UITests
 			if (platform == Platform.Android) {
 				app.WaitForElement (c => c.Marked ("rating"));
 				Assert.That (app.Query (c => c.Marked ("rating")).Any ());
-			} else {
-				app.WaitForElement (c => c.Marked ("info_cell"));
-				Assert.That (app.Query (c => c.Marked ("info_cell")).Any ());
 			}
+
 			Assert.That (app.Query (c => c.Marked ("name")).Any ());
 			Assert.That (app.Query (c => c.Marked ("address")).Any ());
 			Assert.That (app.Query (c => c.Marked ("distance")).Any ());
