@@ -138,9 +138,10 @@ namespace CoffeeFilter.iOS
 		}
 
 
-		void SetAnnotationView (Place place)
+		void SetAnnotationView (Place place, bool force = false)
 		{
-			SetUpAnnotations ();
+			if (force)
+				SetUpAnnotations ();
 
 			var current = MapView.Annotations.FirstOrDefault(a => 
 					Math.Abs(a.Coordinate.Latitude - place.Geometry.Location.Latitude) < double.Epsilon &&
@@ -234,7 +235,7 @@ namespace CoffeeFilter.iOS
 					{
 					InitScrollView();
 					currentPlace = viewModel.Places[0];
-					SetAnnotationView(currentPlace);
+					SetAnnotationView(currentPlace, true);
 				});
 
 			} finally {
