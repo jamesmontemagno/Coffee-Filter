@@ -12,9 +12,9 @@ namespace CoffeeFilter.UITests.Shared
 		public static TestType SelectedTest { get; set; }
 		public enum TestType
 		{
+			OpenCoffee = 0,
 			NoConnection,
 			ParseError,
-			OpenCoffee,
 			ClosedCoffee,
 			NoLocations,
 			UserMoved
