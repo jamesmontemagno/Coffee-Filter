@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Linq;
 
 using CoreGraphics;
 using Foundation;
@@ -32,6 +33,12 @@ namespace CoffeeFilter.iOS
 					sadCoffeeImage = UIImage.FromBundle("ic_sadcoffee");
 
 				return sadCoffeeImage;
+			}
+		}
+
+		bool ShowSteamAndCoffee {
+			set {
+				CoffeeImage.Subviews.ToList().ForEach(x => x.Hidden = value);
 			}
 		}
 
@@ -85,8 +92,10 @@ namespace CoffeeFilter.iOS
 		public bool LoopAnimation { get; set;}
 		public async Task StartAnimation ()
 		{
-			if (CoffeeImage.Image != RegularCoffeeImage)
+			if (CoffeeImage.Image != RegularCoffeeImage) {
+				ShowSteamAndCoffee = false;
 				CoffeeImage.Image = RegularCoffeeImage;
+			}
 
 			await UIView.AnimateAsync(0.2, () => Alpha = 1);
 			await UIView.AnimateAsync(1.0, () => {
@@ -101,6 +110,7 @@ namespace CoffeeFilter.iOS
 
 			if (ShowSadCoffee) {
 				LoopAnimation = false;
+				ShowSteamAndCoffee = true;
 				CoffeeImage.Image = SadCoffeeImage;
 				return;
 			}
