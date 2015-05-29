@@ -22,7 +22,7 @@ namespace CoffeeFilter.iOS
 			Google.Maps.MapServices.ProvideAPIKey(GoogleMapsAPIKey);
 
 			// Code to start the Xamarin Test Cloud Agent
-			#if ENABLE_TEST_CLOUD
+			#if UITest
 			Xamarin.Calabash.Start();
 			#endif
 
