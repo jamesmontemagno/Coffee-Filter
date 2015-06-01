@@ -157,6 +157,8 @@ namespace CoffeeFilter.UITests
 			if (platform == Platform.Android) {
 				app.WaitForElement (c => c.Marked ("rating"));
 				Assert.That (app.Query (c => c.Marked ("rating")).Any ());
+			} else {
+				app.WaitForElement (c => c.Marked ("name"));
 			}
 
 			Assert.That (app.Query (c => c.Marked ("name")).Any ());
@@ -172,6 +174,9 @@ namespace CoffeeFilter.UITests
 			Assert.That (app.Query (c => c.Text ("Monday").Sibling ().Marked ("monday")).Any ());
 			Assert.That (app.Query (c => c.Text ("Tuesday").Sibling ().Marked ("tuesday")).Any ());
 			Assert.That (app.Query (c => c.Text ("Wednesday").Sibling ().Marked ("wednesday")).Any ());
+
+			app.ScrollDown ();
+
 			Assert.That (app.Query (c => c.Text ("Thursday").Sibling ().Marked ("thursday")).Any ());
 			Assert.That (app.Query (c => c.Text ("Friday").Sibling ().Marked ("friday")).Any ());
 			Assert.That (app.Query (c => c.Text ("Saturday").Sibling ().Marked ("saturday")).Any ());
@@ -223,14 +228,12 @@ namespace CoffeeFilter.UITests
 				app.WaitForElement (c => c.Marked ("Share with"), "Timed out waiting for Share button", TimeSpan.FromSeconds (10));
 				app.Tap (c => c.Marked ("Share with"));
 				app.WaitForElement (c => c.Marked ("See all"), "Timed out waiting for activity view", TimeSpan.FromSeconds (10));
-				Assert.That (app.Query (c => c.Marked ("Bluetooth")).Any ());
-				Assert.That (app.Query (c => c.Marked ("Keep")).Any ());
-				Assert.That (app.Query (c => c.Marked ("Hangouts")).Any ());
 				Assert.That (app.Query (c => c.Marked ("See all")).Any ());
 			} else {
 				app.WaitForElement (c => c.Marked ("Share"), "Timed out waiting for Share button", TimeSpan.FromSeconds (10));
-				app.Tap (c => c.Marked ("Share"));
-				app.WaitForElement (c => c.Marked ("ActivityListView"), "Timed out waiting for Activity List View button", TimeSpan.FromSeconds (10));
+				app.Tap (c => c.ClassFull ("UINavigationButton").Marked ("Share"));
+
+				app.WaitForElement (c => c.Marked ("ActivityListView"), "Timed out waiting for Activity List View button ", TimeSpan.FromSeconds (10));
 				Assert.That (app.Query (c => c.Marked ("ActivityListView")).Any ());
 			}
 		}
