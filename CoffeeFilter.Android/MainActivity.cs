@@ -32,10 +32,10 @@ namespace CoffeeFilter
 	#else
 	[Activity (Name="com.refractored.coffeeFilter.MainActivity", Label = "Coffee Filter", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = true, Icon = "@drawable/ic_launcher")]
 	#endif
-	[IntentFilter(new[]{Intent.ActionView},
+	/*[IntentFilter(new[]{Intent.ActionView},
 		Categories=new[]{Intent.CategoryDefault, Intent.CategoryBrowsable}, 
 		DataScheme="http", 
-		DataHost="motzcod.es")]
+		DataHost="motzcod.es")]*/
 	public class MainActivity : BaseActivity, IOnMapReadyCallback
 	{
 		const int ConnectionFailureResolutionRequest = 9000;
