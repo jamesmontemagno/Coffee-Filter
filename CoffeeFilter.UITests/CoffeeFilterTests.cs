@@ -24,7 +24,7 @@ namespace CoffeeFilter.UITests
 		IApp app;
 		Platform platform;
 
-		public string PathToAPK { get; } = "../../../CoffeeFilter.Android/bin/Release/com.refractored.coffeefilter-Signed.apk";
+		public string PathToAPK { get; } = "../../../CoffeeFilter.Android/bin/UITest/com.refractored.coffeefilter-Signed.apk";
 
 		public string BundleID { get; } = "com.xamarin.CoffeeFilterContaining";
 

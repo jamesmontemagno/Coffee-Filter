@@ -27,8 +27,8 @@ using Android.Support.V4.Content;
 
 namespace CoffeeFilter
 {
-
-	[Activity (Name="com.refractored.coffeeFilter.MainActivity", Label = "Coffee Filter", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	
+	[Activity (Name="com.refractored.coffeefilter.MainActivity", Label = "Coffee Filter", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = true, Icon = "@drawable/ic_launcher")]
 	/*[IntentFilter(new[]{Intent.ActionView},
 		Categories=new[]{Intent.CategoryDefault, Intent.CategoryBrowsable}, 
 		DataScheme="http", 
