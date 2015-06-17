@@ -127,7 +127,6 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestSetupActivity.cs" />
     <Compile Include="DetailsActivity.cs" />
     <Compile Include="BaseActivity.cs" />
     <Compile Include="Fragments\PlaceFragment.cs" />
