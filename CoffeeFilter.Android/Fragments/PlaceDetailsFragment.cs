@@ -105,14 +105,18 @@ namespace CoffeeFilter.Fragments
 							{ "name", Place.Name },
 						});
 						#endif
+
+						var intent = new Intent(Intent.ActionDial);
 						var uri = Android.Net.Uri.Parse ("tel:" + (string.IsNullOrWhiteSpace (Place.InternationalPhoneNumber) ? phone.Text : Place.InternationalPhoneNumber));
-						var intent = new Intent (Intent.ActionView, uri); 
-						Activity.StartActivity (intent);  
+
+						intent.SetData(uri);
+						intent.AddFlags(ActivityFlags.ClearWhenTaskReset);
+						Activity.StartActivity(intent);  
 					} catch (Exception ex) {
-						#if !DEBUG
+						
 						ex.Data ["call"] = "phone";
 						Xamarin.Insights.Report (ex);
-						#endif
+
 					}
 				};
 			}
@@ -165,30 +169,30 @@ namespace CoffeeFilter.Fragments
 					intent.SetData (Android.Net.Uri.Parse (Place.Website));
 					Activity.StartActivity (intent);
 				} catch (Exception ex) {
-					#if !DEBUG
+			
 					ex.Data ["call"] = "website";
 					Xamarin.Insights.Report (ex);
-					#endif
+				
 				}
 			};
 
 			googlePlus.Clickable = true;
 			googlePlus.Click += (sender, e) => {
 				try {
-					#if !DEBUG
+
 					Xamarin.Insights.Track ("Click", new Dictionary<string,string> {
 						{ "item", "google plus" },
 						{ "name", Place.Name },
 					});
-					#endif
+
 					var intent = new Intent (Intent.ActionView);
 					intent.SetData (Android.Net.Uri.Parse (Place.Url));
 					Activity.StartActivity (intent);
 				} catch (Exception ex) {
-					#if !DEBUG
+					
 					ex.Data ["call"] = "google+";
 					Xamarin.Insights.Report (ex);
-					#endif
+				
 				}
 			};
 

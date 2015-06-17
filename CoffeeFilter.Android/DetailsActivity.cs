@@ -153,6 +153,7 @@ namespace CoffeeFilter
 
 			if (requestCode == REQUEST_INVITE) {
 				if (resultCode == Result.Ok) {
+					Xamarin.Insights.Track ("AppInvite-Sent");
 					// Check how many invitations were sent and show message to the user
 					// The ids array contains the unique invitation ids for each invitation sent
 					// (one for each contact select by the user). You can use these for analytics
@@ -187,6 +188,8 @@ namespace CoffeeFilter
 				return;
 			}
 
+			Xamarin.Insights.Track ("AppInvite-Accepted");
+
 			var invitationId = AppInviteReferral.GetInvitationId (intent);
 			var deepLink = AppInviteReferral.GetDeepLink (intent);
 
@@ -218,7 +221,14 @@ namespace CoffeeFilter
 			// Note: these  calls return PendingResult(s), so one could also wait to see
 			// if this succeeds instead of using fire-and-forget, as is shown here
 			if (AppInviteReferral.IsOpenedFromPlayStore (intent)) {
+				Xamarin.Insights.Track ("AppInvite", new Dictionary<string, string> {
+					{ "status", "new_install" }
+				});
 				AppInviteClass.AppInviteApi.UpdateInvitationOnInstall (client, invitationId);
+			} else {
+				Xamarin.Insights.Track ("AppInvite", new Dictionary<string, string>{
+					{ "status", "installed"}
+				});
 			}
 
 			// If your invitation contains deep link information such as a coupon code, you may

@@ -20,7 +20,7 @@ namespace CoffeeFilter.Fragments
 	public class PlaceFragment : Fragment
 	{
 		string name, distance, rating;
-		double lat, lng;
+		//double lat, lng;
 		Button placeName;
 
 		public string PlaceId { get; set; }
@@ -51,8 +51,8 @@ namespace CoffeeFilter.Fragments
 			name = Arguments.GetString ("name");
 			distance = Arguments.GetString ("distance");
 			rating = Arguments.GetString ("rating");
-			lat = Arguments.GetDouble ("lat");
-			lng = Arguments.GetDouble ("lng");
+			//lat = Arguments.GetDouble ("lat");
+			//lng = Arguments.GetDouble ("lng");
 			PlaceId = Arguments.GetString ("placeId");
 		}
 
