@@ -76,12 +76,17 @@ namespace CoffeeFilter.Fragments
 			var distance = root.FindViewById<TextView> (Resource.Id.distance);
 			mainScroll = root.FindViewById<FilterScrollView> (Resource.Id.main_scroll);
 
-			var dis = Place.GetDistance (Position.Latitude,
-				          Position.Longitude, CultureInfo.CurrentCulture.Name != "en-US" ? 
+
+			if (Math.Abs (Position.Latitude) < double.Epsilon && Math.Abs (Position.Longitude) < double.Epsilon)
+				distance.Text = string.Empty;
+			else {
+				var dis = Place.GetDistance (Position.Latitude,
+					         Position.Longitude, CultureInfo.CurrentCulture.Name != "en-US" ? 
 				CoffeeFilter.Shared.GeolocationUtils.DistanceUnit.Kilometers :
 					CoffeeFilter.Shared.GeolocationUtils.DistanceUnit.Miles).ToString ("##.###", CultureInfo.CurrentUICulture);
 
-			distance.Text = string.Format (Resources.GetString (Resource.String.distance_away), dis);
+				distance.Text = string.Format (Resources.GetString (Resource.String.distance_away), dis);
+			}
 
 			if (string.IsNullOrWhiteSpace (Place.Rating.ToString ()))
 				reviews.Visibility = ViewStates.Gone;
