@@ -224,7 +224,7 @@ namespace CoffeeFilter
 			// If your invitation contains deep link information such as a coupon code, you may
 			// want to wait to call `convertInvitation` until the time when the user actually
 			// uses the deep link data, rather than immediately upon receipt
-			//AppInviteClass.AppInviteApi.ConvertInvitation (client, invitationId);
+			AppInviteClass.AppInviteApi.ConvertInvitation (client, invitationId);
 
 		}
 
