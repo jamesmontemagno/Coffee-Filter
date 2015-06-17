@@ -7,76 +7,76 @@ namespace CoffeeFilter.Shared.Models
 	public class Place
 	{
 		[DataMember(Name = "address_components")]
-		public List<AddressComponent> AddressComponents { get; set; }
+		public List<AddressComponent> AddressComponents { get; set; } = new List<AddressComponent>();
 
 		[DataMember(Name = "adr_address")]
-		public string Address { get; set; }
+		public string Address { get; set; } = string.Empty;
 
 		[DataMember(Name = "formatted_address")]
-		public string AddressFormatted { get; set; }
+		public string AddressFormatted { get; set; } = string.Empty;
 
 		[DataMember(Name = "formatted_phone_number")]
-		public string PhoneNumberFormatted { get; set; }
+		public string PhoneNumberFormatted { get; set; } = string.Empty;
 
 		[DataMember(Name = "geometry")]
-		public Geometry Geometry { get; set; }
+		public Geometry Geometry { get; set; } = new Geometry();
 
 		[DataMember(Name = "icon")]
-		public string Icon { get; set; }
+		public string Icon { get; set; } = string.Empty;
 
 		[DataMember(Name = "id")]
-		public string Id { get; set; }
+		public string Id { get; set; } = string.Empty;
 
 		[DataMember(Name = "international_phone_number")]
-		public string InternationalPhoneNumber { get; set; }
+		public string InternationalPhoneNumber { get; set; } = string.Empty;
 
 		[DataMember(Name = "name")]
-		public string Name { get; set; }
+		public string Name { get; set; } = string.Empty;
 
 		[DataMember(Name = "opening_hours")]
-		public OpeningHours OpeningHours { get; set; }
+		public OpeningHours OpeningHours { get; set; } = new OpeningHours();
 
 		[DataMember(Name = "photos")]
-		public List<Photo> Photos { get; set; }
+		public List<Photo> Photos { get; set; } = new List<Photo>();
 
 		[DataMember(Name = "place_id")]
-		public string PlaceId { get; set; }
+		public string PlaceId { get; set; } = string.Empty;
 
 		[DataMember(Name = "rating")]
-		public double Rating { get; set; }
+		public double Rating { get; set; } = 0;
 
 		[DataMember(Name = "reference")]
-		public string Reference { get; set; }
+		public string Reference { get; set; } = string.Empty;
 
 		[DataMember(Name = "scope")]
-		public string Scope { get; set; }
+		public string Scope { get; set; } = string.Empty;
 
 		[DataMember(Name = "types")]
-		public List<string> Types { get; set; }
+		public List<string> Types { get; set; } = new List<string>();
 
 		[DataMember(Name = "vicinity")]
-		public string Vicinity { get; set; }
+		public string Vicinity { get; set; } = string.Empty;
 
 		[DataMember(Name = "price_level")]
-		public int? PriceLevel { get; set; }
+		public int? PriceLevel { get; set; } = 0;
 
 		[DataMember(Name = "reviews")]
-		public List<Review> Reviews { get; set; }
+		public List<Review> Reviews { get; set; } = new List<Review>();
 
 		[DataMember(Name = "url")]
-		public string Url { get; set; }
+		public string Url { get; set; } = string.Empty;
 
 		[DataMember(Name = "user_ratings_total")]
-		public int UserRatingsCount { get; set; }
+		public int UserRatingsCount { get; set; } = 0;
 
 		[DataMember(Name = "utc_offset")]
-		public int UTCOffset { get; set; }
+		public int UTCOffset { get; set; } = 0;
 
 		[DataMember(Name = "website")]
-		public string Website { get; set; }
+		public string Website { get; set; } = string.Empty;
 
 		[DataMember(Name = "permanently_closed")]
-		public bool PermanentlyClosed { get; set; }
+		public bool PermanentlyClosed { get; set; } = false;
 
 		[IgnoreDataMember]
 		public bool HasImage {

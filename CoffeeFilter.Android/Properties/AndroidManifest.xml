@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="2.0" package="com.refractored.coffeefilter" android:versionCode="2">
 	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="21" />
 	<application android:label="Coffee Filter" android:icon="@drawable/ic_launcher" android:theme="@style/MyTheme">
-		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDUFMs3oDC26o02sniwcJr-5EY-lwdPp3E" />
+	<!--DEBUG AIzaSyDUFMs3oDC26o02sniwcJr-5EY-lwdPp3E -->
+		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAPb6g6mX8GsYv_VGTrf3MimXOxqxd6EwY" />
+		<meta-data
+			      android:name="com.google.android.gms.version"
+			      android:value="@integer/google_play_services_version" />
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

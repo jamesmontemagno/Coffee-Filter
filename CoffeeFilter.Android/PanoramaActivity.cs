@@ -11,7 +11,7 @@ using Android.Views;
 namespace CoffeeFilter
 {
 	[Activity (Label = "Panorama Activity", ScreenOrientation = ScreenOrientation.Portrait)]			
-	public class PanoramaActivity : ActionBarActivity, IOnStreetViewPanoramaReadyCallback
+	public class PanoramaActivity : AppCompatActivity, IOnStreetViewPanoramaReadyCallback
 	{
 		LatLng latlng;
 		StreetViewPanoramaView streetViewPanoramaView;

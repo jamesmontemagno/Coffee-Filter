@@ -8,35 +8,35 @@ namespace CoffeeFilter.Shared.Models
 	public class Aspect
 	{
 		[DataMember (Name = "rating")]
-		public int Rating { get; set; }
+		public int Rating { get; set; } = 0;
 
 		[DataMember (Name = "type")]
-		public string Type { get; set; }
+		public string Type { get; set; } = string.Empty;
 	}
 
 	[DataContract]
 	public class Review
 	{
 		[DataMember (Name = "aspects")]
-		public List<Aspect> Aspects { get; set; }
+		public List<Aspect> Aspects { get; set; } = new List<Aspect>();
 
 		[DataMember (Name = "author_name")]
-		public string AuthorName { get; set; }
+		public string AuthorName { get; set; } = string.Empty;
 
 		[DataMember (Name = "author_url")]
-		public string AuthorUrl { get; set; }
+		public string AuthorUrl { get; set; } = string.Empty;
 
 		[DataMember (Name = "language")]
-		public string Language { get; set; }
+		public string Language { get; set; } = string.Empty;
 
 		[DataMember (Name = "rating")]
-		public int Rating { get; set; }
+		public int Rating { get; set; } = 0;
 
 		[DataMember (Name = "text")]
-		public string Text { get; set; }
+		public string Text { get; set; } = string.Empty;
 
 		[DataMember (Name = "time")]
-		public double Time { get; set; }
+		public double Time { get; set; } = DateTime.Now.Ticks;
 	}
 }
 

@@ -15,6 +15,11 @@ namespace CoffeeFilter.Shared.ViewModels
 {
 	public class DetailsViewModel : BaseViewModel
 	{
+		public DetailsViewModel()
+		{
+			Place = new Place ();
+			Position = new Position ();
+		}
 		const string DetailsQueryUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid={0}&key=" + CoffeeFilterViewModel.APIKey;
 
 		public Place Place { get; set; }

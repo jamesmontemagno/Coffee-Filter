@@ -11,40 +11,40 @@ namespace CoffeeFilter.Shared.Models
 		public bool IsOpen { get; set; }
 
 		[DataMember (Name = "weekday_text")]
-		public List<string> WeekdayText { get; set; }
+		public List<string> WeekdayText { get; set; } = new List<string>();
 
 		[DataMember (Name = "periods")]
-		public List<Period> Periods { get; set; }
+		public List<Period> Periods { get; set; } = new List<Period>();
 	}
 
 	[DataContract]
 	public class Close
 	{
 		[DataMember (Name = "day")]
-		public int Day { get; set; }
+		public int Day { get; set; } = 0;
 
 		[DataMember (Name = "time")]
-		public string Time { get; set; }
+		public string Time { get; set; }  = string.Empty;
 	}
 
 	[DataContract]
 	public class Open
 	{
 		[DataMember (Name = "day")]
-		public int Day { get; set; }
+		public int Day { get; set; } = 0;
 
 		[DataMember (Name = "time")]
-		public string Time { get; set; }
+		public string Time { get; set; } = string.Empty;
 	}
 
 	[DataContract]
 	public class Period
 	{
 		[DataMember (Name = "close")]
-		public Close Close { get; set; }
+		public Close Close { get; set; } = new Close();
 
 		[DataMember (Name = "open")]
-		public Open Open { get; set; }
+		public Open Open { get; set; } = new Open();
 	}
 }
 

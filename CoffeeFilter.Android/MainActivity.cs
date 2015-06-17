@@ -21,6 +21,9 @@ using CoffeeFilter.Fragments;
 using CoffeeFilter.Shared.Helpers;
 using CoffeeFilter.Shared.Models;
 using CoffeeFilter.Shared.ViewModels;
+using Android.Gms.AppInvite;
+using Android.Util;
+using Android.Support.V4.Content;
 
 namespace CoffeeFilter
 {
@@ -53,6 +56,7 @@ namespace CoffeeFilter
 		AnimationDrawable coffeeProgress;
 		GoogleMap googleMap;
 		DateTime lastRefresh = DateTime.UtcNow;
+		private BroadcastReceiver deepLinkReceiver = null;
 
 		protected override int LayoutResource {
 			get {
@@ -64,7 +68,9 @@ namespace CoffeeFilter
 		{
 			base.OnCreate (bundle);
 
-			#if !DEBUG
+			#if DEBUG
+			Xamarin.Insights.Initialize("ef02f98fd6fb47ce8624862ab7625b933b6fb21d", this);
+			#else
 			Xamarin.Insights.Initialize ("8da86f8b3300aa58f3dc9bbef455d0427bb29086", this);
 			#endif
 
@@ -91,7 +97,7 @@ namespace CoffeeFilter
 			};
 
 			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-			refresher.SetColorScheme (Resource.Color.accent);
+			refresher.SetColorSchemeColors (Resource.Color.accent);
 			refresher.Refresh += (sender, args) => {
 				RefreshData (true);
 				refresher.PostDelayed (() => {
@@ -103,15 +109,52 @@ namespace CoffeeFilter
 			SupportActionBar.SetHomeButtonEnabled (false);
 			mapView.GetMapAsync (this);
 			CheckGooglePlayServices ();
+
+			// No savedInstanceState, so it is the first launch of this activity
+			if (bundle == null && AppInviteReferral.HasReferral(Intent)) {
+				// In this case the referral data is in the intent launching the MainActivity,
+				// which means this user already had the app installed. We do not have to
+				// register the Broadcast Receiver to listen for Play Store Install information
+				LaunchDeepLinkActivity(Intent);
+
+			}
+		}
+
+		public void LaunchDeepLinkActivity(Intent intent) 
+		{
+			Log.Debug("MainActivity", "LaunchDeepLinkActivity:" + intent);
+			var newIntent = new Intent (intent);
+			newIntent.SetClass (this, typeof(DetailsActivity));
+			StartActivity(newIntent);
+		}
+
+		void RegisterDeepLinkReceiver() 
+		{
+			// Create local Broadcast receiver that starts 
+			//DeepLinkActivity when a deep link is found
+			deepLinkReceiver = new InviteBroadcastReceiver(this);
+
+			var intentFilter = new IntentFilter(GetString(Resource.String.action_deep_link));
+			LocalBroadcastManager.GetInstance(this).RegisterReceiver(
+				deepLinkReceiver, intentFilter);
+		}
+
+		void UnregisterDeepLinkReceiver() 
+		{
+			if (deepLinkReceiver == null)
+				return;
+			
+			LocalBroadcastManager.GetInstance(this).UnregisterReceiver(deepLinkReceiver);
+
 		}
 
 		bool CheckGooglePlayServices ()
 		{
-			var result = GooglePlayServicesUtil.IsGooglePlayServicesAvailable (this);
+			var result = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable (this);
 			if (result == ConnectionResult.Success)
 				return true;
 			
-			var dialog = GooglePlayServicesUtil.GetErrorDialog (result, this, ConnectionFailureResolutionRequest);
+			var dialog = GoogleApiAvailability.Instance.GetErrorDialog (this, result, ConnectionFailureResolutionRequest);
 			
 			if (dialog != null) {
 				var errorDialog = SupportErrorDialogFragment.NewInstance (dialog);
@@ -238,11 +281,24 @@ namespace CoffeeFilter
 			}, 250);
 		}
 
+
+
 		protected override void OnStart ()
 		{
 			base.OnStart ();
+
+			RegisterDeepLinkReceiver ();
+
 			if (googleMap != null && lastRefresh.AddMinutes (5) < DateTime.UtcNow)
 				RefreshData ();
+
+
+		}
+
+		protected override void OnStop ()
+		{
+			base.OnStop ();
+			UnregisterDeepLinkReceiver ();
 		}
 
 		protected override void OnResume ()
@@ -268,6 +324,8 @@ namespace CoffeeFilter
 			base.OnLowMemory ();
 			mapView.OnLowMemory ();
 		}
+
+
 
 		protected override void OnSaveInstanceState (Bundle outState)
 		{

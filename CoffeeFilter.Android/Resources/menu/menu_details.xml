@@ -8,4 +8,8 @@
         android:title="@string/share"
         app:showAsAction="always"
         app:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
+
+  <item android:id="@+id/action_invite"
+  		android:title="Invite Friends"
+  		app:showAsAction="never"/>
 </menu>

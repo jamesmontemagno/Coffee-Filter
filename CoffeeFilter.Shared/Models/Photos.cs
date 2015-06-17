@@ -12,13 +12,13 @@ namespace CoffeeFilter.Shared.Models
 		const string LargeImageUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference={0}&key={1}";
 
 		[DataMember (Name = "height")]
-		public int Height { get; set; }
+		public int Height { get; set; } = 0;
 
 		[DataMember (Name = "photo_reference")]
-		public string Reference { get; set; }
+		public string Reference { get; set; }  = string.Empty;
 
 		[DataMember (Name = "width")]
-		public int Width { get; set; }
+		public int Width { get; set; } = 0;
 
 		[IgnoreDataMember]
 		public string ImageUrl {
