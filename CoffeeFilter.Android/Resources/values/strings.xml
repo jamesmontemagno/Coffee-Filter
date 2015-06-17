@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="action_deep_link">
-        com.google.android.gms.samples.appinvite.DEEP_LINK_ACTION
+        com.refractored.coffeefilter.MainActivity
     </string>
 	<string name="navigate">Navigate to Coffee</string>
 	<string name="app_name">Coffee Filter</string>

@@ -30,8 +30,12 @@ namespace CoffeeFilter
 	#if UITest
 	[Activity (Label = "Coffee Filter", ScreenOrientation = ScreenOrientation.Portrait,  MainLauncher = false, Icon = "@drawable/ic_launcher")]
 	#else
-	[Activity (Label = "Coffee Filter", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = true, Icon = "@drawable/ic_launcher")]
+	[Activity (Name="com.refractored.coffeeFilter.MainActivity", Label = "Coffee Filter", ScreenOrientation = ScreenOrientation.Portrait, MainLauncher = true, Icon = "@drawable/ic_launcher")]
 	#endif
+	[IntentFilter(new[]{Intent.ActionView},
+		Categories=new[]{Intent.CategoryDefault, Intent.CategoryBrowsable}, 
+		DataScheme="http", 
+		DataHost="motzcod.es")]
 	public class MainActivity : BaseActivity, IOnMapReadyCallback
 	{
 		const int ConnectionFailureResolutionRequest = 9000;

@@ -17,13 +17,12 @@ namespace CoffeeFilter
 {
 	[BroadcastReceiver(Exported = true)]
 	[IntentFilter(new []{"com.android.vending.INSTALL_REFERRER"})]
-
 	public class ReferrerReceiver : BroadcastReceiver
 	{
 		public override void OnReceive (Context context, Intent intent)
 		{
 			// Create deep link intent with correct action and add play store referral information
-			Intent deepLinkIntent = AppInviteReferral.AddPlayStoreReferrerToIntent(intent,
+			var deepLinkIntent = AppInviteReferral.AddPlayStoreReferrerToIntent(intent,
 				new Intent(context.GetString(Resource.String.action_deep_link)));
 
 			// Let any listeners know about the change

@@ -116,7 +116,7 @@ namespace CoffeeFilter
 			if (item.ItemId == Android.Resource.Id.Home)
 				Finish ();
 			else if (item.ItemId == Resource.Id.action_invite)
-				InviteClicked ();
+				SendInvite ();
 
 			return base.OnOptionsItemSelected (item);
 		}
@@ -139,7 +139,7 @@ namespace CoffeeFilter
 			return base.OnCreateOptionsMenu (menu);
 		}
 
-		void InviteClicked() {
+		void SendInvite() {
 			var intent = new AppInviteInvitation.IntentBuilder("Invite Friends to Coffee")
 				.SetMessage("Join me at " + SupportActionBar.Title + " with Coffee Filter")
 				.SetDeepLink(Android.Net.Uri.Parse("http://motzcod.es/coffee/" + viewModel.Place.PlaceId))
