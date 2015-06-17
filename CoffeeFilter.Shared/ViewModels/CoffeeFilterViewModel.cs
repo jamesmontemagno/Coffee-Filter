@@ -39,6 +39,9 @@ namespace CoffeeFilter.Shared.ViewModels
 
 		public static string GetDistanceToPlace (Place place, Position position)
 		{
+			if (Math.Abs (position.Latitude) < double.Epsilon && Math.Abs (position.Longitude) < double.Epsilon)
+				return string.Empty;
+			
 			string distance = place.GetDistance (position.Latitude, position.Longitude,
 				CultureInfo.CurrentCulture.Name != "en-US" ?
 				CoffeeFilter.Shared.GeolocationUtils.DistanceUnit.Kilometers :
@@ -126,8 +129,12 @@ namespace CoffeeFilter.Shared.ViewModels
 			}
 
 			try {
+				#if __IOS__
 				using (var client = new HttpClient (new ModernHttpClient.NativeMessageHandler())) {
-					#if UITest
+				#else
+				using (var client = new HttpClient ()) {
+				#endif
+				#if UITest
 					var result = GetUITestResults();
 					if(string.IsNullOrWhiteSpace(result)) {
 						client.Timeout = TimeSpan.FromSeconds(10);

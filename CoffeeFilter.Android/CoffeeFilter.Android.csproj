@@ -76,12 +76,6 @@
     <Reference Include="Connectivity.Plugin.Abstractions">
       <HintPath>..\packages\Xam.Plugin.Connectivity.1.0.2\lib\MonoAndroid10\Connectivity.Plugin.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="ModernHttpClient">
-      <HintPath>..\packages\modernhttpclient.2.4.2\lib\MonoAndroid\ModernHttpClient.dll</HintPath>
-    </Reference>
-    <Reference Include="OkHttp">
-      <HintPath>..\packages\modernhttpclient.2.4.2\lib\MonoAndroid\OkHttp.dll</HintPath>
-    </Reference>
     <Reference Include="Geolocator.Plugin">
       <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\MonoAndroid10\Geolocator.Plugin.dll</HintPath>
     </Reference>

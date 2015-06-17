@@ -15,7 +15,9 @@ using Android.Support.V4.Content;
 
 namespace CoffeeFilter
 {
-	[BroadcastReceiver]
+	[BroadcastReceiver(Exported = true)]
+	[IntentFilter(new []{"com.android.vending.INSTALL_REFERRER"})]
+
 	public class ReferrerReceiver : BroadcastReceiver
 	{
 		public override void OnReceive (Context context, Intent intent)

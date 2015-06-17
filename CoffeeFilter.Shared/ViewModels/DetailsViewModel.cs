@@ -108,8 +108,11 @@ namespace CoffeeFilter.Shared.ViewModels
 			
 			var requestUri = string.Format (DetailsQueryUrl, Place.PlaceId);
 			try {
+				#if __IOS__
 				using (var client = new HttpClient (new ModernHttpClient.NativeMessageHandler())) {
-
+				#else
+				using (var client = new HttpClient ()) {
+				#endif
 					#if UITest
 					var result = GetPlaceDetailsForTests();
 					if(string.IsNullOrWhiteSpace(result)) {

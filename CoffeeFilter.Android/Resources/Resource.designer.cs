@@ -26,7 +26,6 @@ namespace CoffeeFilter
 		
 		public static void UpdateIdValues()
 		{
-			global::ModernHttpClient.Resource.String.library_name = global::CoffeeFilter.Resource.String.library_name;
 			global::com.refractored.Resource.Animation.abc_fade_in = global::CoffeeFilter.Resource.Animation.abc_fade_in;
 			global::com.refractored.Resource.Animation.abc_fade_out = global::CoffeeFilter.Resource.Animation.abc_fade_out;
 			global::com.refractored.Resource.Animation.abc_grow_fade_in_from_bottom = global::CoffeeFilter.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -4203,11 +4202,11 @@ namespace CoffeeFilter
 			// aapt resource value: 0x7f0a003d
 			public const int abc_toolbar_collapse_description = 2131361853;
 			
-			// aapt resource value: 0x7f0a0040
-			public const int action_deep_link = 2131361856;
+			// aapt resource value: 0x7f0a003f
+			public const int action_deep_link = 2131361855;
 			
-			// aapt resource value: 0x7f0a0042
-			public const int app_name = 2131361858;
+			// aapt resource value: 0x7f0a0041
+			public const int app_name = 2131361857;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int appbar_scrolling_view_behavior = 2131361792;
@@ -4218,8 +4217,8 @@ namespace CoffeeFilter
 			// aapt resource value: 0x7f0a0001
 			public const int auth_google_play_services_client_google_display_name = 2131361793;
 			
-			// aapt resource value: 0x7f0a004d
-			public const int based_on_review = 2131361869;
+			// aapt resource value: 0x7f0a004c
+			public const int based_on_review = 2131361868;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int common_android_wear_notification_needs_update_text = 2131361797;
@@ -4317,29 +4316,26 @@ namespace CoffeeFilter
 			// aapt resource value: 0x7f0a001e
 			public const int common_signin_button_text_long = 2131361822;
 			
-			// aapt resource value: 0x7f0a0052
-			public const int details = 2131361874;
+			// aapt resource value: 0x7f0a0051
+			public const int details = 2131361873;
 			
-			// aapt resource value: 0x7f0a0061
-			public const int distance_away = 2131361889;
+			// aapt resource value: 0x7f0a0060
+			public const int distance_away = 2131361888;
 			
-			// aapt resource value: 0x7f0a0048
-			public const int friday = 2131361864;
+			// aapt resource value: 0x7f0a0047
+			public const int friday = 2131361863;
 			
-			// aapt resource value: 0x7f0a0050
-			public const int google_plus = 2131361872;
+			// aapt resource value: 0x7f0a004f
+			public const int google_plus = 2131361871;
 			
-			// aapt resource value: 0x7f0a004c
-			public const int hours = 2131361868;
+			// aapt resource value: 0x7f0a004b
+			public const int hours = 2131361867;
 			
-			// aapt resource value: 0x7f0a005b
-			public const int info = 2131361883;
+			// aapt resource value: 0x7f0a005a
+			public const int info = 2131361882;
 			
-			// aapt resource value: 0x7f0a003f
-			public const int library_name = 2131361855;
-			
-			// aapt resource value: 0x7f0a0044
-			public const int monday = 2131361860;
+			// aapt resource value: 0x7f0a0043
+			public const int monday = 2131361859;
 			
 			// aapt resource value: 0x7f0a0023
 			public const int mr_media_route_button_content_description = 2131361827;
@@ -4371,83 +4367,83 @@ namespace CoffeeFilter
 			// aapt resource value: 0x7f0a0028
 			public const int mr_user_route_category_name = 2131361832;
 			
-			// aapt resource value: 0x7f0a0041
-			public const int navigate = 2131361857;
+			// aapt resource value: 0x7f0a0040
+			public const int navigate = 2131361856;
 			
-			// aapt resource value: 0x7f0a0062
-			public const int navigate_to_coffee = 2131361890;
-			
-			// aapt resource value: 0x7f0a0058
-			public const int no_network = 2131361880;
-			
-			// aapt resource value: 0x7f0a0060
-			public const int no_photos = 2131361888;
-			
-			// aapt resource value: 0x7f0a005f
-			public const int no_reviews = 2131361887;
-			
-			// aapt resource value: 0x7f0a005a
-			public const int nothing_open = 2131361882;
-			
-			// aapt resource value: 0x7f0a005d
-			public const int open_now = 2131361885;
-			
-			// aapt resource value: 0x7f0a004e
-			public const int open_until = 2131361870;
-			
-			// aapt resource value: 0x7f0a0053
-			public const int photos = 2131361875;
-			
-			// aapt resource value: 0x7f0a005e
-			public const int rating_only = 2131361886;
-			
-			// aapt resource value: 0x7f0a0051
-			public const int reviews = 2131361873;
-			
-			// aapt resource value: 0x7f0a0049
-			public const int saturday = 2131361865;
-			
-			// aapt resource value: 0x7f0a0055
-			public const int search = 2131361877;
-			
-			// aapt resource value: 0x7f0a0043
-			public const int search_hint = 2131361859;
-			
-			// aapt resource value: 0x7f0a0056
-			public const int share = 2131361878;
+			// aapt resource value: 0x7f0a0061
+			public const int navigate_to_coffee = 2131361889;
 			
 			// aapt resource value: 0x7f0a0057
-			public const int share_text = 2131361879;
+			public const int no_network = 2131361879;
+			
+			// aapt resource value: 0x7f0a005f
+			public const int no_photos = 2131361887;
+			
+			// aapt resource value: 0x7f0a005e
+			public const int no_reviews = 2131361886;
+			
+			// aapt resource value: 0x7f0a0059
+			public const int nothing_open = 2131361881;
+			
+			// aapt resource value: 0x7f0a005c
+			public const int open_now = 2131361884;
+			
+			// aapt resource value: 0x7f0a004d
+			public const int open_until = 2131361869;
+			
+			// aapt resource value: 0x7f0a0052
+			public const int photos = 2131361874;
+			
+			// aapt resource value: 0x7f0a005d
+			public const int rating_only = 2131361885;
+			
+			// aapt resource value: 0x7f0a0050
+			public const int reviews = 2131361872;
+			
+			// aapt resource value: 0x7f0a0048
+			public const int saturday = 2131361864;
+			
+			// aapt resource value: 0x7f0a0054
+			public const int search = 2131361876;
+			
+			// aapt resource value: 0x7f0a0042
+			public const int search_hint = 2131361858;
+			
+			// aapt resource value: 0x7f0a0055
+			public const int share = 2131361877;
+			
+			// aapt resource value: 0x7f0a0056
+			public const int share_text = 2131361878;
 			
 			// aapt resource value: 0x7f0a003e
 			public const int status_bar_notification_info_overflow = 2131361854;
 			
-			// aapt resource value: 0x7f0a005c
-			public const int street_view = 2131361884;
+			// aapt resource value: 0x7f0a005b
+			public const int street_view = 2131361883;
 			
-			// aapt resource value: 0x7f0a004a
-			public const int sunday = 2131361866;
-			
-			// aapt resource value: 0x7f0a0047
-			public const int thursday = 2131361863;
-			
-			// aapt resource value: 0x7f0a0045
-			public const int tuesday = 2131361861;
-			
-			// aapt resource value: 0x7f0a0054
-			public const int unable_to_get_details = 2131361876;
-			
-			// aapt resource value: 0x7f0a0059
-			public const int unable_to_get_locations = 2131361881;
-			
-			// aapt resource value: 0x7f0a004b
-			public const int web = 2131361867;
-			
-			// aapt resource value: 0x7f0a004f
-			public const int website = 2131361871;
+			// aapt resource value: 0x7f0a0049
+			public const int sunday = 2131361865;
 			
 			// aapt resource value: 0x7f0a0046
-			public const int wednesday = 2131361862;
+			public const int thursday = 2131361862;
+			
+			// aapt resource value: 0x7f0a0044
+			public const int tuesday = 2131361860;
+			
+			// aapt resource value: 0x7f0a0053
+			public const int unable_to_get_details = 2131361875;
+			
+			// aapt resource value: 0x7f0a0058
+			public const int unable_to_get_locations = 2131361880;
+			
+			// aapt resource value: 0x7f0a004a
+			public const int web = 2131361866;
+			
+			// aapt resource value: 0x7f0a004e
+			public const int website = 2131361870;
+			
+			// aapt resource value: 0x7f0a0045
+			public const int wednesday = 2131361861;
 			
 			static String()
 			{

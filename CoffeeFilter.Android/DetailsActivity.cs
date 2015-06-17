@@ -141,8 +141,8 @@ namespace CoffeeFilter
 
 		void InviteClicked() {
 			var intent = new AppInviteInvitation.IntentBuilder("Invite Friends to Coffee")
-				.SetMessage("Join me at: " + viewModel.Place.Name + " with Coffee Filter")
-				.SetDeepLink(Android.Net.Uri.Parse("http://motzcod.es/coffee/" + viewModel.Place.PlaceId + "," + viewModel.Position.Latitude + "," + viewModel.Position.Longitude))
+				.SetMessage("Join me at " + SupportActionBar.Title + " with Coffee Filter")
+				.SetDeepLink(Android.Net.Uri.Parse("http://motzcod.es/coffee/" + viewModel.Place.PlaceId))
 				.Build();
 			StartActivityForResult(intent, REQUEST_INVITE);
 		}
@@ -182,7 +182,8 @@ namespace CoffeeFilter
 		{
 
 			if (!AppInviteReferral.HasReferral (intent)) {
-				RefreshData ();
+				if(needsRefresh)
+					RefreshData ();
 				return;
 			}
 
@@ -192,17 +193,10 @@ namespace CoffeeFilter
 			Console.WriteLine ("Referral found: invitationId: " + invitationId + " deepLink: " + deepLink);
 
 			var info = deepLink.Replace ("http://motzcod.es/coffee/", string.Empty);
-			var infoArray = info.Split (new []{","}, StringSplitOptions.RemoveEmptyEntries);
-			if (infoArray.Length == 3) {
-				viewModel.Place.PlaceId = infoArray [0];
-				double lat = 0;
-				double lng = 0;
-				double.TryParse (infoArray [1], out lat);
-				double.TryParse (infoArray [2], out lng);
-				viewModel.Position.Latitude = lat;
-				viewModel.Position.Longitude = lng;
-				RefreshData ();
-			}
+
+			viewModel.Place.PlaceId = info;
+			RefreshData ();
+			
 
 			if (client.IsConnected) {
 				UpdateInvitationStatus (intent);
@@ -230,7 +224,7 @@ namespace CoffeeFilter
 			// If your invitation contains deep link information such as a coupon code, you may
 			// want to wait to call `convertInvitation` until the time when the user actually
 			// uses the deep link data, rather than immediately upon receipt
-			AppInviteClass.AppInviteApi.ConvertInvitation (client, invitationId);
+			//AppInviteClass.AppInviteApi.ConvertInvitation (client, invitationId);
 
 		}
 
