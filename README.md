@@ -8,8 +8,12 @@ Full application detecting the closest coffee locations to you using Google Maps
 
 ### Get the App
 
-Download from Google Play:
-https://play.google.com/store/apps/details?id=com.refractored.coffeefilter
+<a href="https://play.google.com/store/apps/details?id=com.refractored.coffeefilter">
+  <img alt="Android app on Google Play"
+       src="https://developer.android.com/images/brand/en_app_rgb_wo_60.png" />
+</a>
+
+<a href="https://itunes.apple.com/us/app/coffee-filter-find-coffee/id1000846120?ls=1&mt=8" target="_blank"><img alt="Download on iOS app store now" src="https://raw.githubusercontent.com/jamesmontemagno/My-StepCounter/master/Artwork/AppleAppStore.png"/></a>
 
 <table>
 <tr>
