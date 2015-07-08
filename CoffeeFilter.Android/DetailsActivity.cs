@@ -15,7 +15,6 @@ using Android.Widget;
 using CoffeeFilter.Fragments;
 using CoffeeFilter.Shared.Helpers;
 using CoffeeFilter.Shared.ViewModels;
-using com.refractored;
 using Android.Gms.AppInvite;
 using Android.Support.Design.Widget;
 using Android.Gms.Common.Apis;
@@ -29,7 +28,6 @@ namespace CoffeeFilter
 		Android.Support.V7.Widget.ShareActionProvider actionProvider;
 		DetailsAdapter adapter;
 		ViewPager pager;
-		PagerSlidingTabStrip tabs;
 		DetailsViewModel viewModel;
 		IGoogleApiClient client;
 		Intent cachedInvitationIntent;
@@ -55,9 +53,9 @@ namespace CoffeeFilter
 			}
 			adapter = new DetailsAdapter (this, SupportFragmentManager, viewModel);
 			pager = FindViewById<ViewPager> (Resource.Id.pager);
-			tabs = FindViewById<PagerSlidingTabStrip> (Resource.Id.tabs);
+			var tabs = FindViewById<TabLayout> (Resource.Id.tabs);
 			pager.Adapter = adapter;
-			tabs.SetViewPager (pager);
+			tabs.SetupWithViewPager (pager);
 			pager.OffscreenPageLimit = 3;
 
 			var layoutParameters = new Android.Support.V7.Widget.Toolbar.LayoutParams (
@@ -85,7 +83,7 @@ namespace CoffeeFilter
 			client = new GoogleApiClientBuilder (this)
 				.AddConnectionCallbacks (this)
 				.EnableAutoManage (this, 0, this)
-				.AddApi (AppInviteClass.Api)
+				.AddApi (AppInviteClass.API)
 				.Build ();
 		}
 
